@@ -16,15 +16,15 @@ export default function ProductDetail() {
 
   return (
     <div className="space-y-4">
-      <Link to="/products" className="text-brand-600">← Back to Products</Link>
-      <h2>{product.title}</h2>
-      <p className="text-gray-700">{product.description}</p>
-      <ul className="list-disc pl-5 space-y-1">
+      <Link to="/products" className="text-brand-400">← Back to Products</Link>
+      <h2 className="text-white">{product.title}</h2>
+      <p className="text-gray-300">{product.description}</p>
+      <ul className="list-disc pl-5 space-y-1 text-gray-300">
         {product.features.map((f) => (
           <li key={f}>{f}</li>
         ))}
       </ul>
-      <div className="h-40 bg-gray-100 rounded grid place-content-center text-gray-500">Product Image Placeholder</div>
+      <div className="h-40 bg-white/10 rounded grid place-content-center text-gray-300">Product Image Placeholder</div>
     </div>
   )
 }

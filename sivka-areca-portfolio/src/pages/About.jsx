@@ -29,9 +29,9 @@ export default function About() {
       </section>
 
       <section className="grid md:grid-cols-3 gap-4">
-        <div className="h-36 bg-gray-100 rounded grid place-content-center text-gray-500">Fabrication Image</div>
-        <div className="h-36 bg-gray-100 rounded grid place-content-center text-gray-500">Engineering Team</div>
-        <div className="h-36 bg-gray-100 rounded grid place-content-center text-gray-500">Installation Crew</div>
+        <div className="h-36 bg-white/10 rounded grid place-content-center text-gray-300">Fabrication Image</div>
+        <div className="h-36 bg-white/10 rounded grid place-content-center text-gray-300">Engineering Team</div>
+        <div className="h-36 bg-white/10 rounded grid place-content-center text-gray-300">Installation Crew</div>
       </section>
     </div>
   )

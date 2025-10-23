@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Button } from '../components/Button'
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
@@ -55,7 +56,7 @@ export default function Contact() {
               onChange={handleChange}
               className="border rounded px-3 py-2 h-32"
             />
-            <button type="submit" className="bg-brand-600 text-white px-4 py-2 rounded">Submit</button>
+            <Button type="submit">Submit</Button>
           </form>
         )}
       </section>
