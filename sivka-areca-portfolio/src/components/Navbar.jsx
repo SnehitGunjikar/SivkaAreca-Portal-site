@@ -27,7 +27,7 @@ export default function Navbar() {
             <span className="block w-4 h-0.5 bg-gray-300"></span>
           </button>
           <div className="h-8 w-8 bg-brand-600 text-white grid place-content-center rounded">S</div>
-          <span className="font-bold text-xl text-white">Sivka Areca Enterprises</span>
+          <span className="font-bold text-xl text-white">SIVKA ARECA ENTERPRISES</span>
         </div>
         <nav className="hidden md:flex items-center gap-1">
           <GooeyNav

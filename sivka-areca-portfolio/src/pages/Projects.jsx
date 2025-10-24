@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Button } from '../components/Button'
 import Modal from '../components/Modal'
 import ScrollReveal from '../components/ScrollReveal'
+import SpotlightCard from '../components/SpotlightCard'
 
 export default function Projects() {
   const [selected, setSelected] = useState(null)
@@ -14,12 +15,14 @@ export default function Projects() {
       <ScrollReveal as="p" mode="text" textTag="span" useDefaultTextStyles={false} containerClassName="mt-2" textClassName="text-gray-300">Where vision meets precision—every project is a testament to craftsmanship, innovation, and relentless attention to detail.</ScrollReveal>
       <div className="mt-4 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {projects.map((pr) => (
-          <ScrollReveal key={pr.slug} as="div" mode="block" containerClassName="relative border border-white/10 bg-white/5 rounded-lg p-4 pb-16 transition hover:ring-1 hover:ring-white/10">
-            <div className="h-32 bg-white/10 rounded mb-3 grid place-content-center text-gray-300">Image</div>
-            <h3 className="font-semibold text-white">{pr.title}</h3>
-            <p className="text-sm text-gray-400">{pr.description}</p>
-            <Button className="absolute bottom-4 left-4" onClick={() => setSelected(pr)}>View Details</Button>
-          </ScrollReveal>
+          <SpotlightCard key={pr.slug} className="relative rounded-2xl border border-white/10 bg-white/5 p-4 pb-16 transition hover:ring-1 hover:ring-white/10" spotlightColor="rgba(0, 229, 255, 0.2)">
+            <ScrollReveal as="div" mode="block" containerClassName="">
+              <div className="h-32 bg-white/10 rounded mb-3 grid place-content-center text-gray-300">Image</div>
+              <h3 className="font-semibold text-white">{pr.title}</h3>
+              <p className="text-sm text-gray-400">{pr.description}</p>
+              <Button className="absolute bottom-4 left-4" onClick={() => setSelected(pr)}>View Details</Button>
+            </ScrollReveal>
+          </SpotlightCard>
         ))}
       </div>
       {selected && (

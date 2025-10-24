@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ButtonLink } from '../components/Button'
 import ScrollReveal from '../components/ScrollReveal'
+import SpotlightCard from '../components/SpotlightCard'
 
 export default function Home() {
   return (
@@ -59,11 +60,13 @@ export default function Home() {
             { title: 'Installation Mastery', desc: 'Safe, efficient erection.' },
             { title: 'Project Management', desc: 'End-to-end delivery.' },
           ].map((s) => (
-            <ScrollReveal key={s.title} as="div" mode="block" containerClassName="border border-white/10 bg-white/5 rounded-lg p-4 transition hover:ring-1 hover:ring-white/10">
-              <h3 className="font-semibold text-white">{s.title}</h3>
-              <p className="text-sm text-gray-400">{s.desc}</p>
-              <ButtonLink to="/services" className="mt-3">Learn More</ButtonLink>
-            </ScrollReveal>
+            <SpotlightCard key={s.title} className="rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:ring-1 hover:ring-white/10" spotlightColor="rgba(0, 229, 255, 0.2)">
+              <ScrollReveal as="div" mode="block" containerClassName="">
+                <h3 className="font-semibold text-white">{s.title}</h3>
+                <p className="text-sm text-gray-400">{s.desc}</p>
+                <ButtonLink to="/services" className="mt-3">Learn More</ButtonLink>
+              </ScrollReveal>
+            </SpotlightCard>
           ))}
         </div>
       </section>
