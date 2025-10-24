@@ -4,15 +4,15 @@ import * as THREE from 'three'
 
 // Prism shader material
 const PrismMaterial = ({ 
-  height = 3.5, 
-  baseWidth = 5.5, 
+  height = 5.5, 
+  baseWidth = 8.5, 
   glow = 1, 
-  noise = 0.5, 
+  noise = 0, 
   scale = 3.6, 
   hueShift = 0, 
   colorFrequency = 1, 
   timeScale = 0.5,
-  animationType = 'hover'
+  animationType = "hover"
 }) => {
   const materialRef = useRef()
 
@@ -146,12 +146,12 @@ const PrismGeometry = (props) => {
 
 // Main Prism Background component
 const PrismBackground = ({
-  height = 3.5,
-  baseWidth = 5.5,
+  height = 5.5,
+  baseWidth = 8.5,
   animationType = 'hover',
   glow = 1,
   offset = { x: 0, y: 0 },
-  noise = 0.5,
+  noise = 0,
   transparent = true,
   scale = 3.6,
   hueShift = 0,

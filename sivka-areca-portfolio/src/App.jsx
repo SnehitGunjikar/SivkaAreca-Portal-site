@@ -16,18 +16,19 @@ export default function App() {
   return (
     <div className="relative min-h-screen text-gray-200">
       {/* Dark base background below prism */}
-      <div className="fixed inset-0 -z-20 bg-neutral-950" />
+      <div className="absolute inset-0 -z-20 bg-neutral-950" />
       {/* Global Prism Background */}
       <PrismBackground 
         height={3.5}
         baseWidth={5.0}
         scale={3.8}
-        glow={1.2}
-        noise={0.25}
-        colorFrequency={0.6}
-        timeScale={0.15}
-        hueShift={0.1}
-        className="fixed inset-0 -z-10 pointer-events-none opacity-75"
+        glow={0.8}
+        noise={0.08}
+        colorFrequency={0.4}
+        timeScale={0.12}
+        hueShift={0.06}
+        animationType="none"
+        className="absolute inset-0 -z-10 pointer-events-none opacity-60"
       />
       <Navbar />
       <main className="container py-8">

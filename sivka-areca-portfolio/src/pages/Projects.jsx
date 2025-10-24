@@ -8,14 +8,14 @@ export default function Projects() {
   return (
     <div>
       <h2>Projects</h2>
-      <p className="mt-2 text-gray-300">Showcase of executed works from SKA 15P.</p>
+      <p className="mt-2 text-gray-300">Where vision meets precision—every project is a testament to craftsmanship, innovation, and relentless attention to detail.</p>
       <div className="mt-4 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {projects.map((pr) => (
-          <div key={pr.slug} className="border border-white/10 bg-white/5 rounded-lg p-4">
+          <div key={pr.slug} className="relative border border-white/10 bg-white/5 rounded-lg p-4 pb-16">
             <div className="h-32 bg-white/10 rounded mb-3 grid place-content-center text-gray-300">Image</div>
             <h3 className="font-semibold text-white">{pr.title}</h3>
             <p className="text-sm text-gray-400">{pr.description}</p>
-            <Button className="mt-3" onClick={() => setSelected(pr)}>View Details</Button>
+            <Button className="absolute bottom-4 left-4" onClick={() => setSelected(pr)}>View Details</Button>
           </div>
         ))}
       </div>

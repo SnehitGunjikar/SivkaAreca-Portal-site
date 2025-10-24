@@ -6,7 +6,7 @@ export default function Services() {
   return (
     <div>
       <h2>Our Services</h2>
-      <p className="mt-2 text-gray-300">Explore our core competencies from SKA 13P.</p>
+      <p className="mt-2 text-gray-300">Discover the solutions that power your next big idea.</p>
       <div className="mt-4 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
         {services.map((s) => (
           <div key={s.slug} className="border border-white/10 bg-white/5 rounded-lg p-4 flex flex-col">
