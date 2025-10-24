@@ -1,10 +1,21 @@
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
+import GooeyNav from './GooeyNav'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const linkClass = ({ isActive }) =>
     `px-3 py-2 rounded-md text-sm font-medium ${isActive ? 'bg-brand-600 text-white' : 'text-gray-200 hover:bg-white/10'}`
+
+  const items = [
+    { label: 'Home', to: '/' },
+    { label: 'About', to: '/about' },
+    { label: 'Services', to: '/services' },
+    { label: 'Products', to: '/products' },
+    { label: 'Projects', to: '/projects' },
+    { label: 'Manufacturing', to: '/manufacturing' },
+    { label: 'Contact', to: '/contact' },
+  ]
 
   return (
     <header className="bg-black/40 backdrop-blur-sm border-b border-white/10 sticky top-0 z-50">
@@ -19,13 +30,13 @@ export default function Navbar() {
           <span className="font-bold text-xl text-white">Sivka Areca Enterprises</span>
         </div>
         <nav className="hidden md:flex items-center gap-1">
-          <NavLink to="/" className={linkClass}>Home</NavLink>
-          <NavLink to="/about" className={linkClass}>About</NavLink>
-          <NavLink to="/services" className={linkClass}>Services</NavLink>
-          <NavLink to="/products" className={linkClass}>Products</NavLink>
-          <NavLink to="/projects" className={linkClass}>Projects</NavLink>
-          <NavLink to="/manufacturing" className={linkClass}>Manufacturing</NavLink>
-          <NavLink to="/contact" className={linkClass}>Contact</NavLink>
+          <GooeyNav
+            items={items}
+            animationTime={600}
+            particleCount={21}
+            timeVariance={1300}
+            particleR={240}
+          />
         </nav>
       </div>
       {/* Mobile menu */}

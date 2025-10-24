@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Button } from '../components/Button'
+import ScrollReveal from '../components/ScrollReveal'
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
@@ -17,46 +18,80 @@ export default function Contact() {
   }
 
   return (
-    <div className="space-y-8">
-      <section>
-        <h2>Contact</h2>
-        <p className="mt-2 text-gray-700">Sivka Areca Enterprises</p>
-        <p className="text-gray-700">G.P.C. No. 414/34, Shivaji Nagar, Khanapur - 591302, Belagavi, Karnataka</p>
-        <p className="text-gray-700">GSTIN: 29FMNPP9114A1ZS</p>
-        <p className="text-gray-700">Contact: +91 9686420150, +91 9591253590</p>
-        <p className="text-gray-700">Email: sivkaareca@gmail.com</p>
+    <div className="space-y-10">
+      {/* Header and contact info */}
+      <section className="grid md:grid-cols-2 gap-6">
+        <div className="border border-white/10 bg-white/5 rounded-xl p-6 shadow-md shadow-brand-600/10 transition hover:ring-1 hover:ring-white/10">
+          <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} textClassName="text-white">Contact</ScrollReveal>
+          <p className="mt-2 text-gray-300">Sivka Areca Enterprises</p>
+          <p className="text-gray-300">G.P.C. No. 414/34, Shivaji Nagar, Khanapur - 591302, Belagavi, Karnataka</p>
+          <p className="text-gray-300">GSTIN: 29FMNPP9114A1ZS</p>
+          <div className="mt-4 grid gap-2">
+            <a href="tel:+919686420150" className="inline-flex items-center gap-2 text-brand-400 hover:text-brand-300 transition-colors">+91 9686420150</a>
+            <a href="tel:+919591253590" className="inline-flex items-center gap-2 text-brand-400 hover:text-brand-300 transition-colors">+91 9591253590</a>
+            <a href="mailto:sivkaareca@gmail.com" className="inline-flex items-center gap-2 text-brand-400 hover:text-brand-300 transition-colors">sivkaareca@gmail.com</a>
+          </div>
+        </div>
+        <div className="border border-white/10 bg-white/5 rounded-xl p-6 shadow-md shadow-brand-600/10 transition hover:ring-1 hover:ring-white/10">
+          <h3 className="text-white">Business Hours</h3>
+          <ul className="mt-2 space-y-1 text-gray-300">
+            <li>Mon–Sat: 9:00 AM – 6:00 PM</li>
+            <li>Sunday: Closed</li>
+          </ul>
+          <p className="mt-4 text-gray-400">We aim to respond within 24 hours.</p>
+        </div>
       </section>
 
-      <section>
-        <h2>Send us a message</h2>
+      {/* Contact form */}
+      <section className="border border-white/10 bg-white/5 rounded-xl p-6 shadow-md shadow-brand-600/10 transition hover:ring-1 hover:ring-white/10">
+        <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} textClassName="text-white">Send us a message</ScrollReveal>
         {submitted ? (
-          <div className="p-4 border rounded bg-green-50 text-green-700">Thank you! We will get back to you soon.</div>
+          <div className="mt-4 p-4 rounded-lg border border-brand-600/30 bg-brand-600/10 text-brand-200">Thank you! We will get back to you soon.</div>
         ) : (
-          <form onSubmit={handleSubmit} className="mt-3 grid gap-3 max-w-lg">
-            <input
-              name="name"
-              type="text"
-              placeholder="Name"
-              value={form.name}
-              onChange={handleChange}
-              className="border rounded px-3 py-2"
-            />
-            <input
-              name="email"
-              type="email"
-              placeholder="Email"
-              value={form.email}
-              onChange={handleChange}
-              className="border rounded px-3 py-2"
-            />
-            <textarea
-              name="message"
-              placeholder="Message"
-              value={form.message}
-              onChange={handleChange}
-              className="border rounded px-3 py-2 h-32"
-            />
-            <Button type="submit">Submit</Button>
+          <form onSubmit={handleSubmit} className="mt-5 grid md:grid-cols-2 gap-4">
+            {/* Name */}
+            <div className="relative group">
+              <input
+                name="name"
+                type="text"
+                placeholder=" "
+                value={form.name}
+                onChange={handleChange}
+                className="peer w-full rounded-lg border border-white/10 bg-black/30 text-white placeholder-transparent px-3 py-3 focus:outline-none focus:ring-2 focus:ring-brand-600/50 focus:border-brand-600/40 transition"
+              />
+              <label className="absolute left-3 top-3 text-gray-400 transition-all duration-200 peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-500 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-brand-400">Name</label>
+            </div>
+
+            {/* Email */}
+            <div className="relative group">
+              <input
+                name="email"
+                type="email"
+                placeholder=" "
+                value={form.email}
+                onChange={handleChange}
+                className="peer w-full rounded-lg border border-white/10 bg-black/30 text-white placeholder-transparent px-3 py-3 focus:outline-none focus:ring-2 focus:ring-brand-600/50 focus:border-brand-600/40 transition"
+              />
+              <label className="absolute left-3 top-3 text-gray-400 transition-all duration-200 peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-500 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-brand-400">Email</label>
+            </div>
+
+            {/* Message */}
+            <div className="relative group md:col-span-2">
+              <textarea
+                name="message"
+                placeholder=" "
+                value={form.message}
+                onChange={handleChange}
+                className="peer w-full rounded-lg border border-white/10 bg-black/30 text-white placeholder-transparent px-3 py-3 h-32 focus:outline-none focus:ring-2 focus:ring-brand-600/50 focus:border-brand-600/40 transition"
+              />
+              <label className="absolute left-3 top-3 text-gray-400 transition-all duration-200 peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-500 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-brand-400">Message</label>
+              <p className="mt-2 text-xs text-gray-400">Tell us briefly about your requirement. Include expected timelines if known.</p>
+            </div>
+
+            <div className="md:col-span-2 flex items-center gap-3">
+              <Button type="submit" className="shadow-sm shadow-brand-600/30">Submit</Button>
+              <span className="text-xs text-gray-400">We respect your privacy and will never share your details.</span>
+            </div>
           </form>
         )}
       </section>
