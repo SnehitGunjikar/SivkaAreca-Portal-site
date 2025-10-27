@@ -18,14 +18,14 @@ export default function ProductDetail() {
   return (
     <div className="space-y-4">
       <Link to="/products" className="text-brand-400">← Back to Products</Link>
-      <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} textClassName="text-white">{product.title}</ScrollReveal>
-      <p className="text-gray-300">{product.description}</p>
-      <ul className="list-disc pl-5 space-y-1 text-gray-300">
+      <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} textClassName="text-gray-900">{product.title}</ScrollReveal>
+      <p className="text-gray-800">{product.description}</p>
+      <ul className="list-disc pl-5 space-y-1 text-gray-800">
         {product.features.map((f) => (
           <li key={f}>{f}</li>
         ))}
       </ul>
-      <div className="h-40 bg-white/10 rounded grid place-content-center text-gray-300">Product Image Placeholder</div>
+      <div className="h-40 bg-white/10 rounded grid place-content-center text-gray-600">Product Image Placeholder</div>
     </div>
   )
 }

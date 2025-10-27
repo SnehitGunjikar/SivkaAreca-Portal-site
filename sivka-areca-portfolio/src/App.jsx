@@ -3,39 +3,24 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import About from './pages/About'
-import Services from './pages/Services'
+// removed: import Services from './pages/Services'
 import ServiceDetail from './pages/ServiceDetail'
 import Products from './pages/Products'
 import ProductDetail from './pages/ProductDetail'
 import Projects from './pages/Projects'
 import Manufacturing from './pages/Manufacturing'
 import Contact from './pages/Contact'
-import PrismBackground from './components/PrismBackground'
+// Removed PrismBackground import
 
 export default function App() {
   return (
-    <div className="relative min-h-screen text-gray-200">
-      {/* Dark base background below prism */}
-      <div className="absolute inset-0 -z-20 bg-neutral-950" />
-      {/* Global Prism Background */}
-      <PrismBackground 
-        height={3.5}
-        baseWidth={5.0}
-        scale={3.8}
-        glow={0.8}
-        noise={0.08}
-        colorFrequency={0.4}
-        timeScale={0.12}
-        hueShift={0.06}
-        animationType="none"
-        className="absolute inset-0 -z-10 pointer-events-none opacity-60"
-      />
+    <div className="relative min-h-screen">
+      {/* Removed dark base and Prism background */}
       <Navbar />
       <main className="container py-8">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
           <Route path="/services/:slug" element={<ServiceDetail />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:slug" element={<ProductDetail />} />

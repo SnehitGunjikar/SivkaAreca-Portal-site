@@ -9,17 +9,17 @@ export default function About() {
   return (
     <div className="space-y-8">
       {/* About Us Card */}
-<SpotlightCard className="rounded-2xl border border-white/10 bg-white/5 p-6" spotlightColor="rgba(0, 229, 255, 0.2)">
+<SpotlightCard className="rounded-2xl border border-gray-300 bg-white p-6" spotlightColor="rgba(0, 0, 0, 0.08)">
   <ScrollReveal as="div" mode="block" containerClassName="">
     <div className="flex items-center gap-3 mb-4">
-      <span className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-white/10 text-white ring-1 ring-white/20">
+      <span className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-gray-100 text-brand-700 ring-1 ring-gray-200">
         <FaUsers className="h-5 w-5" aria-hidden="true" />
       </span>
-      <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} textClassName="text-white text-xl font-semibold">
+      <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} textClassName="text-gray-900 text-xl font-semibold">
         About Us
       </ScrollReveal>
     </div>
-    <p className="text-gray-300 text-justify leading-relaxed">
+    <p className="text-gray-700 text-justify leading-relaxed">
       Sivka Areca Enterprises is a dynamic and innovative steel structural project
       enterprise poised to revolutionize the construction industry with its cutting-edge
       solutions and exceptional service quality. Our company specializes in the design,
@@ -37,17 +37,17 @@ export default function About() {
 </SpotlightCard>
 
       {/* Vision Card */}
-<SpotlightCard className="rounded-2xl border border-white/10 bg-white/5 p-6" spotlightColor="rgba(0, 229, 255, 0.2)">
+<SpotlightCard className="rounded-2xl border border-gray-300 bg-white p-6" spotlightColor="rgba(0, 0, 0, 0.08)">
   <ScrollReveal as="div" mode="block" containerClassName="">
     <div className="flex items-center gap-3 mb-4">
-      <span className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-white/10 text-white ring-1 ring-white/20">
+      <span className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-gray-100 text-brand-700 ring-1 ring-gray-200">
         <FaEye className="h-5 w-5" aria-hidden="true" />
       </span>
-      <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} textClassName="text-white text-xl font-semibold">
+      <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} textClassName="text-gray-900 text-xl font-semibold">
         Our Vision
       </ScrollReveal>
     </div>
-    <p className="text-gray-300 leading-relaxed">
+    <p className="text-gray-700 leading-relaxed">
       Specializing in Structural Engineering, PEB Fabrication & Steel Fabrication.
       To supply high-quality steel structures, providing related services and solutions.
       Focused on continuous improvement at highest business standards & work ethics.
@@ -56,17 +56,17 @@ export default function About() {
 </SpotlightCard>
 
       {/* Quality Policy Card */}
-<SpotlightCard className="rounded-2xl border border-white/10 bg-white/5 p-6" spotlightColor="rgba(0, 229, 255, 0.2)">
+<SpotlightCard className="rounded-2xl border border-gray-300 bg-white p-6" spotlightColor="rgba(0, 0, 0, 0.08)">
   <ScrollReveal as="div" mode="block" containerClassName="">
     <div className="flex items-center gap-3 mb-4">
-      <span className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-white/10 text-white ring-1 ring-white/20">
+      <span className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-gray-100 text-brand-700 ring-1 ring-gray-200">
         <FaShieldHalved className="h-5 w-5" aria-hidden="true" />
       </span>
-      <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} textClassName="text-white text-xl font-semibold">
+      <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} textClassName="text-gray-900 text-xl font-semibold">
         Our Quality Policy
       </ScrollReveal>
     </div>
-    <p className="text-gray-300 leading-relaxed">
+    <p className="text-gray-700 leading-relaxed">
       We are at accurate manufacturing & systematic technology; Quality
       is the integral part of our commitment to providing excellent products & services
       that match or exceed customer's expectations. We adhere to stringent QA/QC across
@@ -77,17 +77,17 @@ export default function About() {
 </SpotlightCard>
 
       {/* Market Opportunity Card */}
-<SpotlightCard className="rounded-2xl border border-white/10 bg-white/5 p-6" spotlightColor="rgba(0, 229, 255, 0.2)">
+<SpotlightCard className="rounded-2xl border border-gray-300 bg-white p-6" spotlightColor="rgba(0, 0, 0, 0.08)">
   <ScrollReveal as="div" mode="block" containerClassName="">
         <div className="flex items-center gap-3 mb-4">
-          <span className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-white/10 text-white ring-1 ring-white/20">
+          <span className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-gray-100 text-brand-700 ring-1 ring-gray-200">
             <FaChartBar className="h-5 w-5" aria-hidden="true" />
           </span>
-          <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} textClassName="text-white text-xl font-semibold">
+          <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} textClassName="text-gray-900 text-xl font-semibold">
             Market Opportunity
           </ScrollReveal>
         </div>
-        <p className="text-gray-300 leading-relaxed">
+        <p className="text-gray-700 leading-relaxed">
           The global construction industry is witnessing a growing 
           demand for innovative and cost-effective building solutions. Steel structures offer 
           numerous advantages, including faster construction times, enhanced durability, and 
@@ -105,17 +105,17 @@ export default function About() {
 </SpotlightCard>
 
       {/* Financial Outlook Card */}
-<SpotlightCard className="rounded-2xl border border-white/10 bg-white/5 p-6" spotlightColor="rgba(0, 229, 255, 0.2)">
+<SpotlightCard className="rounded-2xl border border-gray-300 bg-white p-6" spotlightColor="rgba(0, 0, 0, 0.08)">
   <ScrollReveal as="div" mode="block" containerClassName="">
         <div className="flex items-center gap-3 mb-4">
-          <span className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-white/10 text-white ring-1 ring-white/20">
+          <span className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-gray-100 text-brand-700 ring-1 ring-gray-200">
             <FaChartLine className="h-5 w-5" aria-hidden="true" />
           </span>
-          <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} textClassName="text-white text-xl font-semibold">
+          <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} textClassName="text-gray-900 text-xl font-semibold">
             Financial Outlook
           </ScrollReveal>
         </div>
-        <p className="text-gray-300 leading-relaxed">
+        <p className="text-gray-700 leading-relaxed">
           Sivka Areca Enterprises anticipates robust growth in revenue and 
           profitability over the next several years. By expanding our client base, diversifying 
           our project portfolio, and continuously improving our processes, we are confident 
@@ -127,22 +127,22 @@ export default function About() {
 </SpotlightCard>
 
       <section className="grid md:grid-cols-3 gap-4">
-        <SpotlightCard className="rounded-2xl border border-white/10 bg-white/5 p-4" spotlightColor="rgba(0, 229, 255, 0.2)">
+        <SpotlightCard className="rounded-2xl border border-gray-300 bg-white p-4" spotlightColor="rgba(0, 0, 0, 0.08)">
           <ScrollReveal as="div" mode="block" containerClassName="">
             <img src={fabricationImg} alt="Fabrication Team" className="w-full h-36 object-cover rounded-md" />
-            <div className="mt-2 text-sm text-gray-300">Fabrication Team</div>
+            <div className="mt-2 text-sm text-gray-700">Fabrication Team</div>
           </ScrollReveal>
         </SpotlightCard>
-        <SpotlightCard className="rounded-2xl border border-white/10 bg-white/5 p-4" spotlightColor="rgba(0, 229, 255, 0.2)">
+        <SpotlightCard className="rounded-2xl border border-gray-300 bg-white p-4" spotlightColor="rgba(0, 0, 0, 0.08)">
           <ScrollReveal as="div" mode="block" containerClassName="">
             <img src={engTeamImg} alt="Engineering Team" className="w-full h-36 object-cover rounded-md" />
-            <div className="mt-2 text-sm text-gray-300">Engineering Team</div>
+            <div className="mt-2 text-sm text-gray-700">Engineering Team</div>
           </ScrollReveal>
         </SpotlightCard>
-        <SpotlightCard className="rounded-2xl border border-white/10 bg-white/5 p-4" spotlightColor="rgba(0, 229, 255, 0.2)">
+        <SpotlightCard className="rounded-2xl border border-gray-300 bg-white p-4" spotlightColor="rgba(0, 0, 0, 0.08)">
           <ScrollReveal as="div" mode="block" containerClassName="">
             <img src={installationImg} alt="Installation Crew" className="w-full h-36 object-cover rounded-md" />
-            <div className="mt-2 text-sm text-gray-300">Installation Crew</div>
+            <div className="mt-2 text-sm text-gray-700">Installation Crew</div>
           </ScrollReveal>
         </SpotlightCard>
       </section>

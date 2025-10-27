@@ -19,8 +19,8 @@ export default function Footer() {
           <div className="flex flex-col gap-1 text-sm text-gray-300">
             <NavLink to="/">Home</NavLink>
             <NavLink to="/about">About</NavLink>
-            <NavLink to="/services">Services</NavLink>
-            <NavLink to="/products">Products</NavLink>
+            {/* removed Services link */}
+            <NavLink to="/products">Core Expertise</NavLink>
             <NavLink to="/projects">Projects</NavLink>
             <NavLink to="/manufacturing">Manufacturing</NavLink>
             <NavLink to="/contact">Contact</NavLink>
