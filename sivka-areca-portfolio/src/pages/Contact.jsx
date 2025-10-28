@@ -37,7 +37,7 @@ export default function Contact() {
           <ScrollReveal as="div" mode="block" containerClassName="">
             <h3 className="text-gray-900">Business Hours</h3>
             <ul className="mt-2 space-y-1 text-gray-800">
-              <li>Mon–Sat: 9:00 AM – 6:00 PM</li>
+              <li>Mon–Sat: 8:00 AM – 5:00 PM</li>
               <li>Sunday: Closed</li>
             </ul>
             <p className="mt-4 text-gray-700">We aim to respond within 24 hours.</p>

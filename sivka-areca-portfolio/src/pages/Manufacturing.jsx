@@ -29,7 +29,7 @@ export default function Manufacturing() {
         <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} textClassName="text-gray-900">
           Process Flow
         </ScrollReveal>
-        <div className="mt-4 grid md:grid-cols-5 gap-4">
+        <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
           {steps.map((s, idx) => (
             <SpotlightCard
               key={s}
@@ -37,7 +37,7 @@ export default function Manufacturing() {
               spotlightColor="rgba(0, 0, 0, 0.08)"
             >
               <ScrollReveal as="div" mode="block" containerClassName="">
-                <div className="text-3xl font-bold text-brand-600">{idx + 1}</div>
+                <div className="text-2xl sm:text-3xl font-bold text-brand-600">{idx + 1}</div>
                 <div className="mt-2 font-semibold text-gray-900">{s}</div>
               </ScrollReveal>
             </SpotlightCard>

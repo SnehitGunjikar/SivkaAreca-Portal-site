@@ -11,11 +11,11 @@ export default function Products() {
         Core Expertise
       </ScrollReveal>
       <ScrollReveal as="p" mode="text" textTag="span" useDefaultTextStyles={false} containerClassName="mt-2" textClassName="text-gray-800">Steel solutions and components portfolio.</ScrollReveal>
-      <div className="mt-4 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="mt-4 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products.map((p) => (
           <SpotlightCard key={p.slug} className="relative rounded-2xl border border-gray-300 bg-white p-4 pb-16 flex flex-col transition hover:ring-1 hover:ring-gray-200" spotlightColor="rgba(0, 0, 0, 0.08)">
             <ScrollReveal as="div" mode="block" containerClassName="">
-              <div className="h-28 bg-gray-100 rounded mb-3 grid place-content-center text-gray-600">Image</div>
+              <div className="h-24 sm:h-28 lg:h-32 bg-gray-100 rounded mb-3 grid place-content-center text-gray-600">Image</div>
               <h3 className="font-semibold text-gray-900">{p.title}</h3>
               <ul className="text-sm text-gray-700 list-disc pl-5 flex-1">
                 {p.features.map((f) => (

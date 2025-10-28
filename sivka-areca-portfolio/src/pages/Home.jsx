@@ -9,7 +9,7 @@ export default function Home() {
     <div className="space-y-12">
       {/* Banner */}
       <section className="relative overflow-hidden rounded-xl">
-        <div className="relative h-64 md:h-80">
+        <div className="relative h-48 sm:h-56 md:h-72 lg:h-80 xl:h-96">
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="h-full container grid items-center relative z-10">
             <div className="text-white text-center md:text-left">
@@ -18,7 +18,7 @@ export default function Home() {
                 enableBlur={true}
                 baseRotation={5}
                 blurStrength={10}
-                textClassName="text-3xl md:text-5xl font-bold drop-shadow-lg"
+                textClassName="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold drop-shadow-lg"
               >
                 Innovating Steel Structures with Precision & Excellence
               </ScrollReveal>
@@ -33,7 +33,7 @@ export default function Home() {
       </section>
 
       {/* Introduction */}
-      <section className="grid md:grid-cols-2 gap-8 items-center">
+      <section className="grid gap-6 sm:gap-8 md:grid-cols-2 items-center">
         <div>
           <ScrollReveal
             baseOpacity={0}
@@ -48,13 +48,13 @@ export default function Home() {
             We are an engineering and fabrication company delivering end-to-end steel structure solutions—from design to manufacturing and installation. Our customer-centric approach, focus on quality, and commitment to innovation enable reliable, cost-efficient results.
           </p>
         </div>
-        <div className="h-44 bg-gray-100 rounded-lg grid place-content-center text-gray-600">Banner Image Placeholder</div>
+        <div className="h-36 sm:h-44 md:h-52 lg:h-64 bg-gray-100 rounded-lg grid place-content-center text-gray-600">Banner Image Placeholder</div>
       </section>
 
       {/* Key Services */}
       <section>
         <h2>Key Services</h2>
-        <div className="mt-4 grid md:grid-cols-4 gap-4">
+        <div className="mt-4 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {services.map((s) => (
             <SpotlightCard key={s.slug} className="rounded-2xl border border-gray-300 bg-white p-4 transition hover:ring-1 hover:ring-gray-200" spotlightColor="rgba(0, 0, 0, 0.08)">
               <ScrollReveal as="div" mode="block" containerClassName="">
