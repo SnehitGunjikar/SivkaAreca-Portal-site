@@ -23,7 +23,7 @@ export default function Contact() {
       {/* Header and contact info */}
       <section className="grid md:grid-cols-2 gap-6">
         <SpotlightCard className="rounded-2xl border border-gray-300 bg-white p-6 shadow-md shadow-brand-600/10" spotlightColor="rgba(0, 0, 0, 0.08)">
-          <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} textClassName="text-gray-900">Contact</ScrollReveal>
+          <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} textClassName="text-gray-900">Contact Us</ScrollReveal>
           <p className="mt-2 text-gray-800">Sivka Areca Enterprises</p>
           <p className="text-gray-800">G.P.C. No. 414/34, Shivaji Nagar, Khanapur - 591302, Belagavi, Karnataka</p>
           <p className="text-gray-800">GSTIN: 29FMNPP9114A1ZS</p>

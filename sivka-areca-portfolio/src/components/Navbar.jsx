@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
 import GooeyNav from './GooeyNav'
+import brandLogo from '../assets/imagedata/sivka-areca-name.png'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -18,16 +19,22 @@ export default function Navbar() {
   ]
 
   return (
-    <header className="bg-black/40 backdrop-blur-sm border-b border-white/10 sticky top-0 z-50">
-      <div className="container flex items-center justify-between py-3">
+    <header className="bg-neutral-900 backdrop-blur-sm border-b border-white/10 sticky top-0 z-50">
+      <div className="container flex items-center justify-between py-2">
         <div className="flex items-center gap-2">
           <button className="md:hidden h-8 w-8 grid place-content-center border border-white/10 rounded mr-2" onClick={() => setOpen(!open)} aria-label="Toggle navigation">
             <span className="block w-4 h-0.5 bg-gray-300 mb-1"></span>
             <span className="block w-4 h-0.5 bg-gray-300 mb-1"></span>
             <span className="block w-4 h-0.5 bg-gray-300"></span>
           </button>
-          <div className="h-8 w-8 bg-brand-600 text-white grid place-content-center rounded">S</div>
-          <span className="font-bold text-xl text-white">SIVKA ARECA ENTERPRISES</span>
+          {/* Brand logo replacing text name */}
+          <NavLink to="/" className="inline-block">
+            <img
+              src={brandLogo}
+              alt="Sivka Areca Enterprises"
+              className="h-12 md:h-14 w-auto object-contain select-none brightness-110 contrast-110 saturate-110 drop-shadow-[0_1px_1px_rgba(255,255,255,0.35)]"
+            />
+          </NavLink>
         </div>
         <nav className="hidden md:flex items-center gap-1">
           <GooeyNav
