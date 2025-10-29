@@ -32,7 +32,7 @@ export default function Footer() {
           {/* Company Info */}
           <section aria-labelledby="footer-company" className="space-y-3 md:flex md:flex-col md:justify-center">
             <h3 id="footer-company" className="sr-only">Sivka Areca Enterprises</h3>
-            <img src={brandLogo} alt="Sivka Areca Enterprises" className="h-10 md:h-12 w-auto object-contain brightness-110 contrast-110 saturate-110 drop-shadow-sm" />
+            <img src={brandLogo} alt="Sivka Areca Enterprises" className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto object-contain brightness-110 contrast-110 saturate-110 drop-shadow-sm" />
             <p className="text-sm md:text-[15px] text-gray-300">Innovating Steel Structures with Precision & Excellence</p>
           </section>
 

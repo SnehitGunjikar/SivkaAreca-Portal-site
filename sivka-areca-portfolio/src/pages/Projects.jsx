@@ -1,44 +1,43 @@
 import { projects } from '../data/projects'
-import { useState } from 'react'
-import { Button } from '../components/Button'
-import Modal from '../components/Modal'
+import { ButtonLink } from '../components/Button'
 import ScrollReveal from '../components/ScrollReveal'
 import SpotlightCard from '../components/SpotlightCard'
+import railwayImg from '../assets/imagedata/products-image/railway-staircase-img.JPG'
+import pebImage from '../assets/imagedata/products-image/peb-image.PNG'
+import containerImage from '../assets/imagedata/products-image/contairner-img.JPG'
+import towerImage from '../assets/imagedata/products-image/tower-img.JPG'
+import sheetmetalImage from '../assets/imagedata/products-image/sheetmetal-img.jpg'
+
+const projectImages = {
+  'government-railway-projects-swr': railwayImg,
+  'pre-engineered-building-peb': pebImage,
+  'customized-container': containerImage,
+  'exhaust-towers': towerImage,
+  'sheet-metal-works-ntpc': sheetmetalImage,
+}
 
 export default function Projects() {
-  const [selected, setSelected] = useState(null)
   return (
     <div>
       <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} textClassName="text-gray-900">
         Projects
       </ScrollReveal>
       <ScrollReveal as="p" mode="text" textTag="span" useDefaultTextStyles={false} containerClassName="mt-2" textClassName="text-gray-800">Where vision meets precision—every project is a testament to craftsmanship, innovation, and relentless attention to detail.</ScrollReveal>
-      <div className="mt-4 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="mt-4 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
         {projects.map((pr) => (
-          <SpotlightCard key={pr.slug} className="relative rounded-2xl border border-gray-300 bg-white p-4 pb-16 transition hover:ring-1 hover:ring-gray-200" spotlightColor="rgba(0, 0, 0, 0.08)">
+          <SpotlightCard key={pr.slug} className="relative rounded-2xl border border-gray-300 bg-white p-4 pb-16 h-full transition hover:ring-1 hover:ring-gray-200" spotlightColor="rgba(0, 0, 0, 0.08)">
             <ScrollReveal as="div" mode="block" containerClassName="">
-              <div className="h-24 sm:h-28 md:h-32 bg-gray-100 rounded mb-3 grid place-content-center text-gray-600">Image</div>
-              <h3 className="font-semibold text-gray-900">{pr.title}</h3>
-              <p className="text-sm text-gray-700">{pr.description}</p>
+              <div className="relative w-full aspect-[4/3] rounded mb-3 overflow-hidden">
+                <img src={projectImages[pr.slug]} alt={pr.title} loading="lazy" className="w-full h-full object-cover brightness-[0.98] transition-transform duration-300 ease-out hover:scale-[1.02]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/5 to-transparent" />
+              </div>
+              <h3 className="font-semibold text-gray-900" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{pr.title}</h3>
+              <p className="text-sm text-gray-700" style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{pr.description}</p>
             </ScrollReveal>
-            {/* Pin View Details to bottom-left of the card, outside animated block */}
-            <Button className="absolute bottom-4 left-4 z-10" onClick={() => setSelected(pr)}>View Details</Button>
+            <ButtonLink to={`/projects/${pr.slug}`} className="absolute bottom-4 left-4 z-10">View Details</ButtonLink>
           </SpotlightCard>
         ))}
       </div>
-      {selected && (
-         <Modal title={selected.title} onClose={() => setSelected(null)}>
-           <div className="space-y-4">
-             <p className="text-gray-800">{selected.description}</p>
-             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-               <div className="h-24 bg-gray-100 rounded grid place-content-center text-gray-600">Image 1</div>
-               <div className="h-24 bg-gray-100 rounded grid place-content-center text-gray-600">Image 2</div>
-               <div className="h-24 bg-gray-100 rounded grid place-content-center text-gray-600">Image 3</div>
-               <div className="h-24 bg-gray-100 rounded grid place-content-center text-gray-600">Image 4</div>
-             </div>
-           </div>
-         </Modal>
-      )}
     </div>
   )
 }

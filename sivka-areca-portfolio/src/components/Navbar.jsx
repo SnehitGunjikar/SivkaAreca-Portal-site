@@ -10,7 +10,7 @@ export default function Navbar() {
 
   const items = [
     { label: 'Home', to: '/' },
-    { label: 'About', to: '/about' },
+    // { label: 'About', to: '/about' },
     // removed Services item
     { label: 'Core Expertise', to: '/products' },
     { label: 'Projects', to: '/projects' },
@@ -51,7 +51,7 @@ export default function Navbar() {
         <div className="md:hidden border-t border-white/10 bg-black/60 backdrop-blur-sm">
           <div className="container py-2 grid gap-1">
             <NavLink to="/" className={linkClass} onClick={() => setOpen(false)}>Home</NavLink>
-            <NavLink to="/about" className={linkClass} onClick={() => setOpen(false)}>About</NavLink>
+            {/* <NavLink to="/about" className={linkClass} onClick={() => setOpen(false)}>About</NavLink> */}
             {/* removed Services mobile link */}
             <NavLink to="/products" className={linkClass} onClick={() => setOpen(false)}>Products</NavLink>
             <NavLink to="/projects" className={linkClass} onClick={() => setOpen(false)}>Projects</NavLink>

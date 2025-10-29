@@ -14,14 +14,30 @@ export default function Manufacturing() {
     <div className="space-y-8">
       <section>
         <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} textClassName="text-gray-900">
-          Manufacturing Setup
+          Manufacturing infrastructure
         </ScrollReveal>
-        <ScrollReveal as="p" mode="text" textTag="span" useDefaultTextStyles={false} containerClassName="mt-2" textClassName="text-gray-800">We operate a robust facility tailored for end-to-end steel fabrication and finishing.</ScrollReveal>
-        {/* <p className="mt-2 text-gray-300">We operate a robust facility tailored for end-to-end steel fabrication and finishing.</p> */}
-        
-        <ul className="mt-3 list-disc pl-5">
-          <li>6,000 sq. ft fabrication area.</li>
-          <li>20,000 sq. ft for coating, painting, and material storage</li>
+        <ScrollReveal as="p" mode="text" textTag="span" useDefaultTextStyles={false} containerClassName="mt-2" textClassName="text-gray-800">Our production unit is equipped to handle complex fabrication requirements and high-volume manufacturing.</ScrollReveal>
+        <ul className="mt-3 list-disc pl-5 space-y-1 text-gray-800">
+          <li>Fabrication shop area: 6,000 sq. ft.</li>
+          <li>Auxiliary facility area: 20,000 sq. ft. for job cleaning, protective coating, painting, and storage of raw/finished goods.</li>
+          <li>Skilled workforce: 15+ experienced shop-floor personnel and 20+ trained site installation workers.</li>
+          <li>Welding & inspection: Certified welders with client-supervised testing for every project.</li>
+          <li>Quality assurance: All fabrication undergoes dimensional checks, welding inspections, and material traceability.</li>
+          <li>Client approvals: Our works have been successfully tested and certified by Railway government officials and project engineers.</li>
+        </ul>
+      </section>
+
+      <section>
+        <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} textClassName="text-gray-900">
+          Our strengths
+        </ScrollReveal>
+        <ul className="mt-3 list-disc pl-5 space-y-1 text-gray-800">
+          <li>In-house design validation & GA support.</li>
+          <li>Skilled welding and assembly teams.</li>
+          <li>ISO-compliant fabrication process.</li>
+          <li>Adaptability to client specifications & timelines.</li>
+          <li>Transparent documentation and quality traceability.</li>
+          <li>Strong track record with government and industrial clients.</li>
         </ul>
       </section>
 

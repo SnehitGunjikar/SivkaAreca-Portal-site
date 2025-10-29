@@ -1,32 +1,46 @@
 export const projects = [
   {
-    slug: 'fob-girder-work',
-    title: 'Foot-Over Bridge Girder Work',
-    description: 'Fabrication and erection of bridge girders with precise alignment.',
+    slug: 'pre-engineered-building-peb',
+    title: 'Pre-Engineered Building (PEB)',
+    description:
+      'Complete in-house fabrication of columns, beams, and rafters, including challenging erection above 30 meters height of a main office building.',
+    images: ['peb-image.PNG'],
   },
   {
-    slug: 'complete-fob-with-ramp',
-    title: 'Complete Foot-Over Bridge with Ramp',
-    description: 'Design-build of FOB including access ramps and safety measures.',
+    slug: 'customized-container',
+    title: 'Customized Container',
+    description:
+      'Fabricated specialized containerized enclosure for DG set integration and coastal deployment.',
+    images: ['contairner-img.JPG'],
   },
   {
-    slug: 'custom-container-dg',
-    title: 'Customized Container for Diesel Generator',
-    description: 'Noise-attenuated container and exhaust integration for DG sets.',
+    slug: 'government-railway-projects-swr',
+    title: 'Government Railway Projects (South Western Railways)',
+    description:
+      'Executed across 13 railway stations, meeting all structural and safety standards.',
+    highlights: [
+      'Foot over bridges with ramps',
+      'Passenger platform shelters',
+      'River bridge pathways with staircases',
+    ],
+    images: ['railway-staircase-img.JPG'],
   },
   {
-    slug: 'river-bridge-pathway',
-    title: 'River Bridge Pathway (700m)',
-    description: 'Long-span walkway with durable decking and railings across river.',
+    slug: 'exhaust-towers',
+    title: 'Exhaust Towers',
+    description:
+      'Designed and fabricated vertical exhaust towers for diesel generators.',
+    highlights: [
+      'AEQUS SEZ, Belgaum',
+      'Modern Hiring Services, Mumbai',
+    ],
+    images: ['tower-img.JPG'],
   },
   {
-    slug: 'platform-shelter-overhead-shed',
-    title: 'Platform Shelter and Overhead Shed',
-    description: 'Covered platform solutions with steel frames and sheet roofing.',
-  },
-  {
-    slug: 'dg-exhaust-tower-installations',
-    title: 'DG Exhaust Tower Installations',
-    description: 'Multiple installations with site-specific anchorage and dispersion study.',
+    slug: 'sheet-metal-works-ntpc',
+    title: 'Sheet Metal Works for NTPC Sites',
+    description:
+      'Manufactured and supplied 150 kg capacity almirahs, fabricated to withstand industrial usage and transit handling.',
+    images: ['sheetmetal-img.jpg'],
   },
 ]
