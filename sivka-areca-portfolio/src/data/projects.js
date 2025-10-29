@@ -29,10 +29,11 @@ export const projects = [
     slug: 'exhaust-towers',
     title: 'Exhaust Towers',
     description:
-      'Designed and fabricated vertical exhaust towers for diesel generators.',
+      'Designed and fabricated vertical exhaust towers for diesel generators across multiple locations.',
     highlights: [
-      'AEQUS SEZ, Belgaum',
-      'Modern Hiring Services, Mumbai',
+      'Aequs SEZ, Belgaum Karnataka',
+      'Modern Hiring Service, Andaman and Nicobar Islands',
+      'Modern Hiring Service, Tiruchi Tamil Nadu',
     ],
     images: ['tower-img.JPG'],
   },

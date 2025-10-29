@@ -33,7 +33,7 @@ export default function Footer() {
           <section aria-labelledby="footer-company" className="space-y-3 md:flex md:flex-col md:justify-center">
             <h3 id="footer-company" className="sr-only">Sivka Areca Enterprises</h3>
             <img src={brandLogo} alt="Sivka Areca Enterprises" className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto object-contain brightness-110 contrast-110 saturate-110 drop-shadow-sm" />
-            <p className="text-sm md:text-[15px] text-gray-300">Innovating Steel Structures with Precision & Excellence</p>
+            <p className="text-sm md:text-[15px] text-gray-300 text-center">Innovating Steel Structures with Precision & Excellence</p>
           </section>
 
           {/* Navigation */}
@@ -41,7 +41,6 @@ export default function Footer() {
             <h3 id="footer-nav" className="text-base font-semibold text-white">Navigation</h3>
             <ul className="grid gap-2 text-sm md:text-[15px]">
               <li><NavLink className="hover:text-brand-400" to="/">Home</NavLink></li>
-              <li><NavLink className="hover:text-brand-400" to="/about">About</NavLink></li>
               <li><NavLink className="hover:text-brand-400" to="/products">Core Expertise</NavLink></li>
               <li><NavLink className="hover:text-brand-400" to="/projects">Projects</NavLink></li>
               <li><NavLink className="hover:text-brand-400" to="/manufacturing">Manufacturing</NavLink></li>

@@ -8,6 +8,12 @@ import pebImg from '../assets/imagedata/core-expertise-image/peb-img.jpg'
 import containerImg from '../assets/imagedata/core-expertise-image/container-img.jpg'
 import towerImg from '../assets/imagedata/core-expertise-image/tower-img.jpg'
 import sheetmetalImg from '../assets/imagedata/core-expertise-image/sheetmetal-img.jpg'
+
+// WebP versions for better performance
+import pebImgWebp from '../assets/imagedata/core-expertise-image/peb-img.webp'
+import containerImgWebp from '../assets/imagedata/core-expertise-image/container-img.webp'
+import towerImgWebp from '../assets/imagedata/core-expertise-image/tower-img.webp'
+import sheetmetalImgWebp from '../assets/imagedata/core-expertise-image/sheetmetal-img.webp'
 import { motion } from 'framer-motion'
 import { useState, useRef } from 'react'
 
@@ -17,6 +23,13 @@ const productImages = {
   'modular-enclosures-containers': containerImg,
   'exhaust-support-towers': towerImg,
   'sheet-metal-fabrication': sheetmetalImg,
+}
+
+const productImagesWebp = {
+  'pre-engineered-buildings': pebImgWebp,
+  'modular-enclosures-containers': containerImgWebp,
+  'exhaust-support-towers': towerImgWebp,
+  'sheet-metal-fabrication': sheetmetalImgWebp,
 }
 
 function ProductCard({ product, imageSrc }) {
@@ -44,28 +57,31 @@ function ProductCard({ product, imageSrc }) {
       whileHover={{ scale: 1.02 }}
       transition={{ type: 'spring', stiffness: 220, damping: 20 }}
     >
-      <SpotlightCard className="group relative h-full rounded-2xl border border-gray-300 bg-white p-5 pb-16 flex flex-col transition hover:ring-1 hover:ring-gray-200 hover:shadow-lg" spotlightColor="rgba(0, 0, 0, 0.08)">
+      <SpotlightCard className="group relative h-full rounded-2xl border border-gray-300 bg-white p-5 flex flex-col transition hover:ring-1 hover:ring-gray-200 hover:shadow-lg" spotlightColor="rgba(0, 0, 0, 0.08)">
         <ScrollReveal as="div" mode="block" containerClassName="flex-1 flex flex-col">
           <motion.div
             className="relative h-40 sm:h-48 lg:h-64 rounded-lg mb-3 overflow-hidden"
             style={{ rotateX: tilt.x, rotateY: tilt.y }}
             transition={{ type: 'spring', stiffness: 180, damping: 20 }}
           >
-            <img
-              src={imageSrc}
-              alt={`${product.title} image`}
-              loading="lazy"
-              onLoad={() => setLoaded(true)}
-              className={`w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105 group-hover:brightness-105 ${loaded ? 'opacity-100 blur-0' : 'opacity-0 blur-sm'}`}
-              style={{ willChange: 'transform' }}
-            />
+            <picture>
+              <source srcSet={productImagesWebp[product.slug]} type="image/webp" />
+              <img
+                src={imageSrc}
+                alt={`${product.title} image`}
+                loading="lazy"
+                onLoad={() => setLoaded(true)}
+                className={`w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105 group-hover:brightness-105 ${loaded ? 'opacity-100 blur-0' : 'opacity-0 blur-sm'}`}
+                style={{ willChange: 'transform' }}
+              />
+            </picture>
             {!loaded && <div className="absolute inset-0 animate-pulse bg-gray-200" aria-hidden="true" />}
             <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/5 to-transparent" />
           </motion.div>
           <h3 className="font-semibold text-gray-900">{product.title}</h3>
-          <p className="text-sm text-gray-700">{product.features[0]}</p>
+          <p className="text-sm text-gray-700 flex-1 mb-4">{product.features[0]}</p>
+          <ButtonLink to={`/products/${product.slug}`} className="mt-auto">Read More</ButtonLink>
         </ScrollReveal>
-        <ButtonLink to={`/products/${product.slug}`} className="absolute bottom-4 left-4 z-10">Read More</ButtonLink>
       </SpotlightCard>
     </motion.div>
   )

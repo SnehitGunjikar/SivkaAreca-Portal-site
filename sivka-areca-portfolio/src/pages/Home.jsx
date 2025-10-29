@@ -149,11 +149,11 @@ export default function Home() {
         <h2>Key Services</h2>
         <div className="mt-4 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {services.map((s) => (
-            <SpotlightCard key={s.slug} className="rounded-2xl border border-gray-300 bg-white p-4 transition hover:ring-1 hover:ring-gray-200" spotlightColor="rgba(0, 0, 0, 0.08)">
-              <ScrollReveal as="div" mode="block" containerClassName="">
+            <SpotlightCard key={s.slug} className="rounded-2xl border border-gray-300 bg-white p-4 flex flex-col transition hover:ring-1 hover:ring-gray-200" spotlightColor="rgba(0, 0, 0, 0.08)">
+              <ScrollReveal as="div" mode="block" containerClassName="flex-1 flex flex-col">
                 <h3 className="font-semibold text-gray-900">{s.title}</h3>
-                <p className="text-sm text-gray-700">{s.intro}</p>
-                <ButtonLink to={`/services/${s.slug}`} className="mt-3">Learn More</ButtonLink>
+                <p className="text-sm text-gray-700 flex-1 mb-4">{s.intro}</p>
+                <ButtonLink to={`/services/${s.slug}`} className="mt-auto">Learn More</ButtonLink>
               </ScrollReveal>
             </SpotlightCard>
           ))}

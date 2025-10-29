@@ -2,6 +2,20 @@ import { useParams, Link } from 'react-router-dom'
 import { services } from '../data/services'
 import ScrollReveal from '../components/ScrollReveal'
 
+// Import service images
+import designExpertiseImg from '../assets/imagedata/services/design-expertise.svg'
+import fabricationExcellenceImg from '../assets/imagedata/services/fabrication-excellence.svg'
+import installationMasteryImg from '../assets/imagedata/services/installation-mastery.svg'
+import projectManagementImg from '../assets/imagedata/services/project-management.svg'
+
+// Map service slugs to their images
+const serviceImages = {
+  'design-expertise': designExpertiseImg,
+  'fabrication-excellence': fabricationExcellenceImg,
+  'installation-mastery': installationMasteryImg,
+  'project-management': projectManagementImg,
+}
+
 export default function ServiceDetail() {
   const { slug } = useParams()
   const service = services.find((s) => s.slug === slug)
@@ -25,7 +39,13 @@ export default function ServiceDetail() {
           <li key={d}>{d}</li>
         ))}
       </ul>
-      <ScrollReveal as="div" mode="block" containerClassName="h-40 bg-white/10 rounded grid place-content-center text-gray-600">Detail Image Placeholder</ScrollReveal>
+      <ScrollReveal as="div" mode="block" containerClassName="rounded-lg overflow-hidden bg-white border border-gray-200 shadow-sm">
+        <img 
+          src={serviceImages[service.slug]} 
+          alt={`${service.title} illustration`}
+          className="w-full h-64 object-contain bg-gray-50"
+        />
+      </ScrollReveal>
     </div>
   )
 }
