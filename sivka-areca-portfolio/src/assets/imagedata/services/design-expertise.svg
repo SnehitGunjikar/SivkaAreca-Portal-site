@@ -15,7 +15,7 @@
   <rect x="60" y="70" width="160" height="90" fill="#0f172a"/>
   
   <!-- 3D Model wireframe -->
-  <g stroke="#3b82f6" stroke-width="2" fill="none">
+  <g stroke="#E84220" stroke-width="2" fill="none">
     <!-- Building structure -->
     <path d="M 80 140 L 80 90 L 120 80 L 160 90 L 160 140 L 80 140"/>
     <path d="M 80 90 L 120 80"/>
@@ -42,9 +42,9 @@
   <rect x="270" y="130" width="65" height="3" fill="#94a3b8"/>
   
   <!-- Technical drawing elements -->
-  <circle cx="320" cy="120" r="8" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
-  <line x1="312" y1="120" x2="328" y2="120" stroke="#3b82f6" stroke-width="1"/>
-  <line x1="320" y1="112" x2="320" y2="128" stroke="#3b82f6" stroke-width="1"/>
+  <circle cx="320" cy="120" r="8" fill="none" stroke="#E84220" stroke-width="1.5"/>
+  <line x1="312" y1="120" x2="328" y2="120" stroke="#E84220" stroke-width="1"/>
+  <line x1="320" y1="112" x2="320" y2="128" stroke="#E84220" stroke-width="1"/>
   
   <!-- Ruler/Scale -->
   <rect x="260" y="170" width="100" height="8" fill="#fbbf24"/>
@@ -67,10 +67,10 @@
   <line x1="100" y1="220" x2="118" y2="208" stroke="#ef4444" stroke-width="2"/>
   
   <!-- Standards symbols -->
-  <rect x="280" y="210" width="60" height="30" rx="4" fill="#dbeafe" stroke="#3b82f6" stroke-width="1"/>
-  <text x="310" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#1e40af">IS</text>
-  <text x="295" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#1e40af">BS</text>
-  <text x="325" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#1e40af">ASTM</text>
+  <rect x="280" y="210" width="60" height="30" rx="4" fill="#dbeafe" stroke="#E84220" stroke-width="1"/>
+  <text x="310" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#E84220">IS</text>
+  <text x="295" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#E84220">BS</text>
+  <text x="325" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#E84220">ASTM</text>
   
   <!-- Title -->
   <text x="200" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1e293b">Design Expertise</text>

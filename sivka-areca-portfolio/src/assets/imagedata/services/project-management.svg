@@ -17,15 +17,15 @@
   <rect x="50" y="80" width="200" height="25" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
   <text x="150" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b">Project Timeline</text>
   
-  <!-- Timeline bars -->
-  <rect x="60" y="115" width="80" height="8" fill="#3b82f6"/>
+  <!-- Progress bars -->
+  <rect x="60" y="115" width="80" height="8" fill="#E84220"/>
   <rect x="60" y="130" width="120" height="8" fill="#10b981"/>
   <rect x="60" y="145" width="60" height="8" fill="#f59e0b"/>
   <rect x="60" y="160" width="100" height="8" fill="#ef4444"/>
   <rect x="60" y="175" width="40" height="8" fill="#8b5cf6"/>
   
   <!-- Progress indicators -->
-  <circle cx="140" cy="119" r="3" fill="#1e40af"/>
+  <circle cx="140" cy="119" r="3" fill="#dc2626"/>
   <circle cx="180" cy="134" r="3" fill="#059669"/>
   <circle cx="120" cy="149" r="3" fill="#d97706"/>
   
@@ -38,7 +38,7 @@
   
   <!-- Calendar -->
   <rect x="280" y="80" width="100" height="80" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-  <rect x="280" y="80" width="100" height="20" fill="#3b82f6"/>
+  <rect x="280" y="80" width="100" height="20" fill="#E84220"/>
   <text x="330" y="93" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#ffffff">December 2024</text>
   
   <!-- Calendar grid -->
@@ -70,8 +70,8 @@
   <rect x="50" y="220" width="120" height="60" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
   <text x="110" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#1e293b">Budget vs Actual</text>
   
-  <!-- Chart bars -->
-  <rect x="60" y="250" width="15" height="20" fill="#3b82f6"/>
+  <!-- Budget chart bars -->
+  <rect x="60" y="250" width="15" height="20" fill="#E84220"/>
   <rect x="80" y="245" width="15" height="25" fill="#10b981"/>
   <rect x="100" y="255" width="15" height="15" fill="#f59e0b"/>
   <rect x="120" y="240" width="15" height="30" fill="#ef4444"/>
@@ -91,15 +91,15 @@
   
   <!-- Stakeholder coordination -->
   <g transform="translate(300, 200)">
-    <!-- People icons -->
-    <circle cx="20" cy="20" r="8" fill="#fbbf24"/>
-    <rect x="15" y="25" width="10" height="12" fill="#3b82f6"/>
-    
-    <circle cx="50" cy="20" r="8" fill="#fbbf24"/>
-    <rect x="45" y="25" width="10" height="12" fill="#10b981"/>
-    
-    <circle cx="35" cy="45" r="8" fill="#fbbf24"/>
-    <rect x="30" y="50" width="10" height="12" fill="#ef4444"/>
+    <!-- Worker icons -->
+  <circle cx="20" cy="20" r="8" fill="#fbbf24"/>
+  <rect x="15" y="25" width="10" height="12" fill="#E84220"/>
+  
+  <circle cx="50" cy="20" r="8" fill="#fbbf24"/>
+  <rect x="45" y="25" width="10" height="12" fill="#10b981"/>
+  
+  <circle cx="35" cy="45" r="8" fill="#fbbf24"/>
+  <rect x="30" y="50" width="10" height="12" fill="#ef4444"/>
     
     <!-- Connection lines -->
     <line x1="28" y1="25" x2="42" y2="25" stroke="#64748b" stroke-width="1"/>

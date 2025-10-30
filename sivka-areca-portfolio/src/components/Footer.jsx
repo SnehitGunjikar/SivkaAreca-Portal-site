@@ -30,7 +30,7 @@ export default function Footer() {
         {/* Top grid */}
         <div className="py-8 md:py-16 grid gap-8 sm:grid-cols-1 md:grid-cols-3">
           {/* Company Info */}
-          <section aria-labelledby="footer-company" className="space-y-3 md:flex md:flex-col md:justify-center">
+          <section aria-labelledby="footer-company" className="space-y-3 flex flex-col items-center md:items-start md:justify-center">
             <h3 id="footer-company" className="sr-only">Sivka Areca Enterprises</h3>
             <img src={brandLogo} alt="Sivka Areca Enterprises" className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto object-contain brightness-110 contrast-110 saturate-110 drop-shadow-sm" />
             <p className="text-sm md:text-[15px] text-gray-300 text-center">Innovating Steel Structures with Precision & Excellence</p>
@@ -57,7 +57,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="text-gray-300 hover:text-[#0A66C2] transition-colors"
+                className="text-gray-300 hover:text-[#E84220] transition-colors"
               >
                 <FaLinkedin className="h-6 w-6" />
               </a>
@@ -66,7 +66,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="text-gray-300 hover:text-[#E1306C] transition-colors"
+                className="text-gray-300 hover:text-[#E84220] transition-colors"
               >
                 <FaInstagram className="h-6 w-6" />
               </a>
@@ -75,7 +75,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="text-gray-300 hover:text-[#1877F2] transition-colors"
+                className="text-gray-300 hover:text-[#E84220] transition-colors"
               >
                 <FaFacebook className="h-6 w-6" />
               </a>

@@ -8,8 +8,8 @@
   overflow: hidden;
   --mouse-x: 50%;
   --mouse-y: 50%;
-  /* Use a subtle dark spotlight by default for light cards */
-  --spotlight-color: rgba(0, 0, 0, 0.06);
+  /* Use a more visible dark spotlight for light cards */
+  --spotlight-color: rgba(0, 0, 0, 0.12);
 }
 
 .card-spotlight::before {
@@ -27,5 +27,5 @@
 
 .card-spotlight:hover::before,
 .card-spotlight:focus-within::before {
-  opacity: 0.4;
+  opacity: 1;
 }

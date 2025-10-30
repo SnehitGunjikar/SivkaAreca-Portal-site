@@ -2,6 +2,7 @@ import React, { Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import { SkeletonPage } from './components/SkeletonLoader'
 
 const Home = React.lazy(() => import('./pages/Home'))
 const ServiceDetail = React.lazy(() => import('./pages/ServiceDetail'))
@@ -26,7 +27,7 @@ export default function App() {
 
       <Navbar />
       <main className="container py-8">
-        <Suspense fallback={<div className="text-gray-700">Loading…</div>}>
+        <Suspense fallback={<SkeletonPage />}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/services/:slug" element={<ServiceDetail />} />

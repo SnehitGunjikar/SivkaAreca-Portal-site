@@ -51,7 +51,7 @@ export default function Navbar() {
           <div className="container py-2 grid gap-1">
             <NavLink to="/" className={linkClass} onClick={() => setOpen(false)}>Home</NavLink>
             {/* <NavLink to="/about" className={linkClass} onClick={() => setOpen(false)}>About</NavLink> */}
-            <NavLink to="/products" className={linkClass} onClick={() => setOpen(false)}>Products</NavLink>
+            <NavLink to="/products" className={linkClass} onClick={() => setOpen(false)}>Core Expertise</NavLink>
             <NavLink to="/projects" className={linkClass} onClick={() => setOpen(false)}>Projects</NavLink>
             <NavLink to="/manufacturing" className={linkClass} onClick={() => setOpen(false)}>Manufacturing</NavLink>
             <NavLink to="/contact" className={linkClass} onClick={() => setOpen(false)}>Contact</NavLink>
