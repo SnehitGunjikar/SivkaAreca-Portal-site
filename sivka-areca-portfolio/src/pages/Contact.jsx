@@ -134,17 +134,19 @@ export default function Contact() {
     <div className="space-y-16">
       {/* Enhanced Hero Section */}
       <motion.section
-        className="relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-brand-50 py-16 px-6 rounded-3xl"
+        className="relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-brand-50 py-8 sm:py-12 md:py-16 lg:py-20 px-3 sm:px-4 md:px-6 rounded-3xl"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23000000%22%20fill-opacity%3D%220.02%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50"></div>
         
-        {/* Floating Icons */}
-        <FloatingIcon icon={FaPhone} delay={0} className="top-10 left-10" />
-        <FloatingIcon icon={FaEnvelope} delay={1} className="top-20 right-20" />
-        <FloatingIcon icon={FaLocationDot} delay={2} className="bottom-20 left-20" />
+        {/* Floating Icons - Hidden on mobile for performance */}
+        <div className="hidden lg:block">
+          <FloatingIcon icon={FaPhone} delay={0} className="top-10 left-10" />
+          <FloatingIcon icon={FaEnvelope} delay={1} className="top-20 right-20" />
+          <FloatingIcon icon={FaLocationDot} delay={2} className="bottom-20 left-20" />
+        </div>
         
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div
@@ -152,45 +154,45 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            <FaHeadset className="text-5xl text-brand-600 mb-6 mx-auto" />
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <FaHeadset className="text-3xl sm:text-4xl md:text-5xl text-brand-600 mb-4 sm:mb-6 mx-auto" />
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
               Get In Touch
             </h1>
-            <p className="text-xl text-gray-700 mb-8">
+            <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 sm:mb-8 leading-relaxed">
               Ready to bring your steel fabrication project to life? Let's discuss your requirements and create something exceptional together.
             </p>
           </motion.div>
 
           {/* Quick Stats */}
           <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-6"
+            className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
           >
             <div className="text-center">
-              <div className="text-3xl font-bold text-brand-600 mb-2">
+              <div className="text-2xl sm:text-3xl font-bold text-brand-600 mb-1 sm:mb-2">
                 <AnimatedCounter end={24} suffix="h" />
               </div>
-              <p className="text-gray-600">Response Time</p>
+              <p className="text-xs sm:text-sm text-gray-600">Response Time</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-brand-600 mb-2">
+              <div className="text-2xl sm:text-3xl font-bold text-brand-600 mb-1 sm:mb-2">
                 <AnimatedCounter end={500} suffix="+" />
               </div>
-              <p className="text-gray-600">Projects Delivered</p>
+              <p className="text-xs sm:text-sm text-gray-600">Projects Delivered</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-brand-600 mb-2">
+              <div className="text-2xl sm:text-3xl font-bold text-brand-600 mb-1 sm:mb-2">
                 <AnimatedCounter end={15} suffix="+" />
               </div>
-              <p className="text-gray-600">Years Experience</p>
+              <p className="text-xs sm:text-sm text-gray-600">Years Experience</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-brand-600 mb-2">
+              <div className="text-2xl sm:text-3xl font-bold text-brand-600 mb-1 sm:mb-2">
                 <AnimatedCounter end={100} suffix="%" />
               </div>
-              <p className="text-gray-600">Client Satisfaction</p>
+              <p className="text-xs sm:text-sm text-gray-600">Client Satisfaction</p>
             </div>
           </motion.div>
         </div>
@@ -198,7 +200,7 @@ export default function Contact() {
 
       {/* Contact Information Cards */}
       <motion.section
-        className="grid md:grid-cols-2 gap-6"
+        className="grid lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -210,14 +212,14 @@ export default function Contact() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <SpotlightCard className="group h-full rounded-2xl border border-gray-300 bg-white p-8 shadow-lg hover:shadow-xl transition-all duration-300" spotlightColor="rgba(0, 0, 0, 0.15)">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="p-3 bg-brand-100 rounded-xl group-hover:bg-brand-200 transition-colors">
-                <FaBuilding className="text-2xl text-brand-600" />
+          <SpotlightCard className="group h-full rounded-2xl border border-gray-300 bg-white p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300" spotlightColor="rgba(0, 0, 0, 0.15)">
+            <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+              <div className="p-2 sm:p-3 bg-brand-100 rounded-xl group-hover:bg-brand-200 transition-colors">
+                <FaBuilding className="text-lg sm:text-xl lg:text-2xl text-brand-600" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-gray-900">Company Information</h3>
-                <p className="text-gray-600">Sivka Areca Enterprises</p>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900">Company Information</h3>
+                <p className="text-sm sm:text-base text-gray-600">Sivka Areca Enterprises</p>
               </div>
             </div>
             
@@ -277,14 +279,14 @@ export default function Contact() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <SpotlightCard className="group h-full rounded-2xl border border-gray-300 bg-white p-8 shadow-lg hover:shadow-xl transition-all duration-300" spotlightColor="rgba(0, 0, 0, 0.15)">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="p-3 bg-brand-100 rounded-xl group-hover:bg-brand-200 transition-colors">
-                <FaClock className="text-2xl text-brand-600" />
+          <SpotlightCard className="group h-full rounded-2xl border border-gray-300 bg-white p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300" spotlightColor="rgba(0, 0, 0, 0.15)">
+            <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+              <div className="p-2 sm:p-3 bg-brand-100 rounded-xl group-hover:bg-brand-200 transition-colors">
+                <FaClock className="text-lg sm:text-xl lg:text-2xl text-brand-600" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-gray-900">Business Hours</h3>
-                <p className="text-gray-600">When we're available</p>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900">Business Hours</h3>
+                <p className="text-sm sm:text-base text-gray-600">When we're available</p>
               </div>
             </div>
             
@@ -317,11 +319,11 @@ export default function Contact() {
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <SpotlightCard className="rounded-2xl border border-gray-300 bg-white p-8 shadow-lg" spotlightColor="rgba(0, 0, 0, 0.15)">
-          <div className="text-center mb-8">
-            <FaPaperPlane className="text-4xl text-brand-600 mb-4 mx-auto" />
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Send us a message</h2>
-            <p className="text-gray-600">Tell us about your project requirements and we'll get back to you promptly</p>
+        <SpotlightCard className="rounded-2xl border border-gray-300 bg-white p-4 sm:p-6 lg:p-8 shadow-lg" spotlightColor="rgba(0, 0, 0, 0.15)">
+          <div className="text-center mb-6 sm:mb-8">
+            <FaPaperPlane className="text-2xl sm:text-3xl lg:text-4xl text-brand-600 mb-3 sm:mb-4 mx-auto" />
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">Send us a message</h2>
+            <p className="text-sm sm:text-base text-gray-600">Tell us about your project requirements and we'll get back to you promptly</p>
           </div>
 
           {submitted ? (

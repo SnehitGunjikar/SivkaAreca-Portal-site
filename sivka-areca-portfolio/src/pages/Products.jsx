@@ -185,7 +185,7 @@ export default function Products() {
     <div className="space-y-16">
       {/* Enhanced Hero Section */}
       <motion.section
-        className="relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-brand-50 py-16 px-6 rounded-3xl"
+        className="relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-brand-50 py-6 sm:py-8 md:py-12 lg:py-16 px-3 sm:px-4 md:px-6 rounded-3xl"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -198,63 +198,63 @@ export default function Products() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            <FaIndustry className="text-5xl text-brand-600 mb-6 mx-auto" />
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <FaIndustry className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-brand-600 mb-3 sm:mb-4 md:mb-6 mx-auto" />
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-2 sm:mb-3 md:mb-4 px-2 sm:px-4">
               Core Expertise
             </h1>
-            <p className="text-xl text-gray-700 mb-8">
+            <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-4 sm:mb-6 md:mb-8 px-2 sm:px-4 leading-relaxed">
               Comprehensive solutions across structural fabrication, PEB, enclosures, towers, and sheet metal
             </p>
           </motion.div>
 
           {/* Statistics */}
           <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8"
+            className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-6 md:mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
           >
             <div className="text-center">
-              <div className="text-3xl font-bold text-brand-600 mb-2">
+              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-brand-600 mb-1 sm:mb-2">
                 <AnimatedCounter end={500} suffix="+" />
               </div>
-              <p className="text-gray-600">Projects Completed</p>
+              <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-tight">Projects Completed</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-brand-600 mb-2">
+              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-brand-600 mb-1 sm:mb-2">
                 <AnimatedCounter end={15} suffix="+" />
               </div>
-              <p className="text-gray-600">Years Experience</p>
+              <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-tight">Years Experience</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-brand-600 mb-2">
+              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-brand-600 mb-1 sm:mb-2">
                 <AnimatedCounter end={50} suffix="+" />
               </div>
-              <p className="text-gray-600">Happy Clients</p>
+              <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-tight">Happy Clients</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-brand-600 mb-2">
+              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-brand-600 mb-1 sm:mb-2">
                 <AnimatedCounter end={99} suffix="%" />
               </div>
-              <p className="text-gray-600">Quality Assurance</p>
+              <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-tight">Quality Assurance</p>
             </div>
           </motion.div>
 
           {/* Search Bar */}
           <motion.div
-            className="max-w-md mx-auto"
+            className="max-w-md mx-auto px-2 sm:px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
           >
             <div className="relative">
-              <FaMagnifyingGlass className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <FaMagnifyingGlass className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm sm:text-base" />
               <input
                 type="text"
                 placeholder="Search products..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
+                className="w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
               />
             </div>
           </motion.div>
@@ -263,54 +263,54 @@ export default function Products() {
 
       {/* Quality Assurance Section */}
       <motion.section
-        className="bg-white py-12 px-6 rounded-2xl border border-gray-200"
+        className="bg-white py-8 sm:py-12 px-4 sm:px-6 rounded-2xl border border-gray-200"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-8">
-            <FaShield className="text-4xl text-brand-600 mb-4 mx-auto" />
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Quality Assurance</h2>
-            <p className="text-gray-600">Every product meets the highest industry standards</p>
+          <div className="text-center mb-6 sm:mb-8">
+            <FaShield className="text-3xl sm:text-4xl text-brand-600 mb-3 sm:mb-4 mx-auto" />
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4 px-4">Quality Assurance</h2>
+            <p className="text-gray-600 text-sm sm:text-base px-4">Every product meets the highest industry standards</p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             <motion.div
-              className="text-center p-6 rounded-xl bg-brand-50"
+              className="text-center p-4 sm:p-6 rounded-xl bg-brand-50"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.6 }}
             >
-              <FaAward className="text-3xl text-brand-600 mb-4 mx-auto" />
-              <h3 className="font-semibold text-gray-900 mb-2">Certified Excellence</h3>
-              <p className="text-gray-600 text-sm">ISO certified manufacturing processes</p>
+              <FaAward className="text-2xl sm:text-3xl text-brand-600 mb-3 sm:mb-4 mx-auto" />
+              <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Certified Excellence</h3>
+              <p className="text-gray-600 text-xs sm:text-sm">ISO certified manufacturing processes</p>
             </motion.div>
             
             <motion.div
-              className="text-center p-6 rounded-xl bg-brand-50"
+              className="text-center p-4 sm:p-6 rounded-xl bg-brand-50"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              <FaStar className="text-3xl text-brand-600 mb-4 mx-auto" />
-              <h3 className="font-semibold text-gray-900 mb-2">Premium Materials</h3>
-              <p className="text-gray-600 text-sm">Only the finest steel and components</p>
+              <FaStar className="text-2xl sm:text-3xl text-brand-600 mb-3 sm:mb-4 mx-auto" />
+              <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Premium Materials</h3>
+              <p className="text-gray-600 text-xs sm:text-sm">Only the finest steel and components</p>
             </motion.div>
             
             <motion.div
-              className="text-center p-6 rounded-xl bg-brand-50"
+              className="text-center p-4 sm:p-6 rounded-xl bg-brand-50 sm:col-span-2 lg:col-span-1"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              <FaCircleCheck className="text-3xl text-brand-600 mb-4 mx-auto" />
-              <h3 className="font-semibold text-gray-900 mb-2">Rigorous Testing</h3>
-              <p className="text-gray-600 text-sm">Comprehensive quality control checks</p>
+              <FaCircleCheck className="text-2xl sm:text-3xl text-brand-600 mb-3 sm:mb-4 mx-auto" />
+              <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Rigorous Testing</h3>
+              <p className="text-gray-600 text-xs sm:text-sm">Comprehensive quality control checks</p>
             </motion.div>
           </div>
         </div>
@@ -323,12 +323,12 @@ export default function Products() {
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Products</h2>
-          <p className="text-gray-600 text-lg">Discover our comprehensive range of steel fabrication solutions</p>
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 px-4">Our Products</h2>
+          <p className="text-gray-600 text-base sm:text-lg px-4">Discover our comprehensive range of steel fabrication solutions</p>
         </div>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 items-stretch">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 items-stretch">
           {filteredProducts.map((p, index) => (
             <ProductCard key={p.slug} product={p} imageSrc={productImages[p.slug]} index={index} />
           ))}
@@ -336,13 +336,13 @@ export default function Products() {
 
         {filteredProducts.length === 0 && (
           <motion.div
-            className="text-center py-12"
+            className="text-center py-8 sm:py-12"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
           >
-            <FaMagnifyingGlass className="text-4xl text-gray-400 mb-4 mx-auto" />
-            <p className="text-gray-600">No products found matching your search.</p>
+            <FaMagnifyingGlass className="text-3xl sm:text-4xl text-gray-400 mb-3 sm:mb-4 mx-auto" />
+            <p className="text-gray-600 px-4">No products found matching your search.</p>
           </motion.div>
         )}
       </motion.section>

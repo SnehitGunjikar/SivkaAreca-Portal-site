@@ -140,7 +140,7 @@ export default function Home() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <div className="relative min-h-56 sm:min-h-64 md:min-h-80 lg:min-h-[22rem] xl:min-h-[26rem]">
+        <div className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[70vh] lg:min-h-[80vh] xl:min-h-[85vh]">
           <div 
             className="absolute inset-0 bg-black/20 transition-all duration-300 hover:blur-sm"
             style={{
@@ -151,22 +151,24 @@ export default function Home() {
             }}
           ></div>
           {/* Enhanced overlay for better text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/30"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/40"></div>
           
-          {/* Floating Icons */}
-          <FloatingIcon icon={FaGears} delay={0} x={100} y={50} />
-          <FloatingIcon icon={FaWrench} delay={1} x={200} y={80} />
-          <FloatingIcon icon={FaIndustry} delay={2} x={300} y={60} />
+          {/* Floating Icons - Hidden on mobile for better performance */}
+          <div className="hidden lg:block">
+            <FloatingIcon icon={FaGears} delay={0} x={100} y={50} />
+            <FloatingIcon icon={FaWrench} delay={1} x={200} y={80} />
+            <FloatingIcon icon={FaIndustry} delay={2} x={300} y={60} />
+          </div>
           
-          <div className="absolute bottom-0 left-0 right-0 z-10 p-6 md:p-8 lg:p-12">
+          <div className="absolute inset-0 flex items-center justify-center z-10 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-12">
             <div className="container">
-              <div className="text-white text-left max-w-4xl">
+              <div className="text-white text-center md:text-left max-w-6xl mx-auto md:mx-0">
               <ScrollReveal
                 baseOpacity={0}
                 enableBlur={true}
                 baseRotation={5}
                 blurStrength={10}
-                textClassName="text-5xl sm:text-6xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold drop-shadow-2xl shadow-black text-gray-100"
+                textClassName="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold drop-shadow-2xl shadow-black text-gray-100 leading-tight"
               >
                 Innovating Steel Structures with Precision & Excellence
               </ScrollReveal>
@@ -176,23 +178,39 @@ export default function Home() {
                 mode="text"
                 textTag="span"
                 useDefaultTextStyles={false}
-                containerClassName="mt-2"
-                textClassName="tracking-wide text-white/90 text-xs sm:text-sm md:text-base drop-shadow-lg"
+                containerClassName="mt-2 sm:mt-3 md:mt-4"
+                textClassName="tracking-wide text-white/90 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl drop-shadow-lg"
               >
                 PRECISION FABRICATION | TRUSTED EXECUTION | ENGINEERING EXCELLENCE
               </ScrollReveal>
-              <ScrollReveal as="p" mode="text" textTag="span" useDefaultTextStyles={false} containerClassName="mt-3 max-w-2xl drop-shadow-lg" textClassName="text-white drop-shadow-lg">From concept to commissioning—design, fabrication, installation, and project management under one roof.</ScrollReveal>
+              <ScrollReveal 
+                as="p" 
+                mode="text" 
+                textTag="span" 
+                useDefaultTextStyles={false} 
+                containerClassName="mt-3 sm:mt-4 md:mt-6 max-w-4xl mx-auto md:mx-0 drop-shadow-lg" 
+                textClassName="text-white/95 drop-shadow-lg text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed"
+              >
+                From concept to commissioning—design, fabrication, installation, and project management under one roof.
+              </ScrollReveal>
               <motion.div 
-                className="mt-5 flex flex-wrap gap-3 justify-center md:justify-start"
+                className="mt-4 sm:mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start items-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
               >
-                <Button onClick={scrollToKeyServices} variant="secondary" className="group">
+                <Button 
+                  onClick={scrollToKeyServices} 
+                  variant="secondary" 
+                  className="group w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-medium"
+                >
                   <FaPlay className="mr-2 group-hover:translate-x-1 transition-transform" />
                   Our Services
                 </Button>
-                <ButtonLink to="/contact" className="group">
+                <ButtonLink 
+                  to="/contact" 
+                  className="group w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-medium"
+                >
                   Get a Quote
                   <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </ButtonLink>
@@ -205,7 +223,7 @@ export default function Home() {
 
       {/* Animated Statistics Section */}
       <motion.section
-        className="relative overflow-hidden bg-gradient-to-br from-brand-50 to-brand-100 py-16 px-6 rounded-3xl"
+        className="relative overflow-hidden bg-gradient-to-br from-brand-50 to-brand-100 py-8 sm:py-12 md:py-16 px-4 sm:px-6 rounded-3xl"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -215,21 +233,21 @@ export default function Home() {
         
         <div className="relative z-10 max-w-6xl mx-auto">
           <motion.div
-            className="text-center mb-12"
+            className="text-center mb-8 sm:mb-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-brand-800 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-800 mb-3 sm:mb-4">
               Our Achievements
             </h2>
-            <p className="text-brand-600 text-lg">
+            <p className="text-brand-600 text-base sm:text-lg px-4">
               Numbers that speak for our excellence and commitment
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
@@ -240,13 +258,13 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-brand-600 text-white rounded-full mb-4 group-hover:bg-brand-700 transition-colors">
-                  <stat.icon size={24} />
+                <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-brand-600 text-white rounded-full mb-2 sm:mb-3 md:mb-4 group-hover:bg-brand-700 transition-colors">
+                  <stat.icon className="text-sm sm:text-base md:text-lg lg:text-xl" />
                 </div>
-                <div className="text-3xl md:text-4xl font-bold text-brand-800 mb-2">
+                <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-brand-800 mb-1 sm:mb-2">
                   <AnimatedCounter end={stat.value} suffix={stat.suffix} />
                 </div>
-                <p className="text-brand-600 font-medium">{stat.label}</p>
+                <p className="text-brand-600 font-medium text-xs sm:text-sm md:text-base px-1 leading-tight">{stat.label}</p>
               </motion.div>
             ))}
           </div>
@@ -255,13 +273,14 @@ export default function Home() {
 
       {/* Enhanced Introduction */}
       <motion.section 
-        className="grid gap-6 sm:gap-8 md:grid-cols-2 items-center"
+        className="grid gap-4 sm:gap-6 md:gap-8 lg:grid-cols-2 items-center"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
         <motion.div
+          className="order-2 lg:order-1"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -272,32 +291,32 @@ export default function Home() {
             enableBlur={true}
             baseRotation={5}
             blurStrength={10}
-            textClassName="text-2xl md:text-3xl font-semibold"
+            textClassName="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold"
           >
             Welcome to Sivka Areca Enterprises
           </ScrollReveal>
-          <p className="mt-3 text-gray-700 leading-relaxed">
+          <p className="mt-2 sm:mt-3 md:mt-4 text-gray-700 leading-relaxed text-sm sm:text-base md:text-lg">
             We are an engineering and fabrication company delivering end-to-end steel structure solutions—from design to manufacturing and installation. Our customer-centric approach, focus on quality, and commitment to innovation enable reliable, cost-efficient results.
           </p>
           <motion.div
-            className="mt-6 flex items-center gap-4"
+            className="mt-3 sm:mt-4 md:mt-6 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 md:gap-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
             <div className="flex items-center gap-2 text-brand-600">
-              <FaAward />
-              <span className="font-medium">ISO Certified</span>
+              <FaAward className="text-sm sm:text-base" />
+              <span className="font-medium text-sm sm:text-base">ISO Certified</span>
             </div>
             <div className="flex items-center gap-2 text-brand-600">
-              <FaShieldHalved />
-              <span className="font-medium">Quality Assured</span>
+              <FaShieldHalved className="text-sm sm:text-base" />
+              <span className="font-medium text-sm sm:text-base">Quality Assured</span>
             </div>
           </motion.div>
         </motion.div>
         <motion.div 
-          className="h-36 sm:h-44 md:h-52 lg:h-64 rounded-lg overflow-hidden group"
+          className="h-40 sm:h-48 md:h-56 lg:h-64 xl:h-72 rounded-lg overflow-hidden group order-1 lg:order-2"
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -557,15 +576,16 @@ export default function Home() {
             >
               <ButtonLink 
                 to="/contact" 
-                className="bg-white text-brand-700 hover:bg-gray-100 group"
+                variant="secondary"
+                className="!bg-white !text-brand-700 !hover:bg-gray-100 !border-white group"
               >
                 Get Quote Now
                 <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
               </ButtonLink>
               <ButtonLink 
                 to="/projects" 
-                variant="secondary"
-                className="border-white text-white hover:bg-white hover:text-brand-700 group"
+                variant="outline"
+                className="!border-white !text-white !bg-transparent hover:!bg-white hover:!text-brand-700 group"
               >
                 View Our Work
                 <FaEye className="ml-2 group-hover:scale-110 transition-transform" />

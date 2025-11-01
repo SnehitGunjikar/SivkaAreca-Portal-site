@@ -10,7 +10,7 @@ const variants = {
 
 export function Button({ children, variant = 'primary', className = '', ...props }) {
   return (
-    <button className={`${variants[variant]} font-semibold px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 transition-colors ${className}`} {...props}>
+    <button className={`${variants[variant]} font-semibold px-3 sm:px-4 lg:px-6 py-2 sm:py-2.5 lg:py-3 text-sm sm:text-base lg:text-lg rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 transition-all duration-300 ${className}`} {...props}>
       {children}
     </button>
   )
@@ -18,7 +18,7 @@ export function Button({ children, variant = 'primary', className = '', ...props
 
 export function ButtonLink({ to, children, variant = 'primary', className = '', ...props }) {
   return (
-    <Link to={to} className={`inline-block ${variants[variant]} font-semibold px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 transition-colors ${className}`} {...props}>
+    <Link to={to} className={`inline-block ${variants[variant]} font-semibold px-3 sm:px-4 lg:px-6 py-2 sm:py-2.5 lg:py-3 text-sm sm:text-base lg:text-lg rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 transition-all duration-300 ${className}`} {...props}>
       {children}
     </Link>
   )
