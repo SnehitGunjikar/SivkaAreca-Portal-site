@@ -22,7 +22,6 @@ import {
   FaIndustry, 
   FaHammer,
   FaFilter,
-  FaMagnifyingGlass,
   FaArrowRight,
   FaCircleCheck,
   FaStar,
@@ -169,12 +168,20 @@ function ProjectCard({ project, imageSrc, index }) {
 
 export default function Projects() {
   const [filter, setFilter] = useState('all')
-  const [searchTerm, setSearchTerm] = useState('')
 
   const filteredProjects = projects.filter(project => {
-    const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         project.description.toLowerCase().includes(searchTerm.toLowerCase())
-    return matchesSearch
+    if (filter === 'all') return true
+    
+    // Map project slugs to categories
+    const categoryMap = {
+      'government-railway-projects-swr': 'railway',
+      'pre-engineered-building-peb': 'building',
+      'customized-container': 'container',
+      'exhaust-towers': 'tower',
+      'sheet-metal-works-ntpc': 'sheet-metal'
+    }
+    
+    return categoryMap[project.slug] === filter
   })
 
   return (
@@ -233,25 +240,6 @@ export default function Projects() {
                 <AnimatedCounter end={100} suffix="%" />
               </div>
               <p className="text-gray-600">On-Time Delivery</p>
-            </div>
-          </motion.div>
-
-          {/* Search Bar */}
-          <motion.div
-            className="max-w-md mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-          >
-            <div className="relative">
-              <FaMagnifyingGlass className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search projects..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
-              />
             </div>
           </motion.div>
         </div>

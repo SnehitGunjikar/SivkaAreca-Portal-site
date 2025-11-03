@@ -6,6 +6,30 @@ import ScrollReveal from '../components/ScrollReveal'
 import SpotlightCard from '../components/SpotlightCard'
 import homeUnsplashImg from '../assets/imagedata/home-unsplash.png'
 import homeUnsplash2Img from '../assets/imagedata/home-unsplash2.jpg'
+
+// Import Home-imgs slideshow images
+import fob2Img from '../assets/imagedata/Home-imgs/FOB 2-640.webp'
+import fobImg from '../assets/imagedata/Home-imgs/FOB-640.webp'
+import img1 from '../assets/imagedata/Home-imgs/IMG-20231201-WA0003-640.webp'
+import img2 from '../assets/imagedata/Home-imgs/IMG-20231201-WA0005-640.webp'
+import img3 from '../assets/imagedata/Home-imgs/IMG-20220922-WA0044.webp'
+import img4 from '../assets/imagedata/Home-imgs/IMG-20220922-WA0047.webp'
+import img5 from '../assets/imagedata/Home-imgs/IMG-20220922-WA0058.webp'
+import img6 from '../assets/imagedata/Home-imgs/IMG_20231226_113854648.webp'
+import img7 from '../assets/imagedata/Home-imgs/IMG_20240117_112922663.webp'
+import img8 from '../assets/imagedata/Home-imgs/IMG_20240210_175533773.webp'
+import img9 from '../assets/imagedata/Home-imgs/IMG_20250724_101435093_HDR.webp'
+import img10 from '../assets/imagedata/Home-imgs/IMG_20250724_102452756_HDR.webp'
+import overheadShedImg from '../assets/imagedata/Home-imgs/OVERHEAD SHED.webp'
+import ppf2Img from '../assets/imagedata/Home-imgs/PPF 2-640.webp'
+import ppfImg from '../assets/imagedata/Home-imgs/PPF-640.webp'
+import containerImg from '../assets/imagedata/Home-imgs/contairner-img-640.webp'
+import pathwayImg from '../assets/imagedata/Home-imgs/pathway-640.webp'
+import pebImg from '../assets/imagedata/Home-imgs/peb-image-640.webp'
+import railwayImg from '../assets/imagedata/Home-imgs/railway-staircase-img-640.webp'
+import staircaseImg from '../assets/imagedata/Home-imgs/staircase-640.webp'
+import towerImg from '../assets/imagedata/Home-imgs/tower-img-640.webp'
+
 import { services } from '../data/services'
 import { 
   FaUsers, 
@@ -22,8 +46,36 @@ import {
   FaStar,
   FaQuoteLeft,
   FaArrowRight,
-  FaPlay
+  FaPlay,
+  FaChevronLeft,
+  FaChevronRight
 } from 'react-icons/fa6'
+
+// Slideshow images array
+const slideshowImages = [
+  homeUnsplash2Img, // Keep the original as first image
+  fob2Img,
+  fobImg,
+  img1,
+  img2,
+  img3,
+  img4,
+  img5,
+  img6,
+  img7,
+  img8,
+  img9,
+  img10,
+  overheadShedImg,
+  ppf2Img,
+  ppfImg,
+  containerImg,
+  pathwayImg,
+  pebImg,
+  railwayImg,
+  staircaseImg,
+  towerImg
+]
 
 // Animated Counter Component
 const AnimatedCounter = ({ end, duration = 2, suffix = "" }) => {
@@ -72,6 +124,11 @@ const FloatingIcon = ({ icon: Icon, delay = 0, x = 0, y = 0 }) => (
 )
 
 export default function Home() {
+  // Slideshow state
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  
+  // Existing state
   const [activeTestimonial, setActiveTestimonial] = useState(0)
   const controls = useAnimation()
   const ref = useRef(null)
@@ -117,6 +174,17 @@ export default function Home() {
     }
   ]
 
+  // Auto-advance slideshow
+  useEffect(() => {
+    if (!isAutoPlaying) return
+    
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slideshowImages.length)
+    }, 5000) // Change slide every 5 seconds
+    
+    return () => clearInterval(interval)
+  }, [isAutoPlaying])
+
   // Auto-advance testimonials
   useEffect(() => {
     const interval = setInterval(() => {
@@ -131,6 +199,19 @@ export default function Home() {
     }
   }, [controls, inView])
 
+  // Navigation functions
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slideshowImages.length)
+    setIsAutoPlaying(false) // Pause auto-play when user interacts
+    setTimeout(() => setIsAutoPlaying(true), 10000) // Resume after 10 seconds
+  }
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slideshowImages.length) % slideshowImages.length)
+    setIsAutoPlaying(false) // Pause auto-play when user interacts
+    setTimeout(() => setIsAutoPlaying(true), 10000) // Resume after 10 seconds
+  }
+
   return (
     <div className="space-y-16">
       {/* Enhanced Banner with Floating Elements */}
@@ -140,18 +221,65 @@ export default function Home() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <div className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[70vh] lg:min-h-[80vh] xl:min-h-[85vh]">
-          <div 
-            className="absolute inset-0 bg-black/20 transition-all duration-300 hover:blur-sm"
-            style={{
-              backgroundImage: `url(${homeUnsplash2Img})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          ></div>
+        <div className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[70vh] lg:min-h-[80vh] xl:min-h-[85vh] overflow-hidden">
+          {/* Slideshow Background */}
+          <div className="absolute inset-0">
+            {slideshowImages.map((image, index) => (
+              <div
+                key={index}
+                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                  index === currentSlide ? 'opacity-100' : 'opacity-0'
+                }`}
+                style={{
+                  backgroundImage: `url(${image})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat'
+                }}
+              />
+            ))}
+          </div>
+          
           {/* Enhanced overlay for better text readability */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/40"></div>
+          
+          {/* Navigation Buttons */}
+          <div className="absolute bottom-4 right-4 flex space-x-2 z-20">
+            <button
+              onClick={prevSlide}
+              className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-2 rounded-full transition-all duration-300 hover:scale-110"
+              aria-label="Previous image"
+            >
+              <FaChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-2 rounded-full transition-all duration-300 hover:scale-110"
+              aria-label="Next image"
+            >
+              <FaChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+          
+          {/* Slide Indicators */}
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+            {slideshowImages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setCurrentSlide(index)
+                  setIsAutoPlaying(false)
+                  setTimeout(() => setIsAutoPlaying(true), 10000)
+                }}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === currentSlide 
+                    ? 'bg-white scale-125' 
+                    : 'bg-white/50 hover:bg-white/75'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
           
           {/* Floating Icons - Hidden on mobile for better performance */}
           <div className="hidden lg:block">
@@ -575,7 +703,7 @@ export default function Home() {
       </motion.section>
 
       {/* Enhanced Key Services */}
-      <motion.section 
+      <motion.section
         id="key-services"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
