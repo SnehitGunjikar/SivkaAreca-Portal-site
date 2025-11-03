@@ -216,17 +216,21 @@ export default function Home() {
     <>
       {/* Enhanced Banner with Floating Elements - Full Screen */}
       <motion.section 
-        className="relative overflow-hidden -mx-4 sm:-mx-6 md:-mx-8 lg:-mx-12 xl:-mx-16 -mt-8"
+        className="relative overflow-hidden"
         style={{ 
-          marginLeft: 'calc(-50vw + 50%)',
-          marginRight: 'calc(-50vw + 50%)',
-          width: '100vw'
+          position: 'absolute',
+          top: '0',
+          left: '0',
+          right: '0',
+          width: '100vw',
+          height: '100vh',
+          zIndex: 10
         }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <div className="relative h-screen w-full overflow-hidden">
+        <div className="relative w-full h-full overflow-hidden">
           {/* Slideshow Background */}
           <div className="absolute inset-0">
             {slideshowImages.map((image, index) => (
@@ -293,10 +297,10 @@ export default function Home() {
             <FloatingIcon icon={FaIndustry} delay={2} x={300} y={60} />
           </div>
           
-          {/* Content positioned responsively - bottom on mobile, center-left on larger screens */}
-          <div className="absolute inset-0 flex items-end sm:items-center justify-start z-10">
-            <div className="p-4 sm:p-6 md:p-8 lg:p-12 xl:p-16 2xl:p-20 max-w-full lg:max-w-4xl xl:max-w-5xl mb-4 sm:mb-0">
-              <div className="text-white text-left space-y-3 sm:space-y-4 md:space-y-6 lg:space-y-8">
+          {/* Content positioned at bottom left */}
+          <div className="absolute bottom-0 left-0 z-10">
+            <div className="p-6 sm:p-8 md:p-10 lg:p-12 max-w-2xl lg:max-w-3xl mb-6 sm:mb-8 md:mb-10">
+              <div className="text-white text-left space-y-2 sm:space-y-3 md:space-y-4">
               {/* Main Heading with Creative Typography */}
               <motion.div
                 initial={{ opacity: 0, x: -100, rotateX: 45 }}
@@ -304,7 +308,7 @@ export default function Home() {
                 transition={{ duration: 1.2, ease: "easeOut" }}
                 className="relative"
               >
-                <h2 className="font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl leading-tight tracking-tight">
+                <h2 className="font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight tracking-tight">
                   <span className="block bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-2xl">
                     <motion.span
                       className="inline-block"
@@ -312,7 +316,7 @@ export default function Home() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.2, duration: 0.8, type: "spring", bounce: 0.4 }}
                     >
-                      INNOVATING
+                      SIVKA ARECA
                     </motion.span>
                   </span>
                   <span className="block bg-gradient-to-r from-brand-300 via-brand-200 to-white bg-clip-text text-transparent drop-shadow-2xl mt-1 sm:mt-2 md:mt-3">
@@ -322,16 +326,9 @@ export default function Home() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4, duration: 0.8, type: "spring", bounce: 0.4 }}
                     >
-                      STEEL
+                      ENTERPRISES
                     </motion.span>
-                    <motion.span
-                      className="inline-block ml-2 sm:ml-4 md:ml-6"
-                      initial={{ opacity: 0, y: 50, rotateZ: 15 }}
-                      animate={{ opacity: 1, y: 0, rotateZ: 0 }}
-                      transition={{ delay: 0.6, duration: 0.8, type: "spring", bounce: 0.4 }}
-                    >
-                      STRUCTURES
-                    </motion.span>
+                   
                   </span>
                 </h2>
                 {/* Decorative line */}
@@ -350,18 +347,16 @@ export default function Home() {
                 transition={{ delay: 0.8, duration: 0.8 }}
                 className="relative"
               >
-                <p className="font-bold text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl tracking-widest text-white/95 drop-shadow-lg">
+                <p className="font-bold text-xs sm:text-sm md:text-base lg:text-lg tracking-widest text-white/95 drop-shadow-lg">
                   <motion.span
                     className="inline-block border-l-4 border-brand-400 pl-3 sm:pl-4 md:pl-6"
                     initial={{ borderLeftWidth: 0 }}
                     animate={{ borderLeftWidth: "4px" }}
                     transition={{ delay: 1.2, duration: 0.6 }}
                   >
-                    PRECISION FABRICATION
+                    PRECISION • TRUSTED • EXCELLENCE
                   </motion.span>
-                  <span className="block mt-1 text-brand-200/90 font-medium">
-                    TRUSTED EXECUTION • ENGINEERING EXCELLENCE
-                  </span>
+                  
                 </p>
               </motion.div>
 
@@ -372,7 +367,7 @@ export default function Home() {
                 transition={{ delay: 1.2, duration: 0.8 }}
                 className="relative max-w-3xl"
               >
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed text-white/90 drop-shadow-lg font-light">
+                <p className="text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed text-white/90 drop-shadow-lg font-light">
                   <motion.span
                     className="inline-block"
                     initial={{ opacity: 0 }}
@@ -400,7 +395,7 @@ export default function Home() {
                 </p>
               </motion.div>
               <motion.div 
-                className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center md:justify-start items-center"
+                className="mt-4 sm:mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-start items-start sm:items-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
@@ -408,17 +403,17 @@ export default function Home() {
                 <Button 
                   onClick={scrollToKeyServices} 
                   variant="secondary" 
-                  className="group w-full sm:w-auto px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 text-base sm:text-lg md:text-xl font-medium"
+                  className="group w-full sm:w-auto px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-medium"
                 >
-                  <FaPlay className="mr-2 sm:mr-3 group-hover:translate-x-1 transition-transform" />
+                  <FaPlay className="mr-2 group-hover:translate-x-1 transition-transform" />
                   Our Services
                 </Button>
                 <ButtonLink 
                   to="/contact" 
-                  className="group w-full sm:w-auto px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 text-base sm:text-lg md:text-xl font-medium"
+                  className="group w-full sm:w-auto px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-medium"
                 >
                   Get a Quote
-                  <FaArrowRight className="ml-2 sm:ml-3 group-hover:translate-x-1 transition-transform" />
+                  <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </ButtonLink>
               </motion.div>
               </div>
@@ -427,8 +422,71 @@ export default function Home() {
         </div>
       </motion.section>
 
+      {/* Spacer to account for absolute positioned hero section */}
+      <div className="h-screen"></div>
+
       {/* Rest of the content in container */}
       <div className="space-y-16">
+        {/* Enhanced Introduction */}
+        <motion.section 
+          className="grid gap-4 sm:gap-6 md:gap-8 lg:grid-cols-2 items-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.div
+            className="order-2 lg:order-1"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <ScrollReveal
+              baseOpacity={0}
+              enableBlur={true}
+              baseRotation={5}
+              blurStrength={10}
+              textClassName="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold"
+            >
+              Welcome to Sivka Areca Enterprises
+            </ScrollReveal>
+            <p className="mt-2 sm:mt-3 md:mt-4 text-gray-700 leading-relaxed text-sm sm:text-base md:text-lg">
+              We are an engineering and fabrication company delivering end-to-end steel structure solutions—from design to manufacturing and installation. Our customer-centric approach, focus on quality, and commitment to innovation enable reliable, cost-efficient results.
+            </p>
+            <motion.div
+              className="mt-3 sm:mt-4 md:mt-6 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 md:gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
+              <div className="flex items-center gap-2 text-brand-600">
+                <FaAward className="text-sm sm:text-base" />
+                <span className="font-medium text-sm sm:text-base">ISO Certified</span>
+              </div>
+              <div className="flex items-center gap-2 text-brand-600">
+                <FaShieldHalved className="text-sm sm:text-base" />
+                <span className="font-medium text-sm sm:text-base">Quality Assured</span>
+              </div>
+            </motion.div>
+          </motion.div>
+          <motion.div 
+            className="h-40 sm:h-48 md:h-56 lg:h-64 xl:h-72 rounded-lg overflow-hidden group order-1 lg:order-2"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            whileHover={{ scale: 1.02 }}
+          >
+            <img 
+              src={homeUnsplashImg} 
+              alt="Sivka Areca Enterprises - Steel Structure Solutions" 
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+          </motion.div>
+        </motion.section>
+
         {/* Animated Statistics Section */}
         <motion.section
         className="relative overflow-hidden bg-gradient-to-br from-brand-50 to-brand-100 py-8 sm:py-12 md:py-16 px-4 sm:px-6 rounded-3xl"
@@ -479,64 +537,56 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* Enhanced Introduction */}
-      <motion.section 
-        className="grid gap-4 sm:gap-6 md:gap-8 lg:grid-cols-2 items-center"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+      {/* Call to Action Section */}
+      <motion.section
+        className="relative overflow-hidden bg-gradient-to-br from-brand-600 via-brand-700 to-brand-800 text-white py-16 px-6 rounded-3xl"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <motion.div
-          className="order-2 lg:order-1"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <ScrollReveal
-            baseOpacity={0}
-            enableBlur={true}
-            baseRotation={5}
-            blurStrength={10}
-            textClassName="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold"
-          >
-            Welcome to Sivka Areca Enterprises
-          </ScrollReveal>
-          <p className="mt-2 sm:mt-3 md:mt-4 text-gray-700 leading-relaxed text-sm sm:text-base md:text-lg">
-            We are an engineering and fabrication company delivering end-to-end steel structure solutions—from design to manufacturing and installation. Our customer-centric approach, focus on quality, and commitment to innovation enable reliable, cost-efficient results.
-          </p>
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+        
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div
-            className="mt-3 sm:mt-4 md:mt-6 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 md:gap-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.6 }}
+            transition={{ duration: 0.6 }}
           >
-            <div className="flex items-center gap-2 text-brand-600">
-              <FaAward className="text-sm sm:text-base" />
-              <span className="font-medium text-sm sm:text-base">ISO Certified</span>
-            </div>
-            <div className="flex items-center gap-2 text-brand-600">
-              <FaShieldHalved className="text-sm sm:text-base" />
-              <span className="font-medium text-sm sm:text-base">Quality Assured</span>
-            </div>
+            <FaRocket className="text-5xl mb-6 mx-auto" />
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Ready to Start Your Next Project?
+            </h2>
+            <p className="text-xl mb-8 text-white/90">
+              Let's bring your vision to life with our expertise in steel fabrication and engineering
+            </p>
+            <motion.div
+              className="flex flex-wrap gap-4 justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
+              <ButtonLink 
+                to="/contact" 
+                variant="contrast-white"
+                className="group"
+              >
+                Get Quote Now
+                <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </ButtonLink>
+              <ButtonLink 
+                to="/projects" 
+                variant="contrast-outline"
+                className="group"
+              >
+                View Our Work
+                <FaEye className="ml-2 group-hover:scale-110 transition-transform" />
+              </ButtonLink>
+            </motion.div>
           </motion.div>
-        </motion.div>
-        <motion.div 
-          className="h-40 sm:h-48 md:h-56 lg:h-64 xl:h-72 rounded-lg overflow-hidden group order-1 lg:order-2"
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          whileHover={{ scale: 1.02 }}
-        >
-          <img 
-            src={homeUnsplashImg} 
-            alt="Sivka Areca Enterprises - Steel Structure Solutions" 
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-          />
-        </motion.div>
+        </div>
       </motion.section>
 
       {/* About section blocks */}
@@ -642,6 +692,48 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Enhanced Key Services */}
+      <motion.section
+        id="key-services"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Key Services</h2>
+          <p className="text-gray-600 text-lg">Comprehensive steel fabrication solutions tailored to your needs</p>
+        </div>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {services.map((s, index) => (
+            <motion.div
+              key={s.slug}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
+            >
+              <SpotlightCard className="rounded-2xl border border-gray-300 bg-white p-6 flex flex-col h-full group hover:shadow-xl transition-all duration-300" spotlightColor="rgba(0, 0, 0, 0.15)">
+                <ScrollReveal as="div" mode="block" containerClassName="flex-1 flex flex-col">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2 bg-brand-100 rounded-lg group-hover:bg-brand-200 transition-colors">
+                      <FaGears className="text-brand-600" size={20} />
+                    </div>
+                    <h3 className="font-semibold text-gray-900 text-lg">{s.title}</h3>
+                  </div>
+                  <p className="text-gray-700 flex-1 mb-6 leading-relaxed">{s.intro}</p>
+                  <ButtonLink to={`/services/${s.slug}`} className="mt-auto group">
+                    Learn More
+                    <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </ButtonLink>
+                </ScrollReveal>
+              </SpotlightCard>
+            </motion.div>
+          ))}
+        </div>
+      </motion.section>
+
       {/* Client Testimonials Section */}
       <motion.section
         className="relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 py-16 px-6 rounded-3xl"
@@ -709,99 +801,7 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* Enhanced Key Services */}
-      <motion.section
-        id="key-services"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Key Services</h2>
-          <p className="text-gray-600 text-lg">Comprehensive steel fabrication solutions tailored to your needs</p>
-        </div>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {services.map((s, index) => (
-            <motion.div
-              key={s.slug}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-            >
-              <SpotlightCard className="rounded-2xl border border-gray-300 bg-white p-6 flex flex-col h-full group hover:shadow-xl transition-all duration-300" spotlightColor="rgba(0, 0, 0, 0.15)">
-                <ScrollReveal as="div" mode="block" containerClassName="flex-1 flex flex-col">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 bg-brand-100 rounded-lg group-hover:bg-brand-200 transition-colors">
-                      <FaGears className="text-brand-600" size={20} />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 text-lg">{s.title}</h3>
-                  </div>
-                  <p className="text-gray-700 flex-1 mb-6 leading-relaxed">{s.intro}</p>
-                  <ButtonLink to={`/services/${s.slug}`} className="mt-auto group">
-                    Learn More
-                    <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-                  </ButtonLink>
-                </ScrollReveal>
-              </SpotlightCard>
-            </motion.div>
-          ))}
-        </div>
-      </motion.section>
 
-      {/* Call to Action Section */}
-      <motion.section
-        className="relative overflow-hidden bg-gradient-to-br from-brand-600 via-brand-700 to-brand-800 text-white py-16 px-6 rounded-3xl"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
-        
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <FaRocket className="text-5xl mb-6 mx-auto" />
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Start Your Next Project?
-            </h2>
-            <p className="text-xl mb-8 text-white/90">
-              Let's bring your vision to life with our expertise in steel fabrication and engineering
-            </p>
-            <motion.div
-              className="flex flex-wrap gap-4 justify-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-            >
-              <ButtonLink 
-                to="/contact" 
-                variant="contrast-white"
-                className="group"
-              >
-                Get Quote Now
-                <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </ButtonLink>
-              <ButtonLink 
-                to="/projects" 
-                variant="contrast-outline"
-                className="group"
-              >
-                View Our Work
-                <FaEye className="ml-2 group-hover:scale-110 transition-transform" />
-              </ButtonLink>
-            </motion.div>
-          </motion.div>
-        </div>
-      </motion.section>
       </div>
     </>
   )

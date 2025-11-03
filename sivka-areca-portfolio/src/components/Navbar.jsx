@@ -6,6 +6,7 @@ import brandLogo from '../assets/imagedata/sivka-areca-name.png'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const location = useLocation()
   
   // Performance optimization: Reduce animations on slower devices
@@ -29,6 +30,17 @@ export default function Navbar() {
     
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  // Scroll detection for transparent/translucent background
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY
+      setIsScrolled(scrollTop > 10)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   // Enhanced keyboard navigation support
@@ -91,8 +103,24 @@ export default function Navbar() {
     { label: 'Contact', to: '/contact' },
   ]
 
+  // Determine if we're on the home page
+  const isHomePage = location.pathname === '/'
+  
+  // Different styling logic for home page vs other pages
+  const getHeaderStyle = () => {
+    if (isHomePage) {
+      // Home page: transparent initially, translucent on scroll
+      return isScrolled 
+        ? 'bg-neutral-900/80 backdrop-blur-md border-b border-white/20' 
+        : 'bg-transparent border-b border-transparent'
+    } else {
+      // Other pages: always have translucent background
+      return 'bg-neutral-900/90 backdrop-blur-md border-b border-white/20'
+    }
+  }
+
   return (
-    <header className="bg-neutral-900 backdrop-blur-sm border-b border-white/10 sticky top-0 z-50">
+    <header className={`${getHeaderStyle()} sticky top-0 z-50 transition-all duration-300`}>
       <div className="container flex items-center justify-between py-2 sm:py-3 md:py-4">
         <div className="flex items-center gap-3 sm:gap-4">
           {/* Enhanced hamburger menu button with accessibility */}
