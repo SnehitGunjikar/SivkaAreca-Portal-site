@@ -213,15 +213,20 @@ export default function Home() {
   }
 
   return (
-    <div className="space-y-16">
-      {/* Enhanced Banner with Floating Elements */}
+    <>
+      {/* Enhanced Banner with Floating Elements - Full Screen */}
       <motion.section 
-        className="relative overflow-hidden rounded-xl"
+        className="relative overflow-hidden -mx-4 sm:-mx-6 md:-mx-8 lg:-mx-12 xl:-mx-16 -mt-8"
+        style={{ 
+          marginLeft: 'calc(-50vw + 50%)',
+          marginRight: 'calc(-50vw + 50%)',
+          width: '100vw'
+        }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <div className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[70vh] lg:min-h-[80vh] xl:min-h-[85vh] overflow-hidden">
+        <div className="relative h-screen w-full overflow-hidden">
           {/* Slideshow Background */}
           <div className="absolute inset-0">
             {slideshowImages.map((image, index) => (
@@ -243,26 +248,26 @@ export default function Home() {
           {/* Enhanced overlay for better text readability */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/40"></div>
           
-          {/* Navigation Buttons */}
-          <div className="absolute bottom-4 right-4 flex space-x-2 z-20">
+          {/* Navigation Buttons - Responsive positioning */}
+          <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 flex space-x-2 z-20">
             <button
               onClick={prevSlide}
-              className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-2 rounded-full transition-all duration-300 hover:scale-110"
+              className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-2 sm:p-3 md:p-4 rounded-full transition-all duration-300 hover:scale-110 shadow-lg"
               aria-label="Previous image"
             >
-              <FaChevronLeft className="w-4 h-4" />
+              <FaChevronLeft className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
             </button>
             <button
               onClick={nextSlide}
-              className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-2 rounded-full transition-all duration-300 hover:scale-110"
+              className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-2 sm:p-3 md:p-4 rounded-full transition-all duration-300 hover:scale-110 shadow-lg"
               aria-label="Next image"
             >
-              <FaChevronRight className="w-4 h-4" />
+              <FaChevronRight className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
             </button>
           </div>
           
-          {/* Slide Indicators */}
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+          {/* Slide Indicators - Responsive positioning */}
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-1 sm:space-x-2 z-20">
             {slideshowImages.map((_, index) => (
               <button
                 key={index}
@@ -271,7 +276,7 @@ export default function Home() {
                   setIsAutoPlaying(false)
                   setTimeout(() => setIsAutoPlaying(true), 10000)
                 }}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                className={`w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 shadow-lg ${
                   index === currentSlide 
                     ? 'bg-white scale-125' 
                     : 'bg-white/50 hover:bg-white/75'
@@ -281,17 +286,17 @@ export default function Home() {
             ))}
           </div>
           
-          {/* Floating Icons - Hidden on mobile for better performance */}
-          <div className="hidden lg:block">
+          {/* Floating Icons - Hidden on mobile and tablet for better performance */}
+          <div className="hidden xl:block">
             <FloatingIcon icon={FaGears} delay={0} x={100} y={50} />
             <FloatingIcon icon={FaWrench} delay={1} x={200} y={80} />
             <FloatingIcon icon={FaIndustry} delay={2} x={300} y={60} />
           </div>
           
-          {/* Repositioned to bottom left with enhanced typography and animations */}
-          <div className="absolute bottom-0 left-0 z-10 p-6 sm:p-8 md:p-12 lg:p-16 xl:p-20">
-            <div className="max-w-4xl">
-              <div className="text-white text-left space-y-4 sm:space-y-6 md:space-y-8">
+          {/* Content positioned responsively */}
+          <div className="absolute inset-0 flex items-center justify-start z-10">
+            <div className="p-4 sm:p-6 md:p-8 lg:p-12 xl:p-16 2xl:p-20 max-w-full lg:max-w-4xl xl:max-w-5xl">
+              <div className="text-white text-left space-y-3 sm:space-y-4 md:space-y-6 lg:space-y-8">
               {/* Main Heading with Creative Typography */}
               <motion.div
                 initial={{ opacity: 0, x: -100, rotateX: 45 }}
@@ -299,7 +304,7 @@ export default function Home() {
                 transition={{ duration: 1.2, ease: "easeOut" }}
                 className="relative"
               >
-                <h2 className="font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight tracking-tight">
+                <h2 className="font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl leading-tight tracking-tight">
                   <span className="block bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-2xl">
                     <motion.span
                       className="inline-block"
@@ -310,7 +315,7 @@ export default function Home() {
                       INNOVATING
                     </motion.span>
                   </span>
-                  <span className="block bg-gradient-to-r from-brand-300 via-brand-200 to-white bg-clip-text text-transparent drop-shadow-2xl mt-1 sm:mt-2">
+                  <span className="block bg-gradient-to-r from-brand-300 via-brand-200 to-white bg-clip-text text-transparent drop-shadow-2xl mt-1 sm:mt-2 md:mt-3">
                     <motion.span
                       className="inline-block"
                       initial={{ opacity: 0, y: 50 }}
@@ -320,7 +325,7 @@ export default function Home() {
                       STEEL
                     </motion.span>
                     <motion.span
-                      className="inline-block ml-2 sm:ml-4"
+                      className="inline-block ml-2 sm:ml-4 md:ml-6"
                       initial={{ opacity: 0, y: 50, rotateZ: 15 }}
                       animate={{ opacity: 1, y: 0, rotateZ: 0 }}
                       transition={{ delay: 0.6, duration: 0.8, type: "spring", bounce: 0.4 }}
@@ -345,9 +350,9 @@ export default function Home() {
                 transition={{ delay: 0.8, duration: 0.8 }}
                 className="relative"
               >
-                <p className="font-bold text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl tracking-widest text-white/95 drop-shadow-lg">
+                <p className="font-bold text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl tracking-widest text-white/95 drop-shadow-lg">
                   <motion.span
-                    className="inline-block border-l-4 border-brand-400 pl-3 sm:pl-4"
+                    className="inline-block border-l-4 border-brand-400 pl-3 sm:pl-4 md:pl-6"
                     initial={{ borderLeftWidth: 0 }}
                     animate={{ borderLeftWidth: "4px" }}
                     transition={{ delay: 1.2, duration: 0.6 }}
@@ -395,7 +400,7 @@ export default function Home() {
                 </p>
               </motion.div>
               <motion.div 
-                className="mt-4 sm:mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start items-center"
+                className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center md:justify-start items-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
@@ -403,17 +408,17 @@ export default function Home() {
                 <Button 
                   onClick={scrollToKeyServices} 
                   variant="secondary" 
-                  className="group w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-medium"
+                  className="group w-full sm:w-auto px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 text-base sm:text-lg md:text-xl font-medium"
                 >
-                  <FaPlay className="mr-2 group-hover:translate-x-1 transition-transform" />
+                  <FaPlay className="mr-2 sm:mr-3 group-hover:translate-x-1 transition-transform" />
                   Our Services
                 </Button>
                 <ButtonLink 
                   to="/contact" 
-                  className="group w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-medium"
+                  className="group w-full sm:w-auto px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 text-base sm:text-lg md:text-xl font-medium"
                 >
                   Get a Quote
-                  <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  <FaArrowRight className="ml-2 sm:ml-3 group-hover:translate-x-1 transition-transform" />
                 </ButtonLink>
               </motion.div>
               </div>
@@ -422,8 +427,10 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* Animated Statistics Section */}
-      <motion.section
+      {/* Rest of the content in container */}
+      <div className="space-y-16">
+        {/* Animated Statistics Section */}
+        <motion.section
         className="relative overflow-hidden bg-gradient-to-br from-brand-50 to-brand-100 py-8 sm:py-12 md:py-16 px-4 sm:px-6 rounded-3xl"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -795,6 +802,7 @@ export default function Home() {
           </motion.div>
         </div>
       </motion.section>
-    </div>
+      </div>
+    </>
   )
 }
