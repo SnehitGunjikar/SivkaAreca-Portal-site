@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import GooeyNav from './GooeyNav'
@@ -6,7 +6,19 @@ import brandLogo from '../assets/imagedata/sivka-areca-name.png'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const location = useLocation()
   
+  // Performance optimization: Reduce animations on slower devices
+  const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const isSlowDevice = typeof navigator !== 'undefined' && navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4
+
+  const animationConfig = {
+    duration: prefersReducedMotion || isSlowDevice ? 0.2 : 0.4,
+    type: prefersReducedMotion ? "tween" : "spring",
+    stiffness: 100,
+    damping: 15
+  }
+
   // Close mobile menu on window resize
   useEffect(() => {
     const handleResize = () => {
@@ -18,11 +30,46 @@ export default function Navbar() {
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
+
+  // Enhanced keyboard navigation support
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (open) {
+        if (event.key === 'Escape') {
+          setOpen(false)
+        }
+        // Trap focus within mobile menu
+        if (event.key === 'Tab') {
+          const focusableElements = document.querySelectorAll(
+            '#mobile-navigation a, #mobile-navigation button'
+          )
+          const firstElement = focusableElements[0]
+          const lastElement = focusableElements[focusableElements.length - 1]
+          
+          if (event.shiftKey && document.activeElement === firstElement) {
+            event.preventDefault()
+            lastElement.focus()
+          } else if (!event.shiftKey && document.activeElement === lastElement) {
+            event.preventDefault()
+            firstElement.focus()
+          }
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [open])
   
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (open) {
       document.body.style.overflow = 'hidden'
+      // Focus first navigation item when menu opens
+      setTimeout(() => {
+        const firstNavItem = document.querySelector('#mobile-navigation a')
+        if (firstNavItem) firstNavItem.focus()
+      }, 100)
     } else {
       document.body.style.overflow = 'unset'
     }
@@ -48,12 +95,16 @@ export default function Navbar() {
     <header className="bg-neutral-900 backdrop-blur-sm border-b border-white/10 sticky top-0 z-50">
       <div className="container flex items-center justify-between py-2 sm:py-3 md:py-4">
         <div className="flex items-center gap-3 sm:gap-4">
-          {/* Enhanced hamburger menu button */}
+          {/* Enhanced hamburger menu button with accessibility */}
           <motion.button 
-            className="md:hidden h-10 w-10 flex flex-col items-center justify-center border border-white/20 rounded-lg hover:bg-white/5 hover:border-white/30 transition-all duration-200" 
+            className="md:hidden h-12 w-12 flex flex-col items-center justify-center border border-white/20 rounded-xl hover:bg-white/5 hover:border-white/30 focus:bg-white/10 focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-neutral-900 transition-all duration-200 touch-manipulation" 
             onClick={() => setOpen(!open)} 
-            aria-label="Toggle navigation"
+            aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
+            aria-haspopup="true"
             whileTap={{ scale: 0.95 }}
+            style={{ minHeight: '44px', minWidth: '44px' }}
           >
             <motion.span 
               className="block w-5 h-0.5 bg-gray-300 mb-1 transition-all duration-300"
@@ -93,79 +144,235 @@ export default function Navbar() {
         </nav>
       </div>
       
-      {/* Enhanced mobile menu with animations */}
+      {/* Professional Mobile Menu with Enhanced UX */}
       <AnimatePresence>
         {open && (
           <>
-            {/* Backdrop */}
+            {/* Enhanced Backdrop with Gradient */}
             <motion.div
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
+              className="fixed inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70 backdrop-blur-md z-40 md:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
               onClick={() => setOpen(false)}
             />
             
-            {/* Mobile menu */}
+            {/* Professional Mobile Menu */}
             <motion.div
-              className="fixed top-[65px] sm:top-[69px] md:top-[73px] left-0 right-0 bg-neutral-900/95 backdrop-blur-md border-t border-white/10 z-50 md:hidden shadow-xl"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.2 }}
+              id="mobile-navigation"
+              role="navigation"
+              aria-label="Mobile navigation menu"
+              className="fixed top-[65px] sm:top-[69px] md:top-[73px] left-0 right-0 bg-white/95 backdrop-blur-xl border-t border-gray-200/50 z-50 md:hidden shadow-2xl"
+              style={{ willChange: 'transform, opacity' }}
+              initial={{ opacity: 0, y: -30, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -30, scale: 0.95 }}
+              transition={animationConfig}
+              drag="y"
+              dragConstraints={{ top: 0, bottom: 0 }}
+              dragElastic={0.2}
+              onDragEnd={(event, info) => {
+                // Close menu if dragged up significantly
+                if (info.offset.y < -50 || info.velocity.y < -500) {
+                  setOpen(false)
+                }
+              }}
             >
-              <div className="container py-4 sm:py-6 space-y-1 sm:space-y-2 max-h-[calc(100vh-65px)] sm:max-h-[calc(100vh-69px)] md:max-h-[calc(100vh-73px)] overflow-y-auto">
-                <NavLink to="/" className={linkClass} onClick={() => setOpen(false)}>
-                  <motion.span
-                    initial={{ x: -20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.1 }}
-                    className="block py-1"
+                {/* Swipe Indicator */}
+                <div className="flex justify-center py-2">
+                  <div className="w-12 h-1 bg-gray-300 rounded-full"></div>
+                </div>
+                
+                {/* Menu Header with Brand Accent */}
+              <div className="px-6 py-4 border-b border-gray-100 bg-gradient-to-r from-brand-50 to-brand-100/50">
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.5 }}
+                  className="flex items-center justify-between"
+                >
+                  <div className="flex items-center space-x-3">
+                    <motion.div 
+                      className="w-8 h-8 bg-gradient-to-br from-brand-500 to-brand-600 rounded-lg flex items-center justify-center shadow-lg"
+                      animate={{ 
+                        rotate: [0, 5, -5, 0],
+                        scale: [1, 1.05, 1]
+                      }}
+                      transition={{ 
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatDelay: 3
+                      }}
+                    >
+                      <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
+                      </svg>
+                    </motion.div>
+                    <div>
+                      <motion.h3 
+                        className="text-sm font-semibold text-gray-800"
+                        animate={{ opacity: [0.7, 1, 0.7] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      >
+                        Navigation
+                      </motion.h3>
+                      <motion.p 
+                        className="text-xs text-gray-500"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.4 }}
+                      >
+                        Explore our portfolio
+                      </motion.p>
+                    </div>
+                  </div>
+                  <motion.button
+                    onClick={() => setOpen(false)}
+                    className="p-2 rounded-lg hover:bg-white/50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    aria-label="Close menu"
                   >
-                    Home
-                  </motion.span>
-                </NavLink>
-                <NavLink to="/products" className={linkClass} onClick={() => setOpen(false)}>
-                  <motion.span
-                    initial={{ x: -20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.15 }}
-                    className="block py-1"
-                  >
-                    Core Expertise
-                  </motion.span>
-                </NavLink>
-                <NavLink to="/projects" className={linkClass} onClick={() => setOpen(false)}>
-                  <motion.span
-                    initial={{ x: -20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                    className="block py-1"
-                  >
-                    Projects
-                  </motion.span>
-                </NavLink>
-                <NavLink to="/manufacturing" className={linkClass} onClick={() => setOpen(false)}>
-                  <motion.span
-                    initial={{ x: -20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.25 }}
-                    className="block py-1"
-                  >
-                    Manufacturing
-                  </motion.span>
-                </NavLink>
-                <NavLink to="/contact" className={linkClass} onClick={() => setOpen(false)}>
-                  <motion.span
-                    initial={{ x: -20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.3 }}
-                    className="block py-1"
-                  >
-                    Contact
-                  </motion.span>
-                </NavLink>
+                    <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </motion.button>
+                </motion.div>
               </div>
+
+              {/* Enhanced Navigation Links */}
+              <div className="px-4 py-6 space-y-2 max-h-[calc(100vh-140px)] overflow-y-auto">
+                {items.map((item, index) => (
+                  <NavLink 
+                     key={item.to}
+                     to={item.to} 
+                     className={({ isActive }) =>
+                       `group relative flex items-center px-6 py-5 rounded-2xl text-base font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white touch-manipulation ${
+                         isActive 
+                           ? 'bg-gradient-to-r from-brand-500 to-brand-600 text-white shadow-lg shadow-brand-500/25' 
+                           : 'text-gray-700 hover:bg-gradient-to-r hover:from-brand-50 hover:to-brand-100 hover:text-brand-700 active:scale-[0.98] focus:bg-brand-50'
+                       }`
+                     }
+                     onClick={() => setOpen(false)}
+                     aria-current={location.pathname === item.to ? 'page' : undefined}
+                     style={{ minHeight: '56px' }} // Enhanced touch target for mobile
+                   >
+                    <motion.div
+                       initial={{ x: -30, opacity: 0 }}
+                       animate={{ x: 0, opacity: 1 }}
+                       transition={{ 
+                         delay: 0.1 + (index * 0.08), 
+                         duration: 0.5,
+                         type: "spring",
+                         stiffness: 100,
+                         damping: 15
+                       }}
+                       className="flex items-center w-full"
+                       style={{ willChange: 'transform' }}
+                       whileHover={{ x: 8 }}
+                       whileTap={{ scale: 0.98 }}
+                     >
+                      {/* Navigation Icon Indicator */}
+                      <motion.div 
+                        className={`w-2 h-2 rounded-full mr-4 transition-all duration-300 ${
+                          location.pathname === item.to 
+                            ? 'bg-white shadow-lg shadow-white/50' 
+                            : 'bg-current opacity-60 group-hover:opacity-100 group-hover:scale-125'
+                        }`}
+                        animate={location.pathname === item.to ? {
+                          scale: [1, 1.2, 1],
+                          rotate: [0, 180, 360]
+                        } : {}}
+                        transition={{ 
+                          duration: 0.6,
+                          repeat: location.pathname === item.to ? Infinity : 0,
+                          repeatDelay: 2
+                        }}
+                      />
+                      
+                      {/* Navigation Text with Enhanced Typography */}
+                      <motion.span 
+                        className="flex-1 text-left font-medium tracking-wide"
+                        animate={location.pathname === item.to ? {
+                          scale: [1, 1.02, 1]
+                        } : {}}
+                        transition={{ 
+                          duration: 0.4,
+                          repeat: location.pathname === item.to ? Infinity : 0,
+                          repeatDelay: 3
+                        }}
+                      >
+                        {item.label}
+                      </motion.span>
+                      
+                      {/* Active State Arrow Indicator */}
+                      {location.pathname === item.to && (
+                        <motion.div
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          className="ml-auto"
+                        >
+                          <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                          </svg>
+                        </motion.div>
+                      )}
+                      
+                      {/* Hover Arrow Indicator */}
+                      <motion.div
+                        className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        initial={false}
+                        animate={{ x: 0 }}
+                        whileHover={{ x: 4 }}
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </motion.div>
+                    </motion.div>
+                    
+                    {/* Active State Indicator */}
+                    <motion.div
+                      className="absolute left-0 top-1/2 w-1 h-8 bg-white rounded-r-full transform -translate-y-1/2 opacity-0"
+                      animate={{ 
+                        opacity: location.pathname === item.to ? 1 : 0,
+                        scale: location.pathname === item.to ? 1 : 0.8
+                      }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </NavLink>
+                ))}
+              </div>
+
+              {/* Menu Footer with Contact CTA */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.5 }}
+                className="px-6 py-4 border-t border-gray-100 bg-gradient-to-r from-gray-50 to-gray-100/50"
+              >
+                <div className="text-center">
+                  <p className="text-sm text-gray-600 mb-2">Ready to start your project?</p>
+                  <motion.button
+                    className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-brand-500 to-brand-600 text-white text-sm font-medium rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => {
+                      setOpen(false)
+                      // Navigate to contact if not already there
+                      if (location.pathname !== '/contact') {
+                        window.location.href = '/contact'
+                      }
+                    }}
+                  >
+                    Get Quote
+                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </motion.button>
+                </div>
+              </motion.div>
             </motion.div>
           </>
         )}

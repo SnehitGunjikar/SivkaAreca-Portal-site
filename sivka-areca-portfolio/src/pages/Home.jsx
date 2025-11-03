@@ -160,39 +160,112 @@ export default function Home() {
             <FloatingIcon icon={FaIndustry} delay={2} x={300} y={60} />
           </div>
           
-          <div className="absolute inset-0 flex items-center justify-center z-10 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-12">
-            <div className="container">
-              <div className="text-white text-center md:text-left max-w-6xl mx-auto md:mx-0">
-              <ScrollReveal
-                baseOpacity={0}
-                enableBlur={true}
-                baseRotation={5}
-                blurStrength={10}
-                textClassName="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold drop-shadow-2xl shadow-black text-gray-100 leading-tight"
+          {/* Repositioned to bottom left with enhanced typography and animations */}
+          <div className="absolute bottom-0 left-0 z-10 p-6 sm:p-8 md:p-12 lg:p-16 xl:p-20">
+            <div className="max-w-4xl">
+              <div className="text-white text-left space-y-4 sm:space-y-6 md:space-y-8">
+              {/* Main Heading with Creative Typography */}
+              <motion.div
+                initial={{ opacity: 0, x: -100, rotateX: 45 }}
+                animate={{ opacity: 1, x: 0, rotateX: 0 }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
+                className="relative"
               >
-                Innovating Steel Structures with Precision & Excellence
-              </ScrollReveal>
-              {/* Company Motto */}
-              <ScrollReveal
-                as="p"
-                mode="text"
-                textTag="span"
-                useDefaultTextStyles={false}
-                containerClassName="mt-2 sm:mt-3 md:mt-4"
-                textClassName="tracking-wide text-white/90 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl drop-shadow-lg"
+                <h2 className="font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight tracking-tight">
+                  <span className="block bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-2xl">
+                    <motion.span
+                      className="inline-block"
+                      initial={{ opacity: 0, y: 50 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2, duration: 0.8, type: "spring", bounce: 0.4 }}
+                    >
+                      INNOVATING
+                    </motion.span>
+                  </span>
+                  <span className="block bg-gradient-to-r from-brand-300 via-brand-200 to-white bg-clip-text text-transparent drop-shadow-2xl mt-1 sm:mt-2">
+                    <motion.span
+                      className="inline-block"
+                      initial={{ opacity: 0, y: 50 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4, duration: 0.8, type: "spring", bounce: 0.4 }}
+                    >
+                      STEEL
+                    </motion.span>
+                    <motion.span
+                      className="inline-block ml-2 sm:ml-4"
+                      initial={{ opacity: 0, y: 50, rotateZ: 15 }}
+                      animate={{ opacity: 1, y: 0, rotateZ: 0 }}
+                      transition={{ delay: 0.6, duration: 0.8, type: "spring", bounce: 0.4 }}
+                    >
+                      STRUCTURES
+                    </motion.span>
+                  </span>
+                </h2>
+                {/* Decorative line */}
+                <motion.div
+                  className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-brand-400 to-transparent rounded-full"
+                  initial={{ width: 0 }}
+                  animate={{ width: "60%" }}
+                  transition={{ delay: 1, duration: 1.5, ease: "easeOut" }}
+                />
+              </motion.div>
+
+              {/* Company Motto with Enhanced Styling */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.8, duration: 0.8 }}
+                className="relative"
               >
-                PRECISION FABRICATION | TRUSTED EXECUTION | ENGINEERING EXCELLENCE
-              </ScrollReveal>
-              <ScrollReveal 
-                as="p" 
-                mode="text" 
-                textTag="span" 
-                useDefaultTextStyles={false} 
-                containerClassName="mt-3 sm:mt-4 md:mt-6 max-w-4xl mx-auto md:mx-0 drop-shadow-lg" 
-                textClassName="text-white/95 drop-shadow-lg text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed"
+                <p className="font-bold text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl tracking-widest text-white/95 drop-shadow-lg">
+                  <motion.span
+                    className="inline-block border-l-4 border-brand-400 pl-3 sm:pl-4"
+                    initial={{ borderLeftWidth: 0 }}
+                    animate={{ borderLeftWidth: "4px" }}
+                    transition={{ delay: 1.2, duration: 0.6 }}
+                  >
+                    PRECISION FABRICATION
+                  </motion.span>
+                  <span className="block mt-1 text-brand-200/90 font-medium">
+                    TRUSTED EXECUTION • ENGINEERING EXCELLENCE
+                  </span>
+                </p>
+              </motion.div>
+
+              {/* Description with Creative Animation */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2, duration: 0.8 }}
+                className="relative max-w-3xl"
               >
-                From concept to commissioning—design, fabrication, installation, and project management under one roof.
-              </ScrollReveal>
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed text-white/90 drop-shadow-lg font-light">
+                  <motion.span
+                    className="inline-block"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.4, duration: 0.6 }}
+                  >
+                    From concept to commissioning—
+                  </motion.span>
+                  <motion.span
+                    className="inline-block font-medium text-brand-200"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 1.6, duration: 0.6, type: "spring" }}
+                  >
+                    design, fabrication, installation,
+                  </motion.span>
+                  <motion.span
+                    className="inline-block"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.8, duration: 0.6 }}
+                  >
+                    and project management under one roof.
+                  </motion.span>
+                </p>
+              </motion.div>
               <motion.div 
                 className="mt-4 sm:mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start items-center"
                 initial={{ opacity: 0, y: 20 }}
@@ -576,16 +649,16 @@ export default function Home() {
             >
               <ButtonLink 
                 to="/contact" 
-                variant="secondary"
-                className="!bg-white !text-brand-700 !hover:bg-gray-100 !border-white group"
+                variant="contrast-white"
+                className="group"
               >
                 Get Quote Now
                 <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
               </ButtonLink>
               <ButtonLink 
                 to="/projects" 
-                variant="outline"
-                className="!border-white !text-white !bg-transparent hover:!bg-white hover:!text-brand-700 group"
+                variant="contrast-outline"
+                className="group"
               >
                 View Our Work
                 <FaEye className="ml-2 group-hover:scale-110 transition-transform" />

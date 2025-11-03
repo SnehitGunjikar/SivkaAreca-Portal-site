@@ -22,7 +22,6 @@ import {
   FaCube, 
   FaHammer,
   FaFilter,
-  FaMagnifyingGlass,
   FaArrowRight,
   FaCircleCheck,
   FaStar,
@@ -161,7 +160,7 @@ function ProductCard({ product, imageSrc, index }) {
             </div>
           </div>
           
-          <ButtonLink to={`/products/${product.slug}`} className="mt-auto group bg-brand-600 hover:bg-brand-700 text-white">
+          <ButtonLink to={`/products/${product.slug}`} variant="primary" className="mt-auto group">
             Learn More
             <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
           </ButtonLink>
@@ -173,12 +172,9 @@ function ProductCard({ product, imageSrc, index }) {
 
 export default function Products() {
   const [filter, setFilter] = useState('all')
-  const [searchTerm, setSearchTerm] = useState('')
 
   const filteredProducts = products.filter(product => {
-    const matchesSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         product.features.some(feature => feature.toLowerCase().includes(searchTerm.toLowerCase()))
-    return matchesSearch
+    return true // Show all products since search is removed
   })
 
   return (
@@ -237,25 +233,6 @@ export default function Products() {
                 <AnimatedCounter end={99} suffix="%" />
               </div>
               <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-tight">Quality Assurance</p>
-            </div>
-          </motion.div>
-
-          {/* Search Bar */}
-          <motion.div
-            className="max-w-md mx-auto px-2 sm:px-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-          >
-            <div className="relative">
-              <FaMagnifyingGlass className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm sm:text-base" />
-              <input
-                type="text"
-                placeholder="Search products..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
-              />
             </div>
           </motion.div>
         </div>
@@ -380,15 +357,16 @@ export default function Products() {
             >
               <ButtonLink 
                 to="/contact" 
-                className="bg-white text-brand-700 hover:bg-gray-100 group"
+                variant="contrast-white"
+                className="group"
               >
                 Get Custom Quote
                 <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
               </ButtonLink>
               <ButtonLink 
                 to="/projects" 
-                variant="secondary"
-                className="border-white text-white hover:bg-white hover:text-brand-700 group"
+                variant="contrast-outline"
+                className="group"
               >
                 View Our Projects
                 <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />

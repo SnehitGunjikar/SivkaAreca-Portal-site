@@ -2,6 +2,7 @@ import React, { Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
 import { SkeletonPage } from './components/SkeletonLoader'
 
 const Home = React.lazy(() => import('./pages/Home'))
@@ -26,6 +27,7 @@ export default function App() {
       </div>
 
       <Navbar />
+      <ScrollToTop />
       <main className="container py-8">
         <Suspense fallback={<SkeletonPage />}>
           <Routes>

@@ -157,7 +157,7 @@ function ProjectCard({ project, imageSrc, index }) {
             </div>
           </div>
           
-          <ButtonLink to={`/projects/${project.slug}`} className="mt-auto group bg-brand-600 hover:bg-brand-700 text-white">
+          <ButtonLink to={`/projects/${project.slug}`} variant="primary" className="mt-auto group">
             View Details
             <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
           </ButtonLink>
@@ -419,15 +419,16 @@ export default function Projects() {
             >
               <ButtonLink 
                 to="/contact" 
-                className="bg-white text-brand-700 hover:bg-gray-100 group"
+                variant="white-solid"
+                className="group"
               >
                 Start Your Project
                 <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
               </ButtonLink>
               <ButtonLink 
                 to="/products" 
-                variant="secondary"
-                className="border-white text-white hover:bg-white hover:text-brand-700 group"
+                variant="white-outline"
+                className="group"
               >
                 View Our Products
                 <FaEye className="ml-2 group-hover:scale-110 transition-transform" />

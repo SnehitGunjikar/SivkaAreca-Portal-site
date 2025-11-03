@@ -357,7 +357,7 @@ export default function ProductDetail() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
           >
-            <Button className="bg-brand-600 hover:bg-brand-700 text-white flex items-center gap-2">
+            <Button variant="primary" className="flex items-center gap-2">
               <FaPhone />
               Get Quote
             </Button>
@@ -557,11 +557,11 @@ export default function ProductDetail() {
           Get in touch with our experts to discuss your requirements and receive a customized quote.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
-          <Button className="bg-white text-brand-600 hover:bg-gray-100 flex items-center gap-2">
+          <Button variant="white-solid" className="flex items-center gap-2">
             <FaPhone />
             Call Now
           </Button>
-          <Button variant="outline" className="border-white text-white hover:bg-white hover:text-brand-600 flex items-center gap-2">
+          <Button variant="white-outline" className="flex items-center gap-2">
             <FaEnvelope />
             Send Inquiry
           </Button>
