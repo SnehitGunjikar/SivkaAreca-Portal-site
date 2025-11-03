@@ -293,9 +293,9 @@ export default function Home() {
             <FloatingIcon icon={FaIndustry} delay={2} x={300} y={60} />
           </div>
           
-          {/* Content positioned responsively */}
-          <div className="absolute inset-0 flex items-center justify-start z-10">
-            <div className="p-4 sm:p-6 md:p-8 lg:p-12 xl:p-16 2xl:p-20 max-w-full lg:max-w-4xl xl:max-w-5xl">
+          {/* Content positioned responsively - bottom on mobile, center-left on larger screens */}
+          <div className="absolute inset-0 flex items-end sm:items-center justify-start z-10">
+            <div className="p-4 sm:p-6 md:p-8 lg:p-12 xl:p-16 2xl:p-20 max-w-full lg:max-w-4xl xl:max-w-5xl mb-4 sm:mb-0">
               <div className="text-white text-left space-y-3 sm:space-y-4 md:space-y-6 lg:space-y-8">
               {/* Main Heading with Creative Typography */}
               <motion.div
