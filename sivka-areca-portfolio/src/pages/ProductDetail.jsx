@@ -326,7 +326,7 @@ export default function ProductDetail() {
           >
             <div className="text-center p-4 bg-brand-50 rounded-xl">
               <div className="text-2xl font-bold text-brand-600 mb-1">
-                <AnimatedCounter end={100} suffix="+" />
+                <AnimatedCounter end={25} suffix="+" />
               </div>
               <p className="text-gray-600 text-sm">Projects Completed</p>
             </div>

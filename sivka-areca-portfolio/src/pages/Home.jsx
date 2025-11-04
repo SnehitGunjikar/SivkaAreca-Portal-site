@@ -146,8 +146,8 @@ export default function Home() {
 
   // Statistics data
   const stats = [
-    { icon: FaIndustry, value: 500, suffix: "+", label: "Projects Completed" },
-    { icon: FaUsers, value: 50, suffix: "+", label: "Happy Clients" },
+    { icon: FaIndustry, value: 25, suffix: "+", label: "Projects Completed" },
+    { icon: FaUsers, value: 25, suffix: "+", label: "Happy Clients" },
     { icon: FaAward, value: 15, suffix: "+", label: "Years Experience" },
     { icon: FaChartLine, value: 99, suffix: "%", label: "Success Rate" }
   ]

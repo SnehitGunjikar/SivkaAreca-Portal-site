@@ -178,7 +178,7 @@ export default function Contact() {
             </div>
             <div className="text-center">
               <div className="text-2xl sm:text-3xl font-bold text-brand-600 mb-1 sm:mb-2">
-                <AnimatedCounter end={500} suffix="+" />
+                <AnimatedCounter end={25} suffix="+" />
               </div>
               <p className="text-xs sm:text-sm text-gray-600">Projects Delivered</p>
             </div>

@@ -275,15 +275,18 @@ export default function ServiceDetail() {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </motion.button>
               
-              <motion.a
-                href="#contact"
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 border-2 border-white/30 hover:border-white/50 hover:bg-white/10 text-white font-semibold rounded-lg transition-colors flex items-center gap-2"
               >
-                <Phone className="w-5 h-5" />
-                Get in Touch
-              </motion.a>
+                <Link
+                  to="/contact"
+                  className="px-8 py-4 border-2 border-white/30 hover:border-white/50 hover:bg-white/10 text-white font-semibold rounded-lg transition-colors flex items-center gap-2"
+                >
+                  <Phone className="w-5 h-5" />
+                  Get in Touch
+                </Link>
+              </motion.div>
             </motion.div>
           </motion.div>
         </div>
@@ -480,15 +483,18 @@ export default function ServiceDetail() {
                 Call Now: +91 98456 78901
               </motion.a>
               
-              <motion.a
-                href="mailto:info@sivkaareca.com"
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 border-2 border-white/30 hover:border-white/50 text-white font-semibold rounded-lg transition-colors flex items-center gap-2"
               >
-                <Mail className="w-5 h-5" />
-                Send Email
-              </motion.a>
+                <Link
+                  to="/contact"
+                  className="px-8 py-4 border-2 border-white/30 hover:border-white/50 text-white font-semibold rounded-lg transition-colors flex items-center gap-2"
+                >
+                  <Mail className="w-5 h-5" />
+                  Send Email
+                </Link>
+              </motion.div>
             </div>
 
             <div className="pt-8 flex items-center justify-center gap-2 text-blue-200">

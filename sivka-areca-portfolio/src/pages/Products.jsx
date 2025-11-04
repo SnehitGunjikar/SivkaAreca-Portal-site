@@ -212,7 +212,7 @@ export default function Products() {
           >
             <div className="text-center">
               <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-brand-600 mb-1 sm:mb-2">
-                <AnimatedCounter end={500} suffix="+" />
+                <AnimatedCounter end={25} suffix="+" />
               </div>
               <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-tight">Projects Completed</p>
             </div>
@@ -224,7 +224,7 @@ export default function Products() {
             </div>
             <div className="text-center">
               <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-brand-600 mb-1 sm:mb-2">
-                <AnimatedCounter end={50} suffix="+" />
+                <AnimatedCounter end={25} suffix="+" />
               </div>
               <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-tight">Happy Clients</p>
             </div>

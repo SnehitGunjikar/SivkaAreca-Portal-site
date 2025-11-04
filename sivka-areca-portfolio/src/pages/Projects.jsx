@@ -219,13 +219,13 @@ export default function Projects() {
           >
             <div className="text-center">
               <div className="text-3xl font-bold text-brand-600 mb-2">
-                <AnimatedCounter end={500} suffix="+" />
+                <AnimatedCounter end={25} suffix="+" />
               </div>
               <p className="text-gray-600">Projects Delivered</p>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-brand-600 mb-2">
-                <AnimatedCounter end={50} suffix="+" />
+                <AnimatedCounter end={25} suffix="+" />
               </div>
               <p className="text-gray-600">Happy Clients</p>
             </div>
