@@ -13,8 +13,6 @@ import { motion, useAnimation, useInView, AnimatePresence } from 'framer-motion'
 import { 
   FaArrowLeft,
   FaCheck,
-  FaStar,
-  FaQuoteLeft,
   FaExpand,
   FaXmark,
   FaChevronLeft,
@@ -32,7 +30,7 @@ import {
   FaShare,
   FaHeart,
   FaEye,
-  FaThumbsUp
+  
 } from 'react-icons/fa6'
 
 const productImages = {
@@ -246,21 +244,7 @@ export default function ProductDetail() {
 
   const currentSpecs = specifications[product.slug] || []
 
-  // Mock testimonials
-  const testimonials = [
-    {
-      name: "Rajesh Kumar",
-      company: "Industrial Solutions Ltd",
-      rating: 5,
-      text: "Exceptional quality and timely delivery. Their steel fabrication work exceeded our expectations."
-    },
-    {
-      name: "Priya Sharma",
-      company: "Construction Corp",
-      rating: 5,
-      text: "Professional team with great attention to detail. Highly recommend their services."
-    }
-  ]
+  
 
   return (
     <div className="space-y-12">
@@ -373,8 +357,7 @@ export default function ProductDetail() {
             {[
               { id: 'overview', label: 'Overview', icon: FaEye },
               { id: 'specifications', label: 'Specifications', icon: FaGear },
-              { id: 'features', label: 'Features', icon: FaAward },
-              { id: 'testimonials', label: 'Testimonials', icon: FaThumbsUp }
+              { id: 'features', label: 'Features', icon: FaAward }
             ].map(({ id, label, icon: Icon }) => (
               <button
                 key={id}
@@ -495,39 +478,7 @@ export default function ProductDetail() {
             </motion.div>
           )}
 
-          {activeTab === 'testimonials' && (
-            <motion.div
-              key="testimonials"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="grid md:grid-cols-2 gap-6"
-            >
-              {testimonials.map((testimonial, index) => (
-                <motion.div
-                  key={testimonial.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.2, duration: 0.3 }}
-                >
-                  <SpotlightCard className="p-6 rounded-2xl h-full">
-                    <div className="flex items-center gap-1 mb-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <FaStar key={i} className="text-yellow-400" />
-                      ))}
-                    </div>
-                    <FaQuoteLeft className="text-brand-600 text-2xl mb-4" />
-                    <p className="text-gray-700 mb-4">{testimonial.text}</p>
-                    <div>
-                      <p className="font-semibold text-gray-900">{testimonial.name}</p>
-                      <p className="text-gray-600 text-sm">{testimonial.company}</p>
-                    </div>
-                  </SpotlightCard>
-                </motion.div>
-              ))}
-            </motion.div>
-          )}
+          
         </AnimatePresence>
       </motion.section>
 
