@@ -227,6 +227,26 @@ export default function ProjectDetail() {
     )
   }
 
+  const handleShare = async () => {
+    const url = window.location.href
+    const title = project?.title || 'Check this project'
+    try {
+      if (navigator.share) {
+        await navigator.share({ title, text: title, url })
+      } else if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(url)
+        alert('Link copied to clipboard')
+      } else {
+        prompt('Copy this link:', url)
+      }
+    } catch (e) {
+      try {
+        await navigator.clipboard.writeText(url)
+        alert('Link copied to clipboard')
+      } catch {}
+    }
+  }
+
   // Gallery logic (simplified for this enhancement)
   const webpEntries = Object.entries(projectFolderGalleriesWebp[project.slug] || {})
   const folderGalleryWebp = webpEntries
@@ -462,7 +482,7 @@ export default function ProjectDetail() {
               <FaDownload />
               Download Report
             </Button>
-            <Button variant="outline" className="flex items-center gap-2">
+            <Button variant="outline" className="flex items-center gap-2" onClick={handleShare}>
               <FaShare />
               Share Project
             </Button>

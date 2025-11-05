@@ -136,11 +136,7 @@ function ProductCard({ product, imageSrc, index }) {
               <IconComponent className="text-brand-600 text-xl" />
             </div>
             
-            {/* Quality badge */}
-            <div className="absolute top-4 right-4 flex items-center gap-1 px-2 py-1 bg-green-500/90 backdrop-blur-sm rounded-full text-white text-xs font-medium">
-              <FaCircleCheck size={12} />
-              Premium
-            </div>
+            {/* Removed Premium badge */}
           </motion.div>
           
           <div className="flex items-center gap-3 mb-3">
@@ -149,16 +145,7 @@ function ProductCard({ product, imageSrc, index }) {
           
           <p className="text-gray-700 flex-1 mb-6 leading-relaxed">{product.features[0]}</p>
           
-          {/* Features list */}
-          <div className="mb-6">
-            <div className="flex flex-wrap gap-2">
-              {product.features.slice(1, 3).map((feature, idx) => (
-                <span key={idx} className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
-                  {feature.length > 20 ? feature.substring(0, 20) + '...' : feature}
-                </span>
-              ))}
-            </div>
-          </div>
+          {/* Removed feature chips */}
           
           <ButtonLink to={`/products/${product.slug}`} variant="primary" className="mt-auto group">
             Learn More
@@ -203,95 +190,10 @@ export default function Products() {
             </p>
           </motion.div>
 
-          {/* Statistics */}
-          <motion.div
-            className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-6 md:mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            <div className="text-center">
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-brand-600 mb-1 sm:mb-2">
-                <AnimatedCounter end={25} suffix="+" />
-              </div>
-              <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-tight">Projects Completed</p>
-            </div>
-            <div className="text-center">
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-brand-600 mb-1 sm:mb-2">
-                <AnimatedCounter end={15} suffix="+" />
-              </div>
-              <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-tight">Years Experience</p>
-            </div>
-            <div className="text-center">
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-brand-600 mb-1 sm:mb-2">
-                <AnimatedCounter end={25} suffix="+" />
-              </div>
-              <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-tight">Happy Clients</p>
-            </div>
-            <div className="text-center">
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-brand-600 mb-1 sm:mb-2">
-                <AnimatedCounter end={99} suffix="%" />
-              </div>
-              <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-tight">Quality Assurance</p>
-            </div>
-          </motion.div>
         </div>
       </motion.section>
 
-      {/* Quality Assurance Section */}
-      <motion.section
-        className="bg-white py-8 sm:py-12 px-4 sm:px-6 rounded-2xl border border-gray-200"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-6 sm:mb-8">
-            <FaShield className="text-3xl sm:text-4xl text-brand-600 mb-3 sm:mb-4 mx-auto" />
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4 px-4">Quality Assurance</h2>
-            <p className="text-gray-600 text-sm sm:text-base px-4">Every product meets the highest industry standards</p>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            <motion.div
-              className="text-center p-4 sm:p-6 rounded-xl bg-brand-50"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1, duration: 0.6 }}
-            >
-              <FaAward className="text-2xl sm:text-3xl text-brand-600 mb-3 sm:mb-4 mx-auto" />
-              <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Certified Excellence</h3>
-              <p className="text-gray-600 text-xs sm:text-sm">ISO certified manufacturing processes</p>
-            </motion.div>
-            
-            <motion.div
-              className="text-center p-4 sm:p-6 rounded-xl bg-brand-50"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
-              <FaStar className="text-2xl sm:text-3xl text-brand-600 mb-3 sm:mb-4 mx-auto" />
-              <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Premium Materials</h3>
-              <p className="text-gray-600 text-xs sm:text-sm">Only the finest steel and components</p>
-            </motion.div>
-            
-            <motion.div
-              className="text-center p-4 sm:p-6 rounded-xl bg-brand-50 sm:col-span-2 lg:col-span-1"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-            >
-              <FaCircleCheck className="text-2xl sm:text-3xl text-brand-600 mb-3 sm:mb-4 mx-auto" />
-              <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Rigorous Testing</h3>
-              <p className="text-gray-600 text-xs sm:text-sm">Comprehensive quality control checks</p>
-            </motion.div>
-          </div>
-        </div>
-      </motion.section>
+      {/* Quality Assurance Section removed */}
 
       {/* Products Grid */}
       <motion.section

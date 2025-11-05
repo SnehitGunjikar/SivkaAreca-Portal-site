@@ -178,6 +178,28 @@ export default function ProductDetail() {
     setSelectedImageIndex((prev) => (prev - 1 + images.length) % images.length)
   }
 
+  const handleShare = async () => {
+    const url = window.location.href
+    const title = product?.title || 'Check this product'
+    try {
+      if (navigator.share) {
+        await navigator.share({ title, text: title, url })
+      } else if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(url)
+        alert('Link copied to clipboard')
+      } else {
+        // Very old browsers fallback
+        prompt('Copy this link:', url)
+      }
+    } catch (e) {
+      // User cancelled or share failed; provide minimal fallback
+      try {
+        await navigator.clipboard.writeText(url)
+        alert('Link copied to clipboard')
+      } catch {}
+    }
+  }
+
   // Mock specifications data
   const specifications = {
     'structural-steel-fabrication': [
@@ -253,7 +275,7 @@ export default function ProductDetail() {
           className="inline-flex items-center gap-2 text-brand-600 hover:text-brand-700 transition-colors group"
         >
           <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-          Back to Products
+          Back to Our Expertise
         </Link>
       </motion.div>
 
@@ -317,38 +339,7 @@ export default function ProductDetail() {
             </p>
           </motion.div>
 
-          {/* Quick Stats */}
-          <motion.div
-            className="grid grid-cols-2 gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            <div className="text-center p-4 bg-brand-50 rounded-xl">
-              <div className="text-2xl font-bold text-brand-600 mb-1">
-                <AnimatedCounter end={25} suffix="+" />
-              </div>
-              <p className="text-gray-600 text-sm">Projects Completed</p>
-            </div>
-            <div className="text-center p-4 bg-brand-50 rounded-xl">
-              <div className="text-2xl font-bold text-brand-600 mb-1">
-                <AnimatedCounter end={15} suffix="+" />
-              </div>
-              <p className="text-gray-600 text-sm">Years Experience</p>
-            </div>
-            <div className="text-center p-4 bg-brand-50 rounded-xl">
-              <div className="text-2xl font-bold text-brand-600 mb-1">
-                <AnimatedCounter end={24} suffix="h" />
-              </div>
-              <p className="text-gray-600 text-sm">Support Available</p>
-            </div>
-            <div className="text-center p-4 bg-brand-50 rounded-xl">
-              <div className="text-2xl font-bold text-brand-600 mb-1">
-                <AnimatedCounter end={99} suffix="%" />
-              </div>
-              <p className="text-gray-600 text-sm">Client Satisfaction</p>
-            </div>
-          </motion.div>
+          {/* Quick Stats removed */}
 
           {/* Action Buttons */}
           <motion.div
@@ -361,11 +352,8 @@ export default function ProductDetail() {
               <FaPhone />
               Get Quote
             </Button>
-            <Button variant="outline" className="flex items-center gap-2">
-              <FaDownload />
-              Download Brochure
-            </Button>
-            <Button variant="outline" className="flex items-center gap-2">
+            {/* Download Brochure button removed */}
+            <Button variant="outline" className="flex items-center gap-2" onClick={handleShare}>
               <FaShare />
               Share
             </Button>

@@ -487,210 +487,10 @@ export default function Home() {
           </motion.div>
         </motion.section>
 
-        {/* Animated Statistics Section */}
-        <motion.section
-        className="relative overflow-hidden bg-gradient-to-br from-brand-50 to-brand-100 py-8 sm:py-12 md:py-16 px-4 sm:px-6 rounded-3xl"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23059669%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
-        
-        <div className="relative z-10 max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-8 sm:mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-800 mb-3 sm:mb-4">
-              Our Achievements
-            </h2>
-            <p className="text-brand-600 text-base sm:text-lg px-4">
-              Numbers that speak for our excellence and commitment
-            </p>
-          </motion.div>
+      
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                className="text-center group"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-              >
-                <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-brand-600 text-white rounded-full mb-2 sm:mb-3 md:mb-4 group-hover:bg-brand-700 transition-colors">
-                  <stat.icon className="text-sm sm:text-base md:text-lg lg:text-xl" />
-                </div>
-                <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-brand-800 mb-1 sm:mb-2">
-                  <AnimatedCounter end={stat.value} suffix={stat.suffix} />
-                </div>
-                <p className="text-brand-600 font-medium text-xs sm:text-sm md:text-base px-1 leading-tight">{stat.label}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
 
-      {/* Call to Action Section */}
-      <motion.section
-        className="relative overflow-hidden bg-gradient-to-br from-brand-600 via-brand-700 to-brand-800 text-white py-16 px-6 rounded-3xl"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
-        
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <FaRocket className="text-5xl mb-6 mx-auto" />
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Start Your Next Project?
-            </h2>
-            <p className="text-xl mb-8 text-white/90">
-              Let's bring your vision to life with our expertise in steel fabrication and engineering
-            </p>
-            <motion.div
-              className="flex flex-wrap gap-4 justify-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-            >
-              <ButtonLink 
-                to="/contact" 
-                variant="contrast-white"
-                className="group"
-              >
-                Get Quote Now
-                <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </ButtonLink>
-              <ButtonLink 
-                to="/projects" 
-                variant="contrast-outline"
-                className="group"
-              >
-                View Our Work
-                <FaEye className="ml-2 group-hover:scale-110 transition-transform" />
-              </ButtonLink>
-            </motion.div>
-          </motion.div>
-        </div>
-      </motion.section>
-
-      {/* About section blocks */}
-      <section aria-labelledby="about-blocks">
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* About us */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <SpotlightCard className="rounded-2xl border border-gray-300 bg-white p-6 h-full group hover:shadow-xl transition-shadow" spotlightColor="rgba(0, 0, 0, 0.15)">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-brand-100 rounded-lg group-hover:bg-brand-200 transition-colors">
-                  <FaUsers className="text-brand-600" size={20} />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900">About Us</h3>
-              </div>
-              <p className="text-gray-700 leading-relaxed">
-                Sivka Areca Enterprises is a trusted name in steel fabrication and engineering solutions. With over 15 years of experience, we have successfully delivered complex projects across various industries, maintaining the highest standards of quality and precision.
-              </p>
-              <div className="mt-4 flex items-center gap-2 text-brand-600">
-                <FaStar />
-                <span className="text-sm font-medium">Trusted by 50+ clients</span>
-              </div>
-            </SpotlightCard>
-          </motion.div>
-
-          {/* Our Vision */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            <SpotlightCard className="rounded-2xl border border-gray-300 bg-white p-6 h-full group hover:shadow-xl transition-shadow" spotlightColor="rgba(0, 0, 0, 0.15)">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-brand-100 rounded-lg group-hover:bg-brand-200 transition-colors">
-                  <FaEye className="text-brand-600" size={20} />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900">Our Vision</h3>
-              </div>
-              <p className="text-gray-700 leading-relaxed">
-                To be the leading provider of innovative steel structure solutions, setting industry benchmarks through cutting-edge technology, sustainable practices, and unwavering commitment to excellence.
-              </p>
-              <div className="mt-4 flex items-center gap-2 text-brand-600">
-                <FaRocket />
-                <span className="text-sm font-medium">Innovation driven</span>
-              </div>
-            </SpotlightCard>
-          </motion.div>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-6 mt-6">
-          {/* Our Mission */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <SpotlightCard className="rounded-2xl border border-gray-300 bg-white p-6 h-full group hover:shadow-xl transition-shadow" spotlightColor="rgba(0, 0, 0, 0.15)">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-brand-100 rounded-lg group-hover:bg-brand-200 transition-colors">
-                  <FaShieldHalved className="text-brand-600" size={20} />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900">Our Mission</h3>
-              </div>
-              <p className="text-gray-700 leading-relaxed">
-                To deliver superior steel fabrication and engineering services that exceed client expectations while maintaining the highest safety standards and environmental responsibility.
-              </p>
-              <div className="mt-4 flex items-center gap-2 text-brand-600">
-                <FaShieldHalved />
-                <span className="text-sm font-medium">Safety first approach</span>
-              </div>
-            </SpotlightCard>
-          </motion.div>
-
-          {/* Our Values */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <SpotlightCard className="rounded-2xl border border-gray-300 bg-white p-6 h-full group hover:shadow-xl transition-shadow" spotlightColor="rgba(0, 0, 0, 0.15)">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-brand-100 rounded-lg group-hover:bg-brand-200 transition-colors">
-                  <FaHeart className="text-brand-600" size={20} />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900">Our Values</h3>
-              </div>
-              <p className="text-gray-700 leading-relaxed">
-                Integrity, quality, innovation, and customer satisfaction form the cornerstone of our business. We believe in building long-term relationships through trust and exceptional service delivery.
-              </p>
-              <div className="mt-4 flex items-center gap-2 text-brand-600">
-                <FaHandshake />
-                <span className="text-sm font-medium">Trust & reliability</span>
-              </div>
-            </SpotlightCard>
-          </motion.div>
-        </div>
-      </section>
+      
 
       {/* Enhanced Key Services */}
       <motion.section
@@ -734,72 +534,166 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* Client Testimonials Section */}
+      {/* Call to Action Section */}
       <motion.section
-        className="relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 py-16 px-6 rounded-3xl"
+        className="relative overflow-hidden bg-gradient-to-br from-brand-600 via-brand-700 to-brand-800 text-white py-16 px-6 rounded-3xl"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+        
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              What Our Clients Say
+            <FaRocket className="text-5xl mb-6 mx-auto" />
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Transforming Vision into Structure.
             </h2>
-            <p className="text-gray-600 mb-12">
-              Trusted by industry leaders across various sectors
+            <p className="text-xl mb-8 text-white/90">
+              Delivering excellance from concepts to completion. 
             </p>
-          </motion.div>
-
-          <div className="relative">
             <motion.div
-              key={activeTestimonial}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white p-8 rounded-2xl shadow-lg"
+              className="flex flex-wrap gap-4 justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6 }}
             >
-              <FaQuoteLeft className="text-brand-600 text-3xl mb-6 mx-auto" />
-              <p className="text-lg text-gray-700 mb-6 italic">
-                "{testimonials[activeTestimonial].quote}"
-              </p>
-              <div className="flex items-center justify-center gap-2 mb-4">
-                {[...Array(testimonials[activeTestimonial].rating)].map((_, i) => (
-                  <FaStar key={i} className="text-yellow-400" />
-                ))}
-              </div>
-              <div>
-                <p className="font-semibold text-gray-800">
-                  {testimonials[activeTestimonial].author}
-                </p>
-                <p className="text-brand-600">
-                  {testimonials[activeTestimonial].company}
-                </p>
-              </div>
+              <ButtonLink 
+                to="/contact" 
+                variant="contrast-white"
+                className="group"
+              >
+                Contact Us
+                <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </ButtonLink>
+              <ButtonLink 
+                to="/projects" 
+                variant="contrast-outline"
+                className="group"
+              >
+                View Our Work
+                <FaEye className="ml-2 group-hover:scale-110 transition-transform" />
+              </ButtonLink>
             </motion.div>
-
-            {/* Testimonial indicators */}
-            <div className="flex justify-center gap-2 mt-6">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    index === activeTestimonial ? 'bg-brand-600' : 'bg-gray-300'
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
+          </motion.div>
         </div>
       </motion.section>
+
+      {/* About section blocks */}
+      <section aria-labelledby="about-blocks">
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* Our Vision */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <SpotlightCard className="rounded-2xl border border-gray-300 bg-white p-6 h-full group hover:shadow-xl transition-shadow" spotlightColor="rgba(0, 0, 0, 0.15)">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-brand-100 rounded-lg group-hover:bg-brand-200 transition-colors">
+                  <FaEye className="text-brand-600" size={20} />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900">Our Vision</h3>
+              </div>
+              <p className="text-gray-700 leading-relaxed text-justify">
+              Specializing in Structural Engineering, peb fabrication & steel fabrication. To
+supply High-Quality Steel Structures, providing related services and solutions. focused on
+continuous improvement at Highest Business Standards & Work Ethics.
+              </p>
+              <div className="mt-4 flex items-center gap-2 text-brand-600">
+                <FaRocket />
+                <span className="text-sm font-medium">Innovation driven</span>
+              </div>
+            </SpotlightCard>
+          </motion.div>
+
+          {/* Our Mission */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <SpotlightCard className="rounded-2xl border border-gray-300 bg-white p-6 h-full group hover:shadow-xl transition-shadow" spotlightColor="rgba(0, 0, 0, 0.15)">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-brand-100 rounded-lg group-hover:bg-brand-200 transition-colors">
+                  <FaShieldHalved className="text-brand-600" size={20} />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900">Quality Policy</h3>
+              </div>
+              <p className="text-gray-700 leading-relaxed">
+                we are at accurate manufacturing &amp; systematic technology; quality is the
+integral part of our commitment to providing excellent products &amp; services that match or
+exceed customer&#39;s expectations.
+              </p>
+              <div className="mt-4 flex items-center gap-2 text-brand-600">
+                <FaShieldHalved />
+                <span className="text-sm font-medium">Safety first approach</span>
+              </div>
+            </SpotlightCard>
+          </motion.div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6 mt-6">
+          {/* Customer-Centric Approach */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <SpotlightCard className="rounded-2xl border border-gray-300 bg-white p-6 h-full group hover:shadow-xl transition-shadow" spotlightColor="rgba(0, 0, 0, 0.15)">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-brand-100 rounded-lg group-hover:bg-brand-200 transition-colors">
+                  <FaUsers className="text-brand-600" size={20} />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900">Customer-Centric Approach</h3>
+              </div>
+              <p className="text-gray-700 leading-relaxed text-justify">
+                Customer-centric approach: client's needs are at the heart of our operations. We collaborate closely with clients to understand their Vision, tailoring our solutions to their specific requirements.
+              </p>
+              <div className="mt-4 flex items-center gap-2 text-brand-600">
+                <FaStar />
+                <span className="text-sm font-medium">Trusted by 50+ clients</span>
+              </div>
+            </SpotlightCard>
+          </motion.div>
+
+          {/* Our Values */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <SpotlightCard className="rounded-2xl border border-gray-300 bg-white p-6 h-full group hover:shadow-xl transition-shadow" spotlightColor="rgba(0, 0, 0, 0.15)">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-brand-100 rounded-lg group-hover:bg-brand-200 transition-colors">
+                  <FaHeart className="text-brand-600" size={20} />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900">Our Values</h3>
+              </div>
+              <p className="text-gray-700 leading-relaxed">
+                Integrity, quality, innovation, and customer satisfaction form the cornerstone of our business. We believe in building long-term relationships through trust and exceptional service delivery.
+              </p>
+              <div className="mt-4 flex items-center gap-2 text-brand-600">
+                <FaHandshake />
+                <span className="text-sm font-medium">Trust & reliability</span>
+              </div>
+            </SpotlightCard>
+          </motion.div>
+        </div>
+      </section>
+
+      
 
 
       </div>

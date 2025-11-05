@@ -81,11 +81,6 @@ const ProcessStep = ({ step, index, isActive, onClick }) => {
           animate={{ scale: 1 }}
           transition={{ delay: index * 0.1 }}
         >
-          <div className={`text-2xl sm:text-3xl font-bold mb-2 ${
-            isActive ? 'text-brand-600' : 'text-brand-500'
-          }`}>
-            {index + 1}
-          </div>
           <div className={`font-semibold ${
             isActive ? 'text-brand-800' : 'text-gray-900'
           }`}>
@@ -347,41 +342,7 @@ export default function Manufacturing() {
         </div>
       </section>
 
-      {/* Client Testimonials */}
-      <section className="bg-gray-50 rounded-3xl p-8 md:p-12">
-        <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} textClassName="text-gray-900 text-center text-3xl font-bold mb-12">
-          Client Success Stories
-        </ScrollReveal>
-        
-        <div className="grid md:grid-cols-2 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2 }}
-              viewport={{ once: true }}
-              className="bg-white p-8 rounded-2xl shadow-lg relative"
-            >
-              <FaQuoteLeft className="text-brand-200 text-3xl mb-4" />
-              <blockquote className="text-gray-700 mb-6 italic leading-relaxed">
-                "{testimonial.quote}"
-              </blockquote>
-              <div className="flex items-center justify-between">
-                <div>
-                  <cite className="font-semibold text-gray-900 not-italic">
-                    {testimonial.author}
-                  </cite>
-                  <p className="text-sm text-brand-600 mt-1">
-                    {testimonial.project}
-                  </p>
-                </div>
-                <FaAward className="text-brand-500 text-2xl" />
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+      {/* Client Testimonials removed */}
 
       {/* Call to Action */}
       <motion.section

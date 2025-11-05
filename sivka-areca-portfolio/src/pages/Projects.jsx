@@ -245,48 +245,7 @@ export default function Projects() {
         </div>
       </motion.section>
 
-      {/* Project Categories */}
-      <motion.section
-        className="bg-white py-12 px-6 rounded-2xl border border-gray-200"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-8">
-            <FaIndustry className="text-4xl text-brand-600 mb-4 mx-auto" />
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Project Categories</h2>
-            <p className="text-gray-600">Diverse expertise across multiple industries and applications</p>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {projectCategories.map((category, index) => {
-              const IconComponent = category.icon
-              return (
-                <motion.button
-                  key={category.id}
-                  onClick={() => setFilter(category.id)}
-                  className={`p-4 rounded-xl text-center transition-all duration-300 ${
-                    filter === category.id 
-                      ? 'bg-brand-600 text-white shadow-lg' 
-                      : 'bg-brand-50 text-brand-700 hover:bg-brand-100'
-                  }`}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1, duration: 0.6 }}
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <IconComponent className="text-2xl mb-2 mx-auto" />
-                  <p className="text-xs font-medium">{category.name}</p>
-                </motion.button>
-              )
-            })}
-          </div>
-        </div>
-      </motion.section>
+      {/* Project Categories removed */}
 
       {/* Excellence Showcase */}
       <motion.section

@@ -34,8 +34,8 @@ export const services = [
   },
   {
     slug: 'project-management',
-    title: 'Project Management',
-    intro: 'End-to-end planning, scheduling, and stakeholder coordination.',
+    title: 'Building Information Model',
+    intro: '3D visualization, efficient design coordination, and seamless collaboration across all project stages',
     details: [
       'Baseline schedules and progress tracking',
       'Vendor management and quality audits',

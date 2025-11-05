@@ -133,6 +133,7 @@ export default function Contact() {
   return (
     <div className="space-y-16">
       {/* Enhanced Hero Section */}
+      {false && (
       <motion.section
         className="relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-brand-50 py-8 sm:py-12 md:py-16 lg:py-20 px-3 sm:px-4 md:px-6 rounded-3xl"
         initial={{ opacity: 0, y: 30 }}
@@ -197,6 +198,7 @@ export default function Contact() {
           </motion.div>
         </div>
       </motion.section>
+      )}
 
       {/* Contact Information Cards */}
       <motion.section
@@ -484,6 +486,7 @@ export default function Contact() {
       </motion.section>
 
       {/* Location & Additional Info */}
+      {false && (
       <motion.section
         className="bg-gradient-to-r from-brand-600 to-brand-700 text-white py-12 px-6 rounded-2xl"
         initial={{ opacity: 0, y: 30 }}
@@ -537,6 +540,7 @@ export default function Contact() {
           </div>
         </div>
       </motion.section>
+      )}
     </div>
   )
 }

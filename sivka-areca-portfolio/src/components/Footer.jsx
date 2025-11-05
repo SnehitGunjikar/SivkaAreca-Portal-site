@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 import { FaLinkedin, FaInstagram, FaFacebook } from 'react-icons/fa6'
-import brandLogo from '../assets/imagedata/sivka-areca-name.png'
+import brandLogo from '../assets/imagedata/sivka-areca-name.webp'
 
 export default function Footer() {
   const [visible, setVisible] = useState(false)
@@ -33,10 +33,10 @@ export default function Footer() {
           <section aria-labelledby="footer-company" className="space-y-3 flex flex-col items-center md:items-start md:justify-center">
             <h3 id="footer-company" className="sr-only">Sivka Areca Enterprises</h3>
             <img src={brandLogo} alt="Sivka Areca Enterprises" className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto object-contain brightness-110 contrast-110 saturate-110 drop-shadow-sm" />
-            <p className="text-sm md:text-[15px] text-gray-300 text-center">Innovating Steel Structures with Precision & Excellence</p>
+            <p className="text-sm md:text-[15px] text-gray-300 text-center">PRECISION • TRUSTED • EXCELLENCE</p>
           </section>
 
-          {/* Navigation */}
+          {/* Navigation
           <nav aria-labelledby="footer-nav" className="space-y-3">
             <h3 id="footer-nav" className="text-base font-semibold text-white">Navigation</h3>
             <ul className="grid gap-2 text-sm md:text-[15px]">
@@ -46,42 +46,11 @@ export default function Footer() {
               <li><NavLink className="hover:text-brand-400" to="/manufacturing">Manufacturing</NavLink></li>
               <li><NavLink className="hover:text-brand-400" to="/contact">Contact</NavLink></li>
             </ul>
-          </nav>
+          </nav> */}
 
-          {/* Social + Contact */}
-          <section aria-labelledby="footer-social" className="space-y-3">
-            <h3 id="footer-social" className="text-base font-semibold text-white">Social</h3>
-            <div className="flex items-center gap-4">
-              <a
-                href="https://www.linkedin.com/company/sivkaareca"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="text-gray-300 hover:text-[#E84220] transition-colors"
-              >
-                <FaLinkedin className="h-6 w-6" />
-              </a>
-              <a
-                href="https://www.instagram.com/sivkaarecaenterprises"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="text-gray-300 hover:text-[#E84220] transition-colors"
-              >
-                <FaInstagram className="h-6 w-6" />
-              </a>
-              <a
-                href="https://www.facebook.com/sivkaareca"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className="text-gray-300 hover:text-[#E84220] transition-colors"
-              >
-                <FaFacebook className="h-6 w-6" />
-              </a>
-            </div>
-
-            <h3 className="text-base font-semibold text-white">Contact Us</h3>
+          {/* Contact */}
+          <section aria-labelledby="footer-contact" className="space-y-3 md:col-start-3">
+            <h3 id="footer-contact" className="text-base font-semibold text-white">Contact Us</h3>
             <address className="not-italic text-sm md:text-[15px] space-y-1 text-white">
               <p className="text-white">G.P.C. No. 414/34, Shivaji Nagar, Khanapur – 591302, Belagavi, Karnataka</p>
               <p className="text-white">GSTIN: 29FMNPP9114A1ZS</p>
