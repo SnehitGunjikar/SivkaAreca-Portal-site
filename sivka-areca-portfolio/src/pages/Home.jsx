@@ -436,8 +436,10 @@ export default function Home() {
             >
               Welcome to Sivka Areca Enterprises
             </ScrollReveal>
-            <p className="mt-2 sm:mt-3 md:mt-4 text-gray-700 leading-relaxed text-sm sm:text-base md:text-lg">
-              We are an engineering and fabrication company delivering end-to-end steel structure solutions—from design to manufacturing and installation. Our customer-centric approach, focus on quality, and commitment to innovation enable reliable, cost-efficient results.
+            <p className="mt-2 sm:mt-3 md:mt-4 text-gray-700 leading-relaxed text-sm sm:text-base md:text-lg text-justify">
+              Sivka Areca Enterprises, based in Khanapur, Belagavi district, is a trusted engineering partner in custom steel fabrication and structural manufacturing. With years of industry experience, we specialize in the design, fabrication, and installation of high-performance steel structures for both government and private sector clients.
+
+              Driven by a commitment to quality, safety, and a client-first approach, we have built a strong reputation for executing complex and large-scale fabrication projects with technical accuracy, timely delivery, and complete adherence to project specifications.
             </p>
             <motion.div
               className="mt-3 sm:mt-4 md:mt-6 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 md:gap-4"

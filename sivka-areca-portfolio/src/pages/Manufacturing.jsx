@@ -447,6 +447,7 @@ const manufGlob = import.meta.glob('../assets/imagedata/manufac-homepage-img/*.{
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="inline-flex items-center px-8 py-4 bg-white text-brand-600 font-semibold rounded-xl hover:bg-gray-50 transition-colors shadow-lg"
+          onClick={() => { window.location.href = '/contact' }}
         >
           Get Started Today
           <FaArrowRight className="ml-2" />
