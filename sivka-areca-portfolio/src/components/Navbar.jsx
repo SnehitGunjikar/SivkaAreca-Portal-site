@@ -2,7 +2,7 @@ import { NavLink, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import GooeyNav from './GooeyNav'
-import brandLogo from '../assets/imagedata/sivka-areca-name.webp'
+import brandLogo from '../assets/imagedata/companyName.png'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)

@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
-import { FaLinkedin, FaInstagram, FaFacebook } from 'react-icons/fa6'
-import brandLogo from '../assets/imagedata/sivka-areca-name.webp'
+import { FaLinkedin, FaInstagram, FaFacebook, FaCode } from 'react-icons/fa6'
+import brandLogo from '../assets/imagedata/companyName.png'
 
 export default function Footer() {
   const [visible, setVisible] = useState(false)
@@ -67,6 +67,12 @@ export default function Footer() {
             <li><NavLink to="/privacy" className="hover:text-brand-400">Privacy Policy</NavLink></li>
             <li><NavLink to="/terms" className="hover:text-brand-400">Terms of Service</NavLink></li>
           </ul>
+          <div className="inline-flex items-center gap-2 text-xs md:text-[13px] text-gray-300 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full px-3 py-1">
+            <FaCode className="text-brand-400" />
+            <span>
+              Page developed by <a href="https://www.linkedin.com/in/snehitgunjikar/" target="_blank" rel="noopener noreferrer" className="font-medium text-white hover:text-brand-400 underline-offset-2 hover:underline" aria-label="Snehit Gunjikar on LinkedIn">Snehit Gunjikar</a>
+            </span>
+          </div>
         </div>
       </div>
 

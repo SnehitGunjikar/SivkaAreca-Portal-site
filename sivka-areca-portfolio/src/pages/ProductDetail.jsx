@@ -234,7 +234,7 @@ export default function ProductDetail() {
   
 
   return (
-    <div className="min-h-screen pt-[calc(65vh-112px)] sm:pt-[calc(72vh-112px)] md:pt-[calc(80vh-112px)] space-y-0 px-4 sm:px-6">
+    <div className="min-h-screen pt-[calc(65vh-48px)] sm:pt-[calc(72vh-56px)] md:pt-[calc(80vh-64px)] space-y-0 px-4 sm:px-6">
       {/* Themed Hero Section */}
       <motion.section
         className="relative overflow-hidden h-[65vh] sm:h-[72vh] md:h-[80vh]"
@@ -282,7 +282,7 @@ export default function ProductDetail() {
       </motion.section>
       {/* Navigation + Action Buttons: unified row below hero */}
       <motion.div
-        className="flex items-center justify-between gap-4 mt-0 relative z-20 w-full"
+        className="flex items-center justify-between gap-2 mt-0 relative z-20 w-full"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -292,9 +292,9 @@ export default function ProductDetail() {
           className="inline-flex items-center gap-2 text-brand-600 hover:text-brand-700 transition-colors group"
         >
           <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-          Back to Our Expertise
+          Back
         </Link>
-        <div className="flex flex-wrap items-center gap-3 ml-auto">
+        <div className="flex flex-nowrap items-center gap-2 ml-auto">
           <ButtonLink to="/contact" variant="primary" className="flex items-center gap-2">
             <FaPhone />
             Get Quote
@@ -365,38 +365,50 @@ export default function ProductDetail() {
               transition={{ duration: 0.3 }}
               className="space-y-6"
             >
-              <SpotlightCard className="p-8 rounded-2xl">
+              <SpotlightCard className="p-6 sm:p-8 rounded-2xl text-justify bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Product Overview</h3>
-                <p className="text-gray-700 mb-6">{product.description}</p>
+                <p className="text-gray-700 mb-6 leading-relaxed">{product.description}</p>
                 {product.slug === 'structural-steel-fabrication' && (
                   <div className="space-y-6 mb-8">
                     <p className="text-gray-700">
                       We specialize in custom structures such as foot overbridges, towers, platforms, staircases, and support frames for public infrastructure and industrial needs.
                     </p>
                     <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <h4 className="text-xl font-semibold text-gray-900">Design Expertise</h4>
-                        <p className="text-gray-700 text-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-brand-100 rounded-lg"><FaGear className="text-brand-600" /></div>
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900">Design Expertise</h4>
+                          <p className="text-gray-700 text-sm leading-relaxed">
                           Our team employs state-of-the-art software and engineering principles to create innovative and efficient steel structural designs that optimize space, durability, and safety.
-                        </p>
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-xl font-semibold text-gray-900">Fabrication Excellence</h4>
-                        <p className="text-gray-700 text-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-brand-100 rounded-lg"><FaIndustry className="text-brand-600" /></div>
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900">Fabrication Excellence</h4>
+                          <p className="text-gray-700 text-sm leading-relaxed">
                           We maintain a state-of-the-art fabrication facility equipped with the latest technology, allowing us to produce precision-engineered steel components with exceptional quality and within tight timelines.
-                        </p>
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-xl font-semibold text-gray-900">Installation Mastery</h4>
-                        <p className="text-gray-700 text-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-brand-100 rounded-lg"><FaWrench className="text-brand-600" /></div>
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900">Installation Mastery</h4>
+                          <p className="text-gray-700 text-sm leading-relaxed">
                           Sivka Areca Enterprises has an experienced installation team that ensures the seamless and safe assembly of steel structures on-site while adhering to the highest industry standards.
-                        </p>
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-xl font-semibold text-gray-900">Project Management</h4>
-                        <p className="text-gray-700 text-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-brand-100 rounded-lg"><FaClock className="text-brand-600" /></div>
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900">Project Management</h4>
+                          <p className="text-gray-700 text-sm leading-relaxed">
                           We focus on clear communication and efficient project coordination to ensure timely project completion while maintaining budgetary guidelines.
-                        </p>
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -407,35 +419,50 @@ export default function ProductDetail() {
                       We offer complete in-house design and fabrication, along with the erection of PEBs, including high-rise installations and projects in challenging site conditions.
                     </p>
                     <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <h4 className="text-xl font-semibold text-gray-900">Rapid Construction</h4>
-                        <p className="text-gray-700 text-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-brand-100 rounded-lg"><FaRocket className="text-brand-600" /></div>
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900">Rapid Construction</h4>
+                          <p className="text-gray-700 text-sm leading-relaxed">
                           Pre-engineered buildings are designed for quick assembly due to standardized components, enabling significantly shorter project timelines.
-                        </p>
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-xl font-semibold text-gray-900">Design Flexibility</h4>
-                        <p className="text-gray-700 text-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-brand-100 rounded-lg"><FaGear className="text-brand-600" /></div>
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900">Design Flexibility</h4>
+                          <p className="text-gray-700 text-sm leading-relaxed">
                           These structures can be customized to meet specific layout requirements, offering open floor plans and adjustable column spacing.
-                        </p>
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-xl font-semibold text-gray-900">Cost Efficiency</h4>
-                        <p className="text-gray-700 text-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-brand-100 rounded-lg"><FaAward className="text-brand-600" /></div>
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900">Cost Efficiency</h4>
+                          <p className="text-gray-700 text-sm leading-relaxed">
                           Reduced construction time and minimized material wastage make pre-engineered buildings a cost-effective solution for commercial and industrial applications.
-                        </p>
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-xl font-semibold text-gray-900">Structural Integrity</h4>
-                        <p className="text-gray-700 text-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-brand-100 rounded-lg"><FaShield className="text-brand-600" /></div>
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900">Structural Integrity</h4>
+                          <p className="text-gray-700 text-sm leading-relaxed">
                           Designed by experienced engineering professionals, these buildings are constructed to withstand various structural loads, including wind, snow, and seismic forces.
-                        </p>
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-xl font-semibold text-gray-900">Sustainability</h4>
-                        <p className="text-gray-700 text-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-brand-100 rounded-lg"><FaAward className="text-brand-600" /></div>
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900">Sustainability</h4>
+                          <p className="text-gray-700 text-sm leading-relaxed">
                           Sivka Areca’s pre-engineered buildings can incorporate eco-friendly features such as energy-efficient insulation, natural lighting solutions, and rainwater harvesting systems.
-                        </p>
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -446,29 +473,41 @@ export default function ProductDetail() {
                       Sivka Areca’s DG containers are precision-engineered enclosures designed for high-capacity diesel generators. Each unit features a structurally analyzed steel frame with AVM pad-mounted installation to ensure vibration-free operation. Using advanced fabrication techniques, we ensure rapid production, superior strength, and long-lasting durability. Designed for performance, mobility, and affordability, our containers deliver reliable protection and structural integrity under heavy load conditions.
                     </p>
                     <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <h4 className="text-xl font-semibold text-gray-900">Heavy-Duty Construction</h4>
-                        <p className="text-gray-700 text-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-brand-100 rounded-lg"><FaShield className="text-brand-600" /></div>
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900">Heavy-Duty Construction</h4>
+                          <p className="text-gray-700 text-sm leading-relaxed">
                           Built with high-strength steel (ISMC / ISMB / RHS / SHS) base frames designed to support generator loads safely and steadily. The fully enclosed steel body includes industrial-grade doors and gaskets to protect against rain, dust, and external damage.
-                        </p>
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-xl font-semibold text-gray-900">Acoustic Insulation & Efficient Ventilation</h4>
-                        <p className="text-gray-700 text-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-brand-100 rounded-lg"><FaGear className="text-brand-600" /></div>
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900">Acoustic Insulation & Efficient Ventilation</h4>
+                          <p className="text-gray-700 text-sm leading-relaxed">
                           Equipped with Rockwool or Glasswool insulation and perforated lining panels to reduce sound levels in compliance with CPCB norms. Engineered airflow ducts, louvers, and silencers ensure smooth cooling and controlled temperature during DG operation.
-                        </p>
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-xl font-semibold text-gray-900">Easy Maintenance & Mobility</h4>
-                        <p className="text-gray-700 text-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-brand-100 rounded-lg"><FaWrench className="text-brand-600" /></div>
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900">Easy Maintenance & Mobility</h4>
+                          <p className="text-gray-700 text-sm leading-relaxed">
                           Designed with wide access doors, lifting lugs, and forklift pockets for quick relocation and simplified service access.
-                        </p>
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-xl font-semibold text-gray-900">Customizable Design & Finish</h4>
-                        <p className="text-gray-700 text-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-brand-100 rounded-lg"><FaAward className="text-brand-600" /></div>
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900">Customizable Design & Finish</h4>
+                          <p className="text-gray-700 text-sm leading-relaxed">
                           Available in multiple sizes and finish options, with provisions for branding, special paint requirements, and add-on accessories such as HVAC systems and monitoring units.
-                        </p>
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -479,35 +518,50 @@ export default function ProductDetail() {
                       Sivka Areca’s engineered vertical exhaust towers are fabricated and installed to support heavy-duty generators and industrial exhaust systems.
                     </p>
                     <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <h4 className="text-xl font-semibold text-gray-900">Durable Construction</h4>
-                        <p className="text-gray-700 text-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-brand-100 rounded-lg"><FaShield className="text-brand-600" /></div>
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900">Durable Construction</h4>
+                          <p className="text-gray-700 text-sm leading-relaxed">
                           Crafted from high-grade steel, the tower is built to withstand extreme conditions, ensuring long-lasting performance and reliability.
-                        </p>
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-xl font-semibold text-gray-900">Optimized Exhaust Flow</h4>
-                        <p className="text-gray-700 text-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-brand-100 rounded-lg"><FaIndustry className="text-brand-600" /></div>
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900">Optimized Exhaust Flow</h4>
+                          <p className="text-gray-700 text-sm leading-relaxed">
                           The tower’s design incorporates efficient airflow dynamics, effectively channeling exhaust gases away from sensitive areas while minimizing backpressure on the generator.
-                        </p>
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-xl font-semibold text-gray-900">Noise Reduction</h4>
-                        <p className="text-gray-700 text-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-brand-100 rounded-lg"><FaAward className="text-brand-600" /></div>
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900">Noise Reduction</h4>
+                          <p className="text-gray-700 text-sm leading-relaxed">
                           Sivka Areca’s exhaust towers feature sound-absorbing materials and internal baffles to reduce generator noise and minimize the impact on the surrounding environment.
-                        </p>
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-xl font-semibold text-gray-900">Weather Resistance</h4>
-                        <p className="text-gray-700 text-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-brand-100 rounded-lg"><FaShield className="text-brand-600" /></div>
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900">Weather Resistance</h4>
+                          <p className="text-gray-700 text-sm leading-relaxed">
                           Each tower is coated with weather-resistant and anti-corrosive finishes to protect against harsh environmental conditions, maintaining performance over time.
-                        </p>
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-xl font-semibold text-gray-900">Compliance</h4>
-                        <p className="text-gray-700 text-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-brand-100 rounded-lg"><FaAward className="text-brand-600" /></div>
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900">Compliance</h4>
+                          <p className="text-gray-700 text-sm leading-relaxed">
                           Sivka Areca’s diesel generator exhaust towers are designed and engineered in accordance with local and international emission and safety standards, ensuring compliance with environmental regulations.
-                        </p>
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -518,35 +572,50 @@ export default function ProductDetail() {
                       We offer precision manufacturing of utility products such as heavy-duty almiras, enclosures, and electrical panels, built to meet industrial quality standards.
                     </p>
                     <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <h4 className="text-xl font-semibold text-gray-900">Diverse Range</h4>
-                        <p className="text-gray-700 text-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-brand-100 rounded-lg"><FaIndustry className="text-brand-600" /></div>
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900">Diverse Range</h4>
+                          <p className="text-gray-700 text-sm leading-relaxed">
                           Our steel sheet material products are available in multiple profiles, gauges, and protective coatings to suit a wide range of functional and aesthetic requirements.
-                        </p>
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-xl font-semibold text-gray-900">Durability</h4>
-                        <p className="text-gray-700 text-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-brand-100 rounded-lg"><FaShield className="text-brand-600" /></div>
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900">Durability</h4>
+                          <p className="text-gray-700 text-sm leading-relaxed">
                           Crafted from high-quality steel, these products provide exceptional durability, weather resistance, and protection against corrosion.
-                        </p>
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-xl font-semibold text-gray-900">Ease of Installation</h4>
-                        <p className="text-gray-700 text-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-brand-100 rounded-lg"><FaWrench className="text-brand-600" /></div>
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900">Ease of Installation</h4>
+                          <p className="text-gray-700 text-sm leading-relaxed">
                           Designed for hassle-free assembly, many of our steel sheets feature interlocking systems that ensure secure attachment and watertight sealing.
-                        </p>
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-xl font-semibold text-gray-900">Design Versatility</h4>
-                        <p className="text-gray-700 text-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-brand-100 rounded-lg"><FaAward className="text-brand-600" /></div>
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900">Design Versatility</h4>
+                          <p className="text-gray-700 text-sm leading-relaxed">
                           Available in a variety of colors and finishes, our sheet metal products enhance the overall visual appeal of the final structure or installation.
-                        </p>
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-xl font-semibold text-gray-900">Longevity</h4>
-                        <p className="text-gray-700 text-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-brand-100 rounded-lg"><FaClock className="text-brand-600" /></div>
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900">Longevity</h4>
+                          <p className="text-gray-700 text-sm leading-relaxed">
                           Built for long service life, these products require minimal maintenance, resulting in lasting performance and cost savings over time.
-                        </p>
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -593,7 +662,7 @@ export default function ProductDetail() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <SpotlightCard className="p-8 rounded-2xl">
+              <SpotlightCard className="p-6 sm:p-8 rounded-2xl bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Technical Specifications</h3>
                 <div className="grid md:grid-cols-2 gap-6">
                   {currentSpecs.map((spec, index) => (
@@ -621,7 +690,7 @@ export default function ProductDetail() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <SpotlightCard className="p-8 rounded-2xl">
+              <SpotlightCard className="p-6 sm:p-8 rounded-2xl bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Key Features</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   {product.features.map((feature, index) => (
@@ -633,7 +702,7 @@ export default function ProductDetail() {
                       transition={{ delay: index * 0.1, duration: 0.3 }}
                     >
                       <FaCheck className="text-brand-600 mt-1 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
+                      <span className="text-gray-700 leading-relaxed">{feature}</span>
                     </motion.div>
                   ))}
                 </div>
@@ -659,14 +728,14 @@ export default function ProductDetail() {
           Get in touch with our experts to discuss your requirements and receive a customized quote.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
-          <Button variant="white-solid" className="flex items-center gap-2">
-            <FaPhone />
-            Call Now
-          </Button>
-          <Button variant="white-outline" className="flex items-center gap-2">
+          <ButtonLink to="/projects" variant="white-solid" className="flex items-center gap-2">
+            <FaEye />
+            View Project
+          </ButtonLink>
+          <ButtonLink to="/contact" variant="white-outline" className="flex items-center gap-2">
             <FaEnvelope />
             Send Inquiry
-          </Button>
+          </ButtonLink>
         </div>
       </motion.section>
 

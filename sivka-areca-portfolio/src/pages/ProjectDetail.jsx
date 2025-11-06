@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react'
 import { projects } from '../data/projects'
 import ScrollReveal from '../components/ScrollReveal'
 import SpotlightCard from '../components/SpotlightCard'
-import { Button } from '../components/Button'
+import { Button, ButtonLink } from '../components/Button'
 import { motion, useAnimation, useInView, AnimatePresence } from 'framer-motion'
 import { 
   FaArrowLeft,
@@ -430,10 +430,10 @@ export default function ProjectDetail() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
           >
-            <Button variant="primary" className="flex items-center gap-2">
+            <ButtonLink to="/contact" variant="primary" className="flex items-center gap-2">
               <FaPhone />
               Contact Us
-            </Button>
+            </ButtonLink>
             <Button variant="outline" className="flex items-center gap-2" onClick={handleShare}>
               <FaShare />
               Share Project
