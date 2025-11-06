@@ -184,11 +184,11 @@ export default function ServiceDetail() {
   }
 
   return (
-    <div className="min-h-screen pt-[80vh]">
+    <div className="min-h-screen pt-[65vh] sm:pt-[72vh] md:pt-[80vh]">
       {/* Themed Hero Section */}
       <motion.section
-        className="relative overflow-hidden"
-        style={{ position: 'absolute', top: '0', left: '0', right: '0', width: '100vw', height: '80vh', zIndex: 10 }}
+        className="relative overflow-hidden h-[65vh] sm:h-[72vh] md:h-[80vh]"
+        style={{ position: 'absolute', top: '0', left: '0', right: '0', width: '100%', zIndex: 10 }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}

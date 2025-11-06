@@ -234,11 +234,11 @@ export default function ProductDetail() {
   
 
   return (
-    <div className="min-h-screen pt-[calc(80vh-112px)] space-y-0">
+    <div className="min-h-screen pt-[calc(65vh-112px)] sm:pt-[calc(72vh-112px)] md:pt-[calc(80vh-112px)] space-y-0 px-4 sm:px-6">
       {/* Themed Hero Section */}
       <motion.section
-        className="relative overflow-hidden"
-        style={{ position: 'absolute', top: '0', left: '0', right: '0', width: '100vw', height: '80vh', zIndex: 10 }}
+        className="relative overflow-hidden h-[65vh] sm:h-[72vh] md:h-[80vh]"
+        style={{ position: 'absolute', top: '0', left: '0', right: '0', width: '100%', zIndex: 10 }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -258,7 +258,7 @@ export default function ProductDetail() {
           {/* Back link removed from hero; will render below hero */}
 
           {/* Bottom-left heading */}
-          <div className="absolute bottom-6 left-8 md:left-14 text-white max-w-2xl transition-all duration-300">
+          <div className="absolute bottom-6 left-4 sm:left-8 md:left-14 text-white max-w-2xl transition-all duration-300">
             <motion.h1 
               className="text-3xl md:text-5xl font-extrabold leading-tight bg-gradient-to-r from-brand-100 via-white to-brand-100 bg-clip-text text-transparent drop-shadow-2xl transition-all duration-300"
               initial={{ opacity: 0, y: 20 }}
@@ -333,7 +333,7 @@ export default function ProductDetail() {
         transition={{ duration: 0.8 }}
       >
         <div className="border-b border-gray-200 mb-8">
-          <nav className="flex space-x-8">
+          <nav className="flex space-x-6 overflow-x-auto -mb-px">
             {[
               { id: 'overview', label: 'Overview', icon: FaEye },
               { id: 'specifications', label: 'Specifications', icon: FaGear },
@@ -342,7 +342,7 @@ export default function ProductDetail() {
               <button
                 key={id}
                 onClick={() => setActiveTab(id)}
-                className={`flex items-center gap-2 py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
+                className={`flex items-center gap-2 py-4 px-2 border-b-2 font-medium text-sm transition-colors flex-shrink-0 whitespace-nowrap ${
                   activeTab === id
                     ? 'border-brand-600 text-brand-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700'

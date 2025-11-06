@@ -199,14 +199,13 @@ export default function Products() {
     <div className="space-y-16">
       {/* Homepage-style Hero Section with Slideshow */}
       <motion.section 
-        className="relative overflow-hidden"
+        className="relative overflow-hidden h-[65vh] sm:h-[72vh] md:h-[80vh]"
         style={{ 
           position: 'absolute',
           top: '0',
           left: '0',
           right: '0',
-          width: '100vw',
-          height: '80vh',
+          width: '100%',
           zIndex: 10
         }}
         initial={{ opacity: 0, y: 20 }}
@@ -316,7 +315,7 @@ export default function Products() {
       </motion.section>
 
       {/* Spacer to account for absolute positioned hero section (minus page spacing) */}
-      <div className="h-[calc(80vh-8rem)]"></div>
+      <div className="h-[calc(65vh-6rem)] sm:h-[calc(72vh-7rem)] md:h-[calc(80vh-8rem)]"></div>
 
       {/* Quality Assurance Section removed */}
 

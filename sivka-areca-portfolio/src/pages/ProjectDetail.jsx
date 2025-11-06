@@ -329,7 +329,7 @@ export default function ProjectDetail() {
     client: project.client || "Confidential Client",
     duration: project.duration || "6 months",
     location: project.location || "Karnataka, India",
-    status: "Completed",
+    status: project.status || "Completed",
     team: "15+ Engineers"
   }
 
@@ -369,10 +369,9 @@ export default function ProjectDetail() {
       >
         {/* Main Image removed */}
 
-        {/* Project Info */}
-        <div className="space-y-6">
+        {/* Project Info (split into grid columns) */}
           <motion.div
-            className="max-w-4xl mx-auto text-center"
+            className="max-w-4xl mx-auto text-center order-1 lg:order-1"
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
@@ -387,7 +386,7 @@ export default function ProjectDetail() {
 
           {/* Project Details */}
           <motion.div
-            className="grid grid-cols-2 gap-4"
+            className="grid grid-cols-2 gap-4 order-2 lg:order-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
@@ -414,17 +413,19 @@ export default function ProjectDetail() {
               </div>
             </div>
             <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-              <FaCircleCheck className="text-green-600" />
+              {projectDetails.status === 'Ongoing' 
+                ? <FaClock className="text-yellow-600" /> 
+                : <FaCircleCheck className="text-green-600" />}
               <div>
                 <p className="text-sm text-gray-600">Status</p>
-                <p className="font-semibold text-green-600">{projectDetails.status}</p>
+                <p className={`font-semibold ${projectDetails.status === 'Ongoing' ? 'text-yellow-600' : 'text-green-600'}`}>{projectDetails.status}</p>
               </div>
             </div>
           </motion.div>
 
           {/* Action Buttons */}
           <motion.div
-            className="flex flex-wrap gap-4"
+            className="flex flex-wrap gap-4 order-3 lg:order-3"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
@@ -433,16 +434,11 @@ export default function ProjectDetail() {
               <FaPhone />
               Contact Us
             </Button>
-            <Button variant="outline" className="flex items-center gap-2">
-              <FaDownload />
-              Download Report
-            </Button>
             <Button variant="outline" className="flex items-center gap-2" onClick={handleShare}>
               <FaShare />
               Share Project
             </Button>
           </motion.div>
-        </div>
       </motion.section>
 
       {/* Tabs Section */}
@@ -453,7 +449,7 @@ export default function ProjectDetail() {
         transition={{ duration: 0.8 }}
       >
         <div className="border-b border-gray-200 mb-8">
-          <nav className="flex space-x-8">
+          <nav className="flex space-x-6 overflow-x-auto -mb-px">
             {[
               { id: 'timeline', label: 'Timeline', icon: FaCalendar },
               { id: 'gallery', label: 'Gallery', icon: FaExpand },
@@ -462,7 +458,7 @@ export default function ProjectDetail() {
               <button
                 key={id}
                 onClick={() => setActiveTab(id)}
-                className={`flex items-center gap-2 py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
+                className={`flex items-center gap-2 py-4 px-2 border-b-2 font-medium text-sm transition-colors flex-shrink-0 whitespace-nowrap ${
                   activeTab === id
                     ? 'border-brand-600 text-brand-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700'

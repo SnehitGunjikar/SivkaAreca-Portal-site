@@ -6,6 +6,7 @@ export const projects = [
       'Complete in-house fabrication of columns, beams, and rafters, including challenging erection above 30 meters height of a main office building.',
     duration: '2023 - 2025',
     status: 'Completed',
+    location: 'Goa, India',
     images: ['peb-image.PNG'],
   },
   {

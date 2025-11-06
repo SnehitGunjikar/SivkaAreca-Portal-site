@@ -190,14 +190,13 @@ export default function Home() {
     <>
       {/* Enhanced Banner with Floating Elements - Full Screen */}
       <motion.section 
-        className="relative overflow-hidden"
+        className="relative overflow-hidden h-[65vh] sm:h-[80vh] md:h-screen"
         style={{ 
           position: 'absolute',
           top: '0',
           left: '0',
           right: '0',
-          width: '100vw',
-          height: '100vh',
+          width: '100%',
           zIndex: 10
         }}
         initial={{ opacity: 0, y: 20 }}
