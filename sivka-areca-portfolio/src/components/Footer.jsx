@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 import { FaLinkedin, FaInstagram, FaFacebook, FaCode } from 'react-icons/fa6'
-import brandLogo from '../assets/imagedata/companyName.png'
+import brandLogo from '../assets/imagedata/CompanyName.png'
 
 export default function Footer() {
   const [visible, setVisible] = useState(false)
