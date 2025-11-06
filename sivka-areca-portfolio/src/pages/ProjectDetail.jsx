@@ -367,65 +367,20 @@ export default function ProjectDetail() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        {/* Main Image */}
-        <div className="space-y-4">
-          <motion.div
-            className="relative aspect-video rounded-2xl overflow-hidden cursor-pointer group"
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.3 }}
-            onClick={() => openGallery(gallery, project.title, 0)}
-          >
-            <img
-              src={bgImage}
-              alt={project.title}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-              <FaExpand className="text-white opacity-0 group-hover:opacity-100 transition-opacity text-2xl" />
-            </div>
-            <div className="absolute bottom-4 left-4 right-4">
-              <h3 className="text-white text-lg font-semibold drop-shadow mb-1">{project.title}</h3>
-              <p className="text-white/90 text-sm">{projectDetails.status}</p>
-            </div>
-          </motion.div>
-          
-          {/* Thumbnail Gallery */}
-          {gallery.length > 1 && (
-            <div className="flex gap-2 overflow-x-auto">
-              {gallery.slice(0, 6).map((img, index) => (
-                <motion.button
-                  key={index}
-                  className="flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 border-gray-200 hover:border-brand-600 transition-all"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => openGallery(gallery, project.title, index)}
-                >
-                  <img src={img} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
-                </motion.button>
-              ))}
-              {gallery.length > 6 && (
-                <button
-                  className="flex-shrink-0 w-20 h-20 rounded-lg bg-gray-100 border-2 border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors"
-                  onClick={() => openGallery(gallery, project.title, 6)}
-                >
-                  +{gallery.length - 6}
-                </button>
-              )}
-            </div>
-          )}
-        </div>
+        {/* Main Image removed */}
 
         {/* Project Info */}
         <div className="space-y-6">
           <motion.div
+            className="max-w-4xl mx-auto text-center"
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 text-center">
               {project.title}
             </h1>
-            <p className="text-lg text-gray-700 mb-6">
+            <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 sm:mb-8 leading-relaxed">
               {project.description}
             </p>
           </motion.div>

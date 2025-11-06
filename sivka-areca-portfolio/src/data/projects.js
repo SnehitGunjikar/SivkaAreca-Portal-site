@@ -4,6 +4,8 @@ export const projects = [
     title: 'Pre-Engineered Building (PEB)',
     description:
       'Complete in-house fabrication of columns, beams, and rafters, including challenging erection above 30 meters height of a main office building.',
+    duration: '2023 - 2025',
+    status: 'Completed',
     images: ['peb-image.PNG'],
   },
   {
@@ -11,6 +13,8 @@ export const projects = [
     title: 'Customized Container',
     description:
       'Fabricated specialized containerized enclosure for DG set integration and coastal deployment.',
+    duration: '2024 - Ongoing',
+    status: 'Ongoing',
     images: ['contairner-img.JPG'],
   },
   {
@@ -23,6 +27,8 @@ export const projects = [
       'Passenger platform shelters',
       'River bridge pathways with staircases',
     ],
+    duration: '2017 - 2025',
+    status: 'Completed',
     images: ['railway-staircase-img.JPG'],
   },
   {
@@ -35,6 +41,8 @@ export const projects = [
       'Modern Hiring Service, Andaman and Nicobar Islands',
       'Modern Hiring Service, Tiruchi Tamil Nadu',
     ],
+    duration: '2021 - Ongoing',
+    status: 'Ongoing',
     images: ['tower-img.JPG'],
   },
   {
@@ -42,6 +50,8 @@ export const projects = [
     title: 'Sheet Metal Works for NTPC Sites',
     description:
       'Manufactured and supplied 150 kg capacity almirahs, fabricated to withstand industrial usage and transit handling.',
+    duration: '2017 - 2018',
+    status: 'Completed',
     images: ['sheetmetal-img.jpg'],
   },
 ]

@@ -105,12 +105,17 @@ export default function Navbar() {
 
   // Determine page for header behavior
   const isContactPage = location.pathname === '/contact'
+  const isProjectDetailPage = location.pathname.startsWith('/projects/')
   
   // Make header transparent at top and translucent on scroll across pages,
   // except Contact page which remains always translucent
   const getHeaderStyle = () => {
     if (isContactPage) {
       return 'bg-neutral-900/90 backdrop-blur-md border-b border-white/20'
+    }
+    // On Project Detail pages, keep header translucent even at the top
+    if (isProjectDetailPage) {
+      return 'bg-neutral-900/80 backdrop-blur-md border-b border-white/20'
     }
     return isScrolled
       ? 'bg-neutral-900/80 backdrop-blur-md border-b border-white/20'

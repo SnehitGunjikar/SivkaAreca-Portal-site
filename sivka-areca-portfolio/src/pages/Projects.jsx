@@ -24,6 +24,7 @@ import {
   FaFilter,
   FaArrowRight,
   FaCircleCheck,
+  FaClock,
   FaStar,
   FaAward,
   FaShield,
@@ -137,9 +138,9 @@ function ProjectCard({ project, imageSrc, index }) {
             </div>
             
             {/* Status badge */}
-            <div className="absolute top-4 right-4 flex items-center gap-1 px-2 py-1 bg-green-500/90 backdrop-blur-sm rounded-full text-white text-xs font-medium">
-              <FaCircleCheck size={12} />
-              Completed
+            <div className={`absolute top-4 right-4 flex items-center gap-1 px-2 py-1 ${project.status === 'Ongoing' ? 'bg-yellow-500/90' : 'bg-green-500/90'} backdrop-blur-sm rounded-full text-white text-xs font-medium`}>
+              {project.status === 'Ongoing' ? <FaClock size={12} /> : <FaCircleCheck size={12} />}
+              {project.status || 'Completed'}
             </div>
           </div>
           
@@ -157,7 +158,7 @@ function ProjectCard({ project, imageSrc, index }) {
           <div className="mb-6 space-y-2">
             <div className="flex items-center gap-2 text-sm text-gray-600">
               <FaCalendar size={14} />
-              <span>2023-2024</span>
+              <span>{project.duration || '—'}</span>
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-600">
               <FaLocationDot size={14} />
