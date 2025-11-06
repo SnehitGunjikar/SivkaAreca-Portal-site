@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { products } from '../data/products'
-import { ButtonLink } from '../components/Button'
+import { Button, ButtonLink } from '../components/Button'
 import ScrollReveal from '../components/ScrollReveal'
 import SpotlightCard from '../components/SpotlightCard'
 import steelImg from '../assets/imagedata/core-expertise-image/steelstructure-fabrication-img.jpg'
@@ -23,11 +23,20 @@ import {
   FaHammer,
   FaFilter,
   FaArrowRight,
+  FaChevronLeft,
+  FaChevronRight,
   FaCircleCheck,
   FaStar,
   FaAward,
   FaShield
 } from 'react-icons/fa6'
+
+// Auto-load Core Expertise homepage slideshow images
+const coreExpSlideshowGlob = import.meta.glob('../assets/imagedata/core-exp-homepg-img/*.{webp,jpg,jpeg,png}', { eager: true, as: 'url' })
+const coreExpSlides = Object
+  .entries(coreExpSlideshowGlob)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([, url]) => url)
 
 const productImages = {
   'structural-steel-fabrication': steelImg,
@@ -159,6 +168,28 @@ function ProductCard({ product, imageSrc, index }) {
 
 export default function Products() {
   const [filter, setFilter] = useState('all')
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+
+  // Auto-advance slideshow
+  useEffect(() => {
+    if (!isAutoPlaying || coreExpSlides.length === 0) return
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % coreExpSlides.length)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [isAutoPlaying])
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % coreExpSlides.length)
+    setIsAutoPlaying(false)
+    setTimeout(() => setIsAutoPlaying(true), 10000)
+  }
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + coreExpSlides.length) % coreExpSlides.length)
+    setIsAutoPlaying(false)
+    setTimeout(() => setIsAutoPlaying(true), 10000)
+  }
 
   const filteredProducts = products.filter(product => {
     return true // Show all products since search is removed
@@ -166,32 +197,126 @@ export default function Products() {
 
   return (
     <div className="space-y-16">
-      {/* Enhanced Hero Section */}
-      <motion.section
-        className="relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-brand-50 py-6 sm:py-8 md:py-12 lg:py-16 px-3 sm:px-4 md:px-6 rounded-3xl"
-        initial={{ opacity: 0, y: 30 }}
+      {/* Homepage-style Hero Section with Slideshow */}
+      <motion.section 
+        className="relative overflow-hidden"
+        style={{ 
+          position: 'absolute',
+          top: '0',
+          left: '0',
+          right: '0',
+          width: '100vw',
+          height: '80vh',
+          zIndex: 10
+        }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23000000%22%20fill-opacity%3D%220.02%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50"></div>
-        
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          >
-            <FaIndustry className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-brand-600 mb-3 sm:mb-4 md:mb-6 mx-auto" />
-            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-2 sm:mb-3 md:mb-4 px-2 sm:px-4">
-              Core Expertise
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-4 sm:mb-6 md:mb-8 px-2 sm:px-4 leading-relaxed">
-              Comprehensive solutions across structural fabrication, PEB, enclosures, towers, and sheet metal
-            </p>
-          </motion.div>
+        <div className="relative w-full h-full overflow-hidden">
+          {/* Slideshow Background */}
+          <div className="absolute inset-0">
+            {coreExpSlides.map((image, index) => (
+              <div
+                key={index}
+                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out bg-center md:bg-top bg-no-repeat bg-cover md:bg-fixed ${
+                  index === currentSlide ? 'opacity-100' : 'opacity-0'
+                }`}
+                style={{
+                  backgroundImage: `url(${image})`
+                }}
+              />
+            ))}
+          </div>
 
+          {/* Enhanced overlay for better text readability */}
+          <div className="absolute inset-0 m-0 p-0 bg-gradient-to-r from-black/70 via-black/50 to-black/40"></div>
+
+          {/* Navigation Buttons */}
+          <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 flex space-x-2 z-20">
+            <button
+              onClick={prevSlide}
+              className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-2 sm:p-3 md:p-4 rounded-full transition-all duration-300 hover:scale-110 shadow-lg"
+              aria-label="Previous image"
+            >
+              <FaChevronLeft className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-2 sm:p-3 md:p-4 rounded-full transition-all duration-300 hover:scale-110 shadow-lg"
+              aria-label="Next image"
+            >
+              <FaChevronRight className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+            </button>
+          </div>
+
+          {/* Slide Indicators */}
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-1 sm:space-x-2 z-20">
+            {coreExpSlides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setCurrentSlide(index)
+                  setIsAutoPlaying(false)
+                  setTimeout(() => setIsAutoPlaying(true), 10000)
+                }}
+                className={`w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 shadow-lg ${
+                  index === currentSlide 
+                    ? 'bg-white scale-125' 
+                    : 'bg-white/50 hover:bg-white/75'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Content positioned at bottom left */}
+          <div className="absolute bottom-0 left-0 z-10">
+            <div className="p-6 sm:p-8 md:p-10 lg:p-12 max-w-2xl lg:max-w-3xl mb-6 sm:mb-8 md:mb-10">
+              <div className="text-white text-left space-y-2 sm:space-y-3 md:space-y-4">
+                {/* Main Heading */}
+                <motion.div
+                  initial={{ opacity: 0, x: -100, rotateX: 45 }}
+                  animate={{ opacity: 1, x: 0, rotateX: 0 }}
+                  transition={{ duration: 1.2, ease: 'easeOut' }}
+                  className="relative"
+                >
+                  <h2 className="font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight tracking-tight">
+                    <span className="block bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-2xl">
+                      <motion.span
+                        className="inline-block"
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2, duration: 0.8, type: 'spring', bounce: 0.4 }}
+                      >
+                        Core Expertise
+                      </motion.span>
+                    </span>
+                  </h2>
+                  <motion.div
+                    className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-brand-400 to-transparent rounded-full"
+                    initial={{ width: 0 }}
+                    animate={{ width: '60%' }}
+                    transition={{ delay: 1, duration: 1.5, ease: 'easeOut' }}
+                  />
+                </motion.div>
+                {/* One-liner */}
+                <motion.p 
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.0, duration: 0.8 }}
+                  className="text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed text-white/90 drop-shadow-lg"
+                >
+                  Comprehensive expertise across structural fabrication, PEB, enclosures, towers, and sheet metal.
+                </motion.p>
+              </div>
+            </div>
+          </div>
         </div>
       </motion.section>
+
+      {/* Spacer to account for absolute positioned hero section (minus page spacing) */}
+      <div className="h-[calc(80vh-8rem)]"></div>
 
       {/* Quality Assurance Section removed */}
 

@@ -29,6 +29,7 @@ import designExpertiseImg from '../assets/imagedata/services/design-expertise.sv
 import fabricationExcellenceImg from '../assets/imagedata/services/fabrication-excellence.svg'
 import installationMasteryImg from '../assets/imagedata/services/installation-mastery.svg'
 import projectManagementImg from '../assets/imagedata/services/project-management.svg'
+import serviceHeroImg from '../assets/imagedata/core-exp-homepg-img/core-exp-homepg.jpg'
 
 // Map service slugs to their images
 const serviceImages = {
@@ -183,114 +184,96 @@ export default function ServiceDetail() {
   }
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-brand-900 to-gray-800">
-        {/* Animated Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.1%22%3E%3Ccircle%20cx%3D%227%22%20cy%3D%227%22%20r%3D%221%22/%3E%3Ccircle%20cx%3D%2227%22%20cy%3D%227%22%20r%3D%221%22/%3E%3Ccircle%20cx%3D%2247%22%20cy%3D%227%22%20r%3D%221%22/%3E%3Ccircle%20cx%3D%227%22%20cy%3D%2227%22%20r%3D%221%22/%3E%3Ccircle%20cx%3D%2227%22%20cy%3D%2227%22%20r%3D%221%22/%3E%3Ccircle%20cx%3D%2247%22%20cy%3D%2227%22%20r%3D%221%22/%3E%3Ccircle%20cx%3D%227%22%20cy%3D%2247%22%20r%3D%221%22/%3E%3Ccircle%20cx%3D%2227%22%20cy%3D%2247%22%20r%3D%221%22/%3E%3Ccircle%20cx%3D%2247%22%20cy%3D%2247%22%20r%3D%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] animate-pulse"></div>
-        </div>
-
-        {/* Floating Elements */}
-        <motion.div
-          className="absolute top-20 left-10 w-20 h-20 border border-white/20 rounded-full"
-          animate={{ 
-            y: [0, -20, 0],
-            rotate: [0, 180, 360]
-          }}
-          transition={{ 
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-10 w-16 h-16 border border-brand-400/30 rounded-lg"
-          animate={{ 
-            y: [0, 20, 0],
-            rotate: [0, -180, -360]
-          }}
-          transition={{ 
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-
-        <div className="relative z-10 max-w-screen-xl mx-auto px-6 text-center">
-          {/* Back Button */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="absolute top-0 left-0"
-          >
-            <Link 
-              to="/" 
-              className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors group"
-            >
-              <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-              Back to Home
-            </Link>
-          </motion.div>
-
-          {/* Hero Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8 pt-16"
-          >
-            <motion.h1 
-              className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.4 }}
-            >
-              {service.title}
-            </motion.h1>
-            
-            <motion.p 
-              className="text-xl md:text-2xl text-brand-200 max-w-4xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              {enhancement.tagline}
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8"
-            >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-lg transition-colors flex items-center gap-2 group"
-                onClick={() => document.getElementById('overview').scrollIntoView({ behavior: 'smooth' })}
-              >
-                Explore Our Work
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </motion.button>
-              
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Link
-                  to="/contact"
-                  className="px-8 py-4 border-2 border-white/30 hover:border-white/50 hover:bg-white/10 text-white font-semibold rounded-lg transition-colors flex items-center gap-2"
+    <div className="min-h-screen pt-[80vh]">
+      {/* Themed Hero Section */}
+      <motion.section
+        className="relative overflow-hidden"
+        style={{ position: 'absolute', top: '0', left: '0', right: '0', width: '100vw', height: '80vh', zIndex: 10 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="relative w-full h-full overflow-hidden">
+          <div className="absolute inset-0">
+            <div
+              className="absolute inset-0 bg-center md:bg-top bg-no-repeat bg-cover md:bg-fixed"
+              style={{ backgroundImage: `url(${serviceHeroImg})` }}
+            />
+          </div>
+          <div className="absolute inset-0 m-0 p-0 bg-gradient-to-r from-black/70 via-black/50 to-black/40"></div>
+          <div className="absolute bottom-0 left-0 z-10">
+            <div className="p-6 sm:p-8 md:p-10 lg:p-12 max-w-2xl lg:max-w-3xl mb-6 sm:mb-8 md:mb-10">
+              <div className="text-white text-left space-y-2 sm:space-y-3 md:space-y-4">
+                <motion.div
+                  initial={{ opacity: 0, x: -100, rotateX: 45 }}
+                  animate={{ opacity: 1, x: 0, rotateX: 0 }}
+                  transition={{ duration: 1.2, ease: 'easeOut' }}
+                  className="relative"
                 >
-                  <Phone className="w-5 h-5" />
-                  Get in Touch
-                </Link>
-              </motion.div>
-            </motion.div>
-          </motion.div>
+                  <h2 className="font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight tracking-tight">
+                    <span className="block bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-2xl">
+                      <motion.span
+                        className="inline-block"
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2, duration: 0.8, type: 'spring', bounce: 0.4 }}
+                      >
+                        {service.title}
+                      </motion.span>
+                    </span>
+                  </h2>
+                  <motion.div
+                    className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-brand-400 to-transparent rounded-full"
+                    initial={{ width: 0 }}
+                    animate={{ width: '60%' }}
+                    transition={{ delay: 1, duration: 1.5, ease: 'easeOut' }}
+                  />
+                </motion.div>
+                {enhancement?.tagline && (
+                  <motion.div
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.8, duration: 0.8 }}
+                    className="relative"
+                  >
+                    <p className="font-bold text-xs sm:text-sm md:text-base lg:text-lg tracking-widest text-white/95 drop-shadow-lg">
+                      <motion.span
+                        className="inline-block border-l-4 border-brand-400 pl-3 sm:pl-4 md:pl-6"
+                        initial={{ borderLeftWidth: 0 }}
+                        animate={{ borderLeftWidth: '4px' }}
+                        transition={{ delay: 1.2, duration: 0.6 }}
+                      >
+                        {enhancement.tagline}
+                      </motion.span>
+                    </p>
+                  </motion.div>
+                )}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.2, duration: 0.8 }}
+                  className="flex flex-wrap gap-3 sm:gap-4"
+                >
+                  <Link
+                    to="/"
+                    className="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-4 sm:px-6 py-2 sm:py-3 rounded-xl transition-all duration-300"
+                  >
+                    <ArrowLeft className="w-4 h-4" />
+                    Back to Home
+                  </Link>
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-4 sm:px-6 py-2 sm:py-3 rounded-xl transition-all duration-300"
+                  >
+                    <Phone className="w-4 h-4" />
+                    Get in Touch
+                  </Link>
+                </motion.div>
+              </div>
+            </div>
+          </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Overview Section */}
       <section id="overview" className="py-16 lg:py-24 bg-white">
@@ -473,15 +456,18 @@ export default function ServiceDetail() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
-              <motion.a
-                href="tel:+919845678901"
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-white text-brand-600 font-semibold rounded-lg hover:bg-brand-50 transition-colors flex items-center gap-2 group"
               >
-                <Phone className="w-5 h-5" />
-                Call Now: +91 98456 78901
-              </motion.a>
+                <Link
+                  to="/contact"
+                  className="px-8 py-4 bg-white text-brand-600 font-semibold rounded-lg hover:bg-brand-50 transition-colors flex items-center gap-2 group"
+                >
+                  <Phone className="w-5 h-5" />
+                  Call Now: +91 98456 78901
+                </Link>
+              </motion.div>
               
               <motion.div
                 whileHover={{ scale: 1.05 }}

@@ -4,31 +4,9 @@ import { motion, useAnimation, useInView } from 'framer-motion'
 import { Button, ButtonLink } from '../components/Button'
 import ScrollReveal from '../components/ScrollReveal'
 import SpotlightCard from '../components/SpotlightCard'
-import homeUnsplashImg from '../assets/imagedata/home-unsplash.png'
-import homeUnsplash2Img from '../assets/imagedata/home-unsplash2.jpg'
-
-// Import Home-imgs slideshow images
-import fob2Img from '../assets/imagedata/Home-imgs/FOB 2-640.webp'
-import fobImg from '../assets/imagedata/Home-imgs/FOB-640.webp'
-import img1 from '../assets/imagedata/Home-imgs/IMG-20231201-WA0003-640.webp'
-import img2 from '../assets/imagedata/Home-imgs/IMG-20231201-WA0005-640.webp'
-import img3 from '../assets/imagedata/Home-imgs/IMG-20220922-WA0044.webp'
-import img4 from '../assets/imagedata/Home-imgs/IMG-20220922-WA0047.webp'
-import img5 from '../assets/imagedata/Home-imgs/IMG-20220922-WA0058.webp'
-import img6 from '../assets/imagedata/Home-imgs/IMG_20231226_113854648.webp'
-import img7 from '../assets/imagedata/Home-imgs/IMG_20240117_112922663.webp'
-import img8 from '../assets/imagedata/Home-imgs/IMG_20240210_175533773.webp'
-import img9 from '../assets/imagedata/Home-imgs/IMG_20250724_101435093_HDR.webp'
-import img10 from '../assets/imagedata/Home-imgs/IMG_20250724_102452756_HDR.webp'
-import overheadShedImg from '../assets/imagedata/Home-imgs/OVERHEAD SHED.webp'
-import ppf2Img from '../assets/imagedata/Home-imgs/PPF 2-640.webp'
-import ppfImg from '../assets/imagedata/Home-imgs/PPF-640.webp'
-import containerImg from '../assets/imagedata/Home-imgs/contairner-img-640.webp'
-import pathwayImg from '../assets/imagedata/Home-imgs/pathway-640.webp'
-import pebImg from '../assets/imagedata/Home-imgs/peb-image-640.webp'
-import railwayImg from '../assets/imagedata/Home-imgs/railway-staircase-img-640.webp'
-import staircaseImg from '../assets/imagedata/Home-imgs/staircase-640.webp'
-import towerImg from '../assets/imagedata/Home-imgs/tower-img-640.webp'
+import homepagePicWebp from '../assets/imagedata/homepage_pic_webp.webp'
+import homeUnsplash2Img from '../assets/imagedata/Home-imgs/home-unsplash2.jpg'
+// Removed manual slideshow imports; auto-loading via glob below
 
 import { services } from '../data/services'
 import { 
@@ -51,30 +29,26 @@ import {
   FaChevronRight
 } from 'react-icons/fa6'
 
-// Slideshow images array
+// Auto-load homepage slideshow images from folder
+const homeSlideshowGlob = import.meta.glob('../assets/imagedata/Home-imgs/*.{webp,jpg,jpeg,png}', { eager: true, as: 'url' })
+const globImages = Object
+  .entries(homeSlideshowGlob)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([, url]) => url)
+
+// Prefer the newly added home_unsplash2 if present; else fallback to existing import
+const primaryUnsplashFromGlob = Object
+  .keys(homeSlideshowGlob)
+  .find((p) => p.toLowerCase().includes('home_unsplash2') || p.toLowerCase().includes('home-unsplash2'))
+const primaryImage = primaryUnsplashFromGlob ? homeSlideshowGlob[primaryUnsplashFromGlob] : homeUnsplash2Img
+
+// Build slideshow with primary first and no duplicate of unsplash
 const slideshowImages = [
-  homeUnsplash2Img, // Keep the original as first image
-  fob2Img,
-  fobImg,
-  img1,
-  img2,
-  img3,
-  img4,
-  img5,
-  img6,
-  img7,
-  img8,
-  img9,
-  img10,
-  overheadShedImg,
-  ppf2Img,
-  ppfImg,
-  containerImg,
-  pathwayImg,
-  pebImg,
-  railwayImg,
-  staircaseImg,
-  towerImg
+  primaryImage,
+  ...globImages.filter((u) => {
+    const l = (u || '').toLowerCase()
+    return !l.includes('home_unsplash2') && !l.includes('home-unsplash2')
+  })
 ]
 
 // Animated Counter Component
@@ -236,7 +210,7 @@ export default function Home() {
             {slideshowImages.map((image, index) => (
               <div
                 key={index}
-                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out md:bg-fixed ${
                   index === currentSlide ? 'opacity-100' : 'opacity-0'
                 }`}
                 style={{
@@ -250,7 +224,7 @@ export default function Home() {
           </div>
           
           {/* Enhanced overlay for better text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/40"></div>
+          <div className="absolute inset-0 m-0 p-0 bg-gradient-to-r from-black/70 via-black/50 to-black/40"></div>
           
           {/* Navigation Buttons - Responsive positioning */}
           <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 flex space-x-2 z-20">
@@ -308,29 +282,41 @@ export default function Home() {
                 transition={{ duration: 1.2, ease: "easeOut" }}
                 className="relative"
               >
-                <h2 className="font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight tracking-tight">
-                  <span className="block bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-2xl">
+                <motion.h2 
+                  className="font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-tight tracking-tight"
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.8, ease: 'easeOut' }}
+                >
+                  <span className="block bg-gradient-to-r from-brand-200 via-brand-300 to-brand-400 bg-clip-text text-transparent drop-shadow-2xl">
                     <motion.span
-                      className="inline-block"
-                      initial={{ opacity: 0, y: 50 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.2, duration: 0.8, type: "spring", bounce: 0.4 }}
+                      className="inline-block font-extrabold tracking-tight"
+                      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{ delay: 0.15, duration: 0.7, type: "spring", stiffness: 140, damping: 16 }}
                     >
-                      SIVKA ARECA
+                      SIVKA
+                    </motion.span>
+                    <motion.span
+                      className="inline-block font-extrabold tracking-tight ml-2"
+                      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{ delay: 0.30, duration: 0.7, type: "spring", stiffness: 140, damping: 16 }}
+                    >
+                      ARECA
                     </motion.span>
                   </span>
-                  <span className="block bg-gradient-to-r from-brand-300 via-brand-200 to-white bg-clip-text text-transparent drop-shadow-2xl mt-1 sm:mt-2 md:mt-3">
+                  <span className="block bg-gradient-to-r from-white via-brand-100 to-brand-200 bg-clip-text text-transparent drop-shadow-2xl mt-1 sm:mt-2 md:mt-3">
                     <motion.span
-                      className="inline-block"
-                      initial={{ opacity: 0, y: 50 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.4, duration: 0.8, type: "spring", bounce: 0.4 }}
+                      className="inline-block font-extrabold tracking-tight"
+                      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{ delay: 0.45, duration: 0.7, type: "spring", stiffness: 140, damping: 16 }}
                     >
                       ENTERPRISES
                     </motion.span>
-                   
                   </span>
-                </h2>
+                </motion.h2>
                 {/* Decorative line */}
                 <motion.div
                   className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-brand-400 to-transparent rounded-full"
@@ -423,10 +409,10 @@ export default function Home() {
       </motion.section>
 
       {/* Spacer to account for absolute positioned hero section */}
-      <div className="h-screen"></div>
+      <div className="h-[65vh] sm:h-[80vh] md:h-screen"></div>
 
       {/* Rest of the content in container */}
-      <div className="space-y-16">
+      <div className="space-y-10 sm:space-y-12 md:space-y-16">
         {/* Enhanced Introduction */}
         <motion.section 
           className="grid gap-4 sm:gap-6 md:gap-8 lg:grid-cols-2 items-center"
@@ -436,7 +422,7 @@ export default function Home() {
           transition={{ duration: 0.8 }}
         >
           <motion.div
-            className="order-2 lg:order-1"
+            className="order-1 lg:order-1"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -472,7 +458,7 @@ export default function Home() {
             </motion.div>
           </motion.div>
           <motion.div 
-            className="h-40 sm:h-48 md:h-56 lg:h-64 xl:h-72 rounded-lg overflow-hidden group order-1 lg:order-2"
+            className="h-40 sm:h-48 md:h-56 lg:h-64 xl:h-72 rounded-lg overflow-hidden group order-2 lg:order-2"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -480,7 +466,7 @@ export default function Home() {
             whileHover={{ scale: 1.02 }}
           >
             <img 
-              src={homeUnsplashImg} 
+              src={homepagePicWebp} 
               alt="Sivka Areca Enterprises - Steel Structure Solutions" 
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
@@ -500,11 +486,11 @@ export default function Home() {
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 md:mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Key Services</h2>
           <p className="text-gray-600 text-lg">Comprehensive steel fabrication solutions tailored to your needs</p>
         </div>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
           {services.map((s, index) => (
             <motion.div
               key={s.slug}
@@ -536,7 +522,7 @@ export default function Home() {
 
       {/* Call to Action Section */}
       <motion.section
-        className="relative overflow-hidden bg-gradient-to-br from-brand-600 via-brand-700 to-brand-800 text-white py-16 px-6 rounded-3xl"
+        className="relative overflow-hidden bg-gradient-to-br from-brand-600 via-brand-700 to-brand-800 text-white py-10 sm:py-12 md:py-16 px-4 sm:px-6 rounded-3xl"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -588,7 +574,7 @@ export default function Home() {
 
       {/* About section blocks */}
       <section aria-labelledby="about-blocks">
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-6">
           {/* Our Vision */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}

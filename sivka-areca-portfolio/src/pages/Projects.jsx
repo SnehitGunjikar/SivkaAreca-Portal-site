@@ -29,7 +29,9 @@ import {
   FaShield,
   FaCalendar,
   FaLocationDot,
-  FaEye
+  FaEye,
+  FaChevronLeft,
+  FaChevronRight
 } from 'react-icons/fa6'
 
 const projectImages = {
@@ -63,6 +65,13 @@ const projectCategories = [
   { id: 'tower', name: 'Towers', icon: FaIndustry },
   { id: 'sheet-metal', name: 'Sheet Metal', icon: FaHammer },
 ]
+
+// Auto-load hero slideshow images for Projects page
+const projSlideshowGlob = import.meta.glob('../assets/imagedata/proj-homepg-img/*.{webp,jpg,jpeg,png}', { eager: true, as: 'url' })
+const projSlides = Object
+  .entries(projSlideshowGlob)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([, url]) => url)
 
 // Animated Counter Component
 function AnimatedCounter({ end, duration = 2000, suffix = "" }) {
@@ -168,6 +177,17 @@ function ProjectCard({ project, imageSrc, index }) {
 
 export default function Projects() {
   const [filter, setFilter] = useState('all')
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+
+  // Auto-advance slideshow
+  useEffect(() => {
+    if (!isAutoPlaying || projSlides.length === 0) return
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % projSlides.length)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [isAutoPlaying, projSlides.length])
 
   const filteredProjects = projects.filter(project => {
     if (filter === 'all') return true
@@ -186,121 +206,122 @@ export default function Projects() {
 
   return (
     <div className="space-y-16">
-      {/* Enhanced Hero Section */}
-      <motion.section
-        className="relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-brand-50 py-16 px-6 rounded-3xl"
-        initial={{ opacity: 0, y: 30 }}
+      {/* Fullscreen Hero Section with Slideshow */}
+      <motion.section 
+        className="relative overflow-hidden"
+        style={{ 
+          position: 'absolute',
+          top: '0',
+          left: '0',
+          right: '0',
+          width: '100vw',
+          height: '80vh',
+          zIndex: 10
+        }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23000000%22%20fill-opacity%3D%220.02%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50"></div>
-        
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          >
-            <FaDiagramProject className="text-5xl text-brand-600 mb-6 mx-auto" />
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Our Projects
-            </h1>
-            <p className="text-xl text-gray-700 mb-8">
-              Where vision meets precision—every project is a testament to craftsmanship, innovation, and relentless attention to detail
-            </p>
-          </motion.div>
+        <div className="relative w-full h-full overflow-hidden">
+          {/* Slideshow Background */}
+          <div className="absolute inset-0">
+            {projSlides.map((image, index) => (
+              <div
+                key={index}
+                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out bg-center md:bg-top bg-no-repeat bg-cover md:bg-fixed ${
+                  index === currentSlide ? 'opacity-100' : 'opacity-0'
+                }`}
+                style={{
+                  backgroundImage: `url(${image})`
+                }}
+              />
+            ))}
+          </div>
 
-          {/* Statistics */}
-          <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            <div className="text-center">
-              <div className="text-3xl font-bold text-brand-600 mb-2">
-                <AnimatedCounter end={25} suffix="+" />
+          {/* Overlay */}
+          <div className="absolute inset-0 m-0 p-0 bg-gradient-to-r from-black/70 via-black/50 to-black/40"></div>
+
+          {/* Navigation Buttons */}
+          <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 flex space-x-2 z-20">
+            <button
+              onClick={() => { setCurrentSlide((prev) => (prev - 1 + projSlides.length) % projSlides.length); setIsAutoPlaying(false); setTimeout(() => setIsAutoPlaying(true), 10000) }}
+              className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-2 sm:p-3 md:p-4 rounded-full transition-all duration-300 hover:scale-110 shadow-lg"
+              aria-label="Previous image"
+            >
+              <FaChevronLeft className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+            </button>
+            <button
+              onClick={() => { setCurrentSlide((prev) => (prev + 1) % projSlides.length); setIsAutoPlaying(false); setTimeout(() => setIsAutoPlaying(true), 10000) }}
+              className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-2 sm:p-3 md:p-4 rounded-full transition-all duration-300 hover:scale-110 shadow-lg"
+              aria-label="Next image"
+            >
+              <FaChevronRight className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+            </button>
+          </div>
+
+          {/* Slide Indicators */}
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-1 sm:space-x-2 z-20">
+            {projSlides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => { setCurrentSlide(index); setIsAutoPlaying(false); setTimeout(() => setIsAutoPlaying(true), 10000) }}
+                className={`w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 shadow-lg ${
+                  index === currentSlide 
+                    ? 'bg-white scale-125' 
+                    : 'bg-white/50 hover:bg-white/75'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Content positioned at bottom left */}
+          <div className="absolute bottom-0 left-0 z-10">
+            <div className="p-6 sm:p-8 md:p-10 lg:p-12 max-w-2xl lg:max-w-3xl mb-6 sm:mb-8 md:mb-10">
+              <div className="text-white text-left space-y-2 sm:space-y-3 md:space-y-4">
+                <motion.div
+                  initial={{ opacity: 0, x: -100, rotateX: 45 }}
+                  animate={{ opacity: 1, x: 0, rotateX: 0 }}
+                  transition={{ duration: 1.2, ease: 'easeOut' }}
+                  className="relative"
+                >
+                  <h2 className="font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight tracking-tight">
+                    <span className="block bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-2xl">
+                      <motion.span
+                        className="inline-block"
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2, duration: 0.8, type: 'spring', bounce: 0.4 }}
+                      >
+                        Our Projects
+                      </motion.span>
+                    </span>
+                  </h2>
+                  <motion.div
+                    className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-brand-400 to-transparent rounded-full"
+                    initial={{ width: 0 }}
+                    animate={{ width: '60%' }}
+                    transition={{ delay: 1, duration: 1.5, ease: 'easeOut' }}
+                  />
+                </motion.div>
+                <motion.p 
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.0, duration: 0.8 }}
+                  className="text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed text-white/90 drop-shadow-lg"
+                >
+                  Where vision meets precision—every project is a testament to craftsmanship, innovation, and relentless attention to detail
+                </motion.p>
               </div>
-              <p className="text-gray-600">Projects Delivered</p>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-brand-600 mb-2">
-                <AnimatedCounter end={25} suffix="+" />
-              </div>
-              <p className="text-gray-600">Happy Clients</p>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-brand-600 mb-2">
-                <AnimatedCounter end={15} suffix="+" />
-              </div>
-              <p className="text-gray-600">Years Experience</p>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-brand-600 mb-2">
-                <AnimatedCounter end={100} suffix="%" />
-              </div>
-              <p className="text-gray-600">On-Time Delivery</p>
-            </div>
-          </motion.div>
+          </div>
         </div>
       </motion.section>
+
+      {/* Spacer for absolute hero */}
+      <div className="h-[calc(80vh-8rem)]"></div>
 
       {/* Project Categories removed */}
-
-      {/* Excellence Showcase */}
-      <motion.section
-        className="bg-gradient-to-r from-brand-600 to-brand-700 text-white py-12 px-6 rounded-2xl"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-8">
-            <FaAward className="text-4xl mb-4 mx-auto" />
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Excellence in Every Project</h2>
-            <p className="text-white/90">Our commitment to quality and innovation drives exceptional results</p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-6">
-            <motion.div
-              className="text-center p-6 rounded-xl bg-white/10 backdrop-blur-sm"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1, duration: 0.6 }}
-            >
-              <FaShield className="text-3xl mb-4 mx-auto" />
-              <h3 className="font-semibold mb-2">Quality Assurance</h3>
-              <p className="text-white/80 text-sm">Rigorous testing and quality control at every stage</p>
-            </motion.div>
-            
-            <motion.div
-              className="text-center p-6 rounded-xl bg-white/10 backdrop-blur-sm"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
-              <FaStar className="text-3xl mb-4 mx-auto" />
-              <h3 className="font-semibold mb-2">Innovation</h3>
-              <p className="text-white/80 text-sm">Cutting-edge solutions and modern fabrication techniques</p>
-            </motion.div>
-            
-            <motion.div
-              className="text-center p-6 rounded-xl bg-white/10 backdrop-blur-sm"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-            >
-              <FaCircleCheck className="text-3xl mb-4 mx-auto" />
-              <h3 className="font-semibold mb-2">Timely Delivery</h3>
-              <p className="text-white/80 text-sm">Consistent on-time project completion and delivery</p>
-            </motion.div>
-          </div>
-        </div>
-      </motion.section>
 
       {/* Projects Grid */}
       <motion.section

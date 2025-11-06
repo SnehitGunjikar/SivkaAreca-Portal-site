@@ -140,8 +140,6 @@ function ImageGalleryModal({ images, currentIndex, onClose, onNext, onPrev }) {
 export default function ProductDetail() {
   const { slug } = useParams()
   const product = products.find((p) => p.slug === slug)
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
-  const [isGalleryOpen, setIsGalleryOpen] = useState(false)
   const [activeTab, setActiveTab] = useState('overview')
 
   if (!product) {
@@ -163,18 +161,7 @@ export default function ProductDetail() {
 
   const images = productImages[product.slug] || [steelImg]
 
-  const openGallery = (index) => {
-    setSelectedImageIndex(index)
-    setIsGalleryOpen(true)
-  }
-
-  const nextImage = () => {
-    setSelectedImageIndex((prev) => (prev + 1) % images.length)
-  }
-
-  const prevImage = () => {
-    setSelectedImageIndex((prev) => (prev - 1 + images.length) % images.length)
-  }
+  // Image gallery removed
 
   const handleShare = async () => {
     const url = window.location.href
@@ -247,7 +234,50 @@ export default function ProductDetail() {
   
 
   return (
-    <div className="space-y-12">
+    <div className="min-h-screen pt-[80vh] space-y-12">
+      {/* Themed Hero Section */}
+      <motion.section
+        className="relative overflow-hidden"
+        style={{ position: 'absolute', top: '0', left: '0', right: '0', width: '100vw', height: '80vh', zIndex: 10 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="relative w-full h-full overflow-hidden">
+          {/* Background Image with parallax */}
+          <div className="absolute inset-0">
+            <div
+              className="absolute inset-0 bg-center md:bg-top bg-no-repeat bg-cover md:bg-fixed"
+              style={{ backgroundImage: `url(${images[0]})` }}
+            />
+          </div>
+
+          {/* Overlay for readability */}
+          <div className="absolute inset-0 m-0 p-0 bg-gradient-to-r from-black/70 via-black/50 to-black/40" />
+
+          {/* Bottom-left heading */}
+          <div className="absolute bottom-10 left-10 md:left-16 text-white max-w-2xl">
+            <motion.h1 
+              className="text-3xl md:text-5xl font-extrabold leading-tight bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-2xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+            >
+              {product.title}
+            </motion.h1>
+            {product.description && (
+              <motion.p 
+                className="mt-4 text-base md:text-lg text-white/90"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+              >
+                {product.description}
+              </motion.p>
+            )}
+          </div>
+        </div>
+      </motion.section>
       {/* Navigation */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -263,50 +293,14 @@ export default function ProductDetail() {
         </Link>
       </motion.div>
 
-      {/* Hero Section */}
+      {/* Details Section */}
       <motion.section
-        className="grid lg:grid-cols-2 gap-8"
+        className="grid gap-8"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        {/* Image Gallery */}
-        <div className="space-y-4">
-          <motion.div
-            className="relative aspect-video rounded-2xl overflow-hidden cursor-pointer group"
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.3 }}
-            onClick={() => openGallery(selectedImageIndex)}
-          >
-            <img
-              src={images[selectedImageIndex]}
-              alt={product.title}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-              <FaExpand className="text-white opacity-0 group-hover:opacity-100 transition-opacity text-2xl" />
-            </div>
-          </motion.div>
-          
-          {/* Thumbnail Gallery */}
-          {images.length > 1 && (
-            <div className="flex gap-2 overflow-x-auto">
-              {images.map((img, index) => (
-                <motion.button
-                  key={index}
-                  className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
-                    selectedImageIndex === index ? 'border-brand-600' : 'border-gray-200'
-                  }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setSelectedImageIndex(index)}
-                >
-                  <img src={img} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
-                </motion.button>
-              ))}
-            </div>
-          )}
-        </div>
+        {/* Image Gallery removed */}
 
         {/* Product Info */}
         <div className="space-y-6">
@@ -507,18 +501,7 @@ export default function ProductDetail() {
         </div>
       </motion.section>
 
-      {/* Image Gallery Modal */}
-      <AnimatePresence>
-        {isGalleryOpen && (
-          <ImageGalleryModal
-            images={images}
-            currentIndex={selectedImageIndex}
-            onClose={() => setIsGalleryOpen(false)}
-            onNext={nextImage}
-            onPrev={prevImage}
-          />
-        )}
-      </AnimatePresence>
+      {/* Image Gallery Modal removed */}
     </div>
   )
 }

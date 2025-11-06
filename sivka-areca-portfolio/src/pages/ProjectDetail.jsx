@@ -206,7 +206,7 @@ export default function ProjectDetail() {
   const { slug } = useParams()
   const project = projects.find((p) => p.slug === slug)
   const [viewerIndex, setViewerIndex] = useState(null)
-  const [activeTab, setActiveTab] = useState('overview')
+  const [activeTab, setActiveTab] = useState('gallery')
   const [currentGallery, setCurrentGallery] = useState([])
   const [galleryTitle, setGalleryTitle] = useState('')
 
@@ -500,7 +500,6 @@ export default function ProjectDetail() {
         <div className="border-b border-gray-200 mb-8">
           <nav className="flex space-x-8">
             {[
-              { id: 'overview', label: 'Overview', icon: FaEye },
               { id: 'timeline', label: 'Timeline', icon: FaCalendar },
               { id: 'gallery', label: 'Gallery', icon: FaExpand },
               { id: 'testimonials', label: 'Testimonials', icon: FaThumbsUp }
@@ -522,41 +521,6 @@ export default function ProjectDetail() {
         </div>
 
         <AnimatePresence mode="wait">
-          {activeTab === 'overview' && (
-            <motion.div
-              key="overview"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="space-y-6"
-            >
-              <SpotlightCard className="p-8 rounded-2xl">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Project Overview</h3>
-                <p className="text-gray-700 mb-6">{project.description}</p>
-                
-                {project.highlights && project.highlights.length > 0 && (
-                  <div className="space-y-3">
-                    <h4 className="font-semibold text-gray-900 mb-3">Key Highlights</h4>
-                    <div className="grid md:grid-cols-2 gap-3">
-                      {project.highlights.map((highlight, index) => (
-                        <motion.div
-                          key={highlight}
-                          className="flex items-start gap-3"
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.1, duration: 0.3 }}
-                        >
-                          <FaCircleCheck className="text-brand-600 mt-1 flex-shrink-0" />
-                          <span className="text-gray-700">{highlight}</span>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </SpotlightCard>
-            </motion.div>
-          )}
 
           {activeTab === 'timeline' && (
             <motion.div

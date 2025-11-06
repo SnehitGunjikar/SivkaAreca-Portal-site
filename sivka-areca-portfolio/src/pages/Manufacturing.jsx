@@ -26,7 +26,9 @@ import {
   FaCircleCheck,
   FaLightbulb,
   FaCertificate,
-  FaThumbsUp
+  FaThumbsUp,
+  FaChevronLeft,
+  FaChevronRight
 } from 'react-icons/fa6'
 
 // Animated Counter Component
@@ -64,17 +66,17 @@ const ProcessStep = ({ step, index, isActive, onClick }) => {
       whileHover={{ scale: 1.05, y: -5 }}
       whileTap={{ scale: 0.95 }}
       onClick={() => onClick(index)}
-      className={`cursor-pointer transition-all duration-300 ${
-        isActive ? 'ring-2 ring-brand-500 shadow-lg' : ''
+      className={`cursor-pointer transition-all duration-300 rounded-2xl ${
+        isActive ? 'ring-2 ring-offset-2 ring-offset-white ring-brand-500 shadow-lg' : ''
       }`}
     >
       <SpotlightCard
         className={`rounded-2xl border p-6 text-center shadow-md transition-all duration-300 ${
           isActive 
-            ? 'border-brand-300 bg-brand-50 shadow-brand-600/20' 
+            ? 'border-transparent bg-brand-600 shadow-brand-600/30 text-white' 
             : 'border-gray-300 bg-white hover:bg-gray-50'
         }`}
-        spotlightColor={isActive ? "rgba(59, 130, 246, 0.15)" : "rgba(0, 0, 0, 0.15)"}
+        spotlightColor={isActive ? "rgba(232, 66, 32, 0.15)" : "rgba(0, 0, 0, 0.15)"}
       >
         <motion.div
           initial={{ scale: 0 }}
@@ -82,7 +84,7 @@ const ProcessStep = ({ step, index, isActive, onClick }) => {
           transition={{ delay: index * 0.1 }}
         >
           <div className={`font-semibold ${
-            isActive ? 'text-brand-800' : 'text-gray-900'
+            isActive ? 'text-white' : 'text-gray-900'
           }`}>
             {step.title}
           </div>
@@ -90,7 +92,7 @@ const ProcessStep = ({ step, index, isActive, onClick }) => {
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
-              className="mt-3 text-sm text-gray-600"
+              className="mt-3 text-sm text-white/90"
             >
               {step.description}
             </motion.div>
@@ -103,6 +105,8 @@ const ProcessStep = ({ step, index, isActive, onClick }) => {
 
 export default function Manufacturing() {
   const [activeStep, setActiveStep] = useState(0)
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
   
   const steps = [
     {
@@ -164,63 +168,138 @@ export default function Manufacturing() {
     return () => clearInterval(interval)
   }, [steps.length])
 
+  // Auto-load hero slideshow images for Manufacturing page
+const manufGlob = import.meta.glob('../assets/imagedata/manufac-homepage-img/*.{webp,jpg,jpeg,png}', { eager: true, as: 'url' })
+  const manufSlides = Object
+    .entries(manufGlob)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([, url]) => url)
+
+  // Auto-advance slideshow
+  useEffect(() => {
+    if (!isAutoPlaying || manufSlides.length === 0) return
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % manufSlides.length)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [isAutoPlaying, manufSlides.length])
+
   return (
     <div className="space-y-16">
-      {/* Hero Section with Animated Background */}
+      {/* Fullscreen Hero Section with Slideshow */}
       <motion.section 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="relative overflow-hidden bg-gradient-to-br from-brand-600 via-brand-700 to-brand-800 text-white py-16 px-6 rounded-3xl"
+        className="relative overflow-hidden"
+        style={{ 
+          position: 'absolute',
+          top: '0',
+          left: '0',
+          right: '0',
+          width: '100vw',
+          height: '80vh',
+          zIndex: 10
+        }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
       >
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
-        
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-          >
-            <FaIndustry className="mx-auto text-6xl mb-6 text-white/90" />
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              World-Class Manufacturing Excellence
-            </h1>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto">
-              State-of-the-art production facilities equipped for complex fabrication requirements and high-volume manufacturing
-            </p>
-          </motion.div>
-        </div>
+        <div className="relative w-full h-full overflow-hidden">
+          {/* Slideshow Background */}
+          <div className="absolute inset-0">
+            {manufSlides.map((image, index) => (
+              <div
+                key={index}
+                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out bg-center md:bg-top bg-no-repeat bg-cover md:bg-fixed ${
+                  index === currentSlide ? 'opacity-100' : 'opacity-0'
+                }`}
+                style={{
+                  backgroundImage: `url(${image})`
+                }}
+              />
+            ))}
+          </div>
 
-        {/* Floating Animation Elements */}
-        <motion.div
-          animate={{ 
-            y: [0, -20, 0],
-            rotate: [0, 5, 0]
-          }}
-          transition={{ 
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-20 left-10 text-white/20"
-        >
-          <FaGears className="text-4xl" />
-        </motion.div>
-        
-        <motion.div
-          animate={{ 
-            y: [0, 20, 0],
-            rotate: [0, -5, 0]
-          }}
-          transition={{ 
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute bottom-20 right-10 text-white/20"
-        >
-          <FaWrench className="text-5xl" />
-        </motion.div>
+          {/* Overlay */}
+          <div className="absolute inset-0 m-0 p-0 bg-gradient-to-r from-black/70 via-black/50 to-black/40"></div>
+
+          {/* Navigation Buttons */}
+          <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 flex space-x-2 z-20">
+            <button
+              onClick={() => { setCurrentSlide((prev) => (prev - 1 + manufSlides.length) % manufSlides.length); setIsAutoPlaying(false); setTimeout(() => setIsAutoPlaying(true), 10000) }}
+              className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-2 sm:p-3 md:p-4 rounded-full transition-all duration-300 hover:scale-110 shadow-lg"
+              aria-label="Previous image"
+            >
+              <FaChevronLeft className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+            </button>
+            <button
+              onClick={() => { setCurrentSlide((prev) => (prev + 1) % manufSlides.length); setIsAutoPlaying(false); setTimeout(() => setIsAutoPlaying(true), 10000) }}
+              className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-2 sm:p-3 md:p-4 rounded-full transition-all duration-300 hover:scale-110 shadow-lg"
+              aria-label="Next image"
+            >
+              <FaChevronRight className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+            </button>
+          </div>
+
+          {/* Slide Indicators */}
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-1 sm:space-x-2 z-20">
+            {manufSlides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => { setCurrentSlide(index); setIsAutoPlaying(false); setTimeout(() => setIsAutoPlaying(true), 10000) }}
+                className={`w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 shadow-lg ${
+                  index === currentSlide 
+                    ? 'bg-white scale-125' 
+                    : 'bg-white/50 hover:bg-white/75'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Content positioned at bottom left */}
+          <div className="absolute bottom-0 left-0 z-10">
+            <div className="p-6 sm:p-8 md:p-10 lg:p-12 max-w-2xl lg:max-w-3xl mb-6 sm:mb-8 md:mb-10">
+              <div className="text-white text-left space-y-2 sm:space-y-3 md:space-y-4">
+                <motion.div
+                  initial={{ opacity: 0, x: -100, rotateX: 45 }}
+                  animate={{ opacity: 1, x: 0, rotateX: 0 }}
+                  transition={{ duration: 1.2, ease: 'easeOut' }}
+                  className="relative"
+                >
+                  <h2 className="font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight tracking-tight">
+                    <span className="block bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-2xl">
+                      <motion.span
+                        className="inline-block"
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2, duration: 0.8, type: 'spring', bounce: 0.4 }}
+                      >
+                        World-Class Manufacturing Excellence
+                      </motion.span>
+                    </span>
+                  </h2>
+                  <motion.div
+                    className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-brand-400 to-transparent rounded-full"
+                    initial={{ width: 0 }}
+                    animate={{ width: '60%' }}
+                    transition={{ delay: 1, duration: 1.5, ease: 'easeOut' }}
+                  />
+                </motion.div>
+                <motion.p 
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.0, duration: 0.8 }}
+                  className="text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed text-white/90 drop-shadow-lg"
+                >
+                  State-of-the-art production facilities equipped for complex fabrication requirements and high-volume manufacturing
+                </motion.p>
+              </div>
+            </div>
+          </div>
+        </div>
       </motion.section>
+
+      {/* Spacer for absolute hero */}
+      <div className="h-[calc(80vh-8rem)]"></div>
 
       {/* Animated Statistics */}
       <section>
@@ -276,18 +355,27 @@ export default function Manufacturing() {
                 <motion.div
                   animate={{ 
                     scale: activeStep === index ? 1.2 : 1,
-                    backgroundColor: activeStep === index ? '#3B82F6' : '#E5E7EB'
+                    backgroundColor: activeStep === index ? '#E84220' : '#E5E7EB'
                   }}
                   className="w-3 h-3 rounded-full"
                 />
                 {index < steps.length - 1 && (
-                  <motion.div
+                  <div className="relative mx-2">
+                    <motion.div
                     animate={{ 
                       scaleX: activeStep > index ? 1 : 0.3,
-                      backgroundColor: activeStep > index ? '#3B82F6' : '#E5E7EB'
+                      backgroundColor: activeStep > index ? '#E84220' : '#E5E7EB'
                     }}
-                    className="w-12 h-1 mx-2 origin-left"
-                  />
+                      className="w-12 h-1 origin-left"
+                    />
+                    <motion.div
+                      className="connector-arrow"
+                      style={{ '--arrow-color': activeStep > index ? '#E84220' : '#E5E7EB' }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: activeStep > index ? 1 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </div>
                 )}
               </div>
             ))}

@@ -103,26 +103,24 @@ export default function Navbar() {
     { label: 'Contact', to: '/contact' },
   ]
 
-  // Determine if we're on the home page
-  const isHomePage = location.pathname === '/'
+  // Determine page for header behavior
+  const isContactPage = location.pathname === '/contact'
   
-  // Different styling logic for home page vs other pages
+  // Make header transparent at top and translucent on scroll across pages,
+  // except Contact page which remains always translucent
   const getHeaderStyle = () => {
-    if (isHomePage) {
-      // Home page: transparent initially, translucent on scroll
-      return isScrolled 
-        ? 'bg-neutral-900/80 backdrop-blur-md border-b border-white/20' 
-        : 'bg-transparent border-b border-transparent'
-    } else {
-      // Other pages: always have translucent background
+    if (isContactPage) {
       return 'bg-neutral-900/90 backdrop-blur-md border-b border-white/20'
     }
+    return isScrolled
+      ? 'bg-neutral-900/80 backdrop-blur-md border-b border-white/20'
+      : 'bg-transparent border-b border-transparent'
   }
 
   return (
     <header className={`${getHeaderStyle()} sticky top-0 z-50 transition-all duration-300`}>
-      <div className="container flex items-center justify-between py-2 sm:py-3 md:py-4">
-        <div className="flex items-center gap-3 sm:gap-4">
+      <div className="max-w-7xl mx-auto flex items-center justify-between py-2 sm:py-3 md:py-4 pl-2 sm:pl-3 md:pl-4 pr-4 sm:pr-6 lg:pr-8">
+        <div className="flex items-center gap-3 sm:gap-4 -ml-2 sm:-ml-3">
           {/* Enhanced hamburger menu button with accessibility */}
           <motion.button 
             className="md:hidden h-12 w-12 flex flex-col items-center justify-center border border-white/20 rounded-xl hover:bg-white/5 hover:border-white/30 focus:bg-white/10 focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-neutral-900 transition-all duration-200 touch-manipulation" 
@@ -153,7 +151,7 @@ export default function Navbar() {
             <motion.img
               src={brandLogo}
               alt="Sivka Areca Enterprises"
-              className="h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain select-none brightness-110 contrast-110 saturate-110 drop-shadow-[0_1px_1px_rgba(255,255,255,0.35)]"
+              className={`${isScrolled ? 'h-8 sm:h-10 md:h-12 lg:h-14' : 'h-12 sm:h-14 md:h-16 lg:h-20'} w-auto object-contain select-none brightness-110 contrast-110 saturate-110 drop-shadow-[0_1px_1px_rgba(255,255,255,0.35)] transition-all duration-300`}
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             />

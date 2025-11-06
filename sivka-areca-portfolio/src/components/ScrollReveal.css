@@ -3,11 +3,27 @@
 }
 
 .scroll-reveal-text {
-  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  font-size: clamp(1.25rem, 3vw, 2rem);
   line-height: 1.5;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .word {
   display: inline-block;
+  font-weight: 800;
+  font-size: 1.08em;
+  letter-spacing: 0.01em;
+  /* Strong at start → slightly lighter at end (not too light) */
+  background: linear-gradient(90deg, #dc2626 0%, #E84220 30%, #f87171 65%, #fca5a5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: transform 300ms ease, filter 300ms ease, opacity 300ms ease;
+  will-change: opacity, transform, filter;
+  margin-right: 0.05em;
+}
+
+.word:hover {
+  transform: translateY(-2px) scale(1.03);
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
 }
