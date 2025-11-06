@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import GooeyNav from './GooeyNav'
@@ -8,6 +8,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
   
   // Performance optimization: Reduce animations on slower devices
   const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -393,7 +394,7 @@ export default function Navbar() {
                       setOpen(false)
                       // Navigate to contact if not already there
                       if (location.pathname !== '/contact') {
-                        window.location.href = '/contact'
+                        navigate('/contact')
                       }
                     }}
                   >
