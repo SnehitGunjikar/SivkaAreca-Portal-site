@@ -465,7 +465,7 @@ export default function ServiceDetail() {
                   className="px-8 py-4 bg-white text-brand-600 font-semibold rounded-lg hover:bg-brand-50 transition-colors flex items-center gap-2 group"
                 >
                   <Phone className="w-5 h-5" />
-                  Call Now: +91 98456 78901
+                  Call Now: +91 9591253590
                 </Link>
               </motion.div>
               

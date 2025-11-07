@@ -35,7 +35,23 @@ import {
   FaGear
 } from 'react-icons/fa6'
 
+import pebHero from '../assets/imagedata/proj-homepg-img/PEB Project.jpg'
+import railwayHero from '../assets/imagedata/proj-homepg-img/Railway Projects.jpg'
+import containerHero from '../assets/imagedata/proj-homepg-img/Container Project.jpg'
+import sheetmetalHero from '../assets/imagedata/proj-homepg-img/Sheet Metal Project.jpg'
+import towerHero from '../assets/imagedata/proj-homepg-img/Tower Project.jpg'
+import projectsHeader from '../assets/imagedata/proj-homepg-img/Projects HEADER.jpg'
+
 const resolveImage = (fileName) => new URL(`../assets/imagedata/products-image/${fileName}`, import.meta.url).href
+
+// Map each project detail page to its hero image from proj-homepg-img
+const projectHeroImages = {
+  'pre-engineered-building-peb': pebHero,
+  'government-railway-projects-swr': railwayHero,
+  'customized-container': containerHero,
+  'sheet-metal-works-ntpc': sheetmetalHero,
+  'exhaust-towers': towerHero,
+}
 
 // Auto-load images from per-project folders using Vite's import.meta.glob
 const projectFolderGalleries = {
@@ -310,6 +326,9 @@ export default function ProjectDetail() {
 
   const bgImage = (gallery[0] || fallbackGallery[0])
 
+  // Choose hero image per project slug, fallback to Projects header
+  const heroImg = projectHeroImages[project.slug] || projectsHeader
+
   const openGallery = (images, title, index = 0) => {
     setCurrentGallery(images)
     setGalleryTitle(title)
@@ -344,9 +363,54 @@ export default function ProjectDetail() {
   ]
 
   return (
-    <div className="space-y-12">
-      {/* Navigation */}
+    <div className="min-h-screen pt-[calc(65vh-48px)] sm:pt-[calc(72vh-56px)] md:pt-[calc(80vh-64px)] space-y-0 px-4 sm:px-6">
+      {/* Themed Hero Section (match ProductDetail) */}
+      <motion.section
+        className="relative overflow-hidden h-[65vh] sm:h-[72vh] md:h-[80vh]"
+        style={{ position: 'absolute', top: '0', left: '0', right: '0', width: '100%', zIndex: 10 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="relative w-full h-full overflow-hidden">
+          {/* Background Image with parallax */}
+          <div className="absolute inset-0">
+            <div
+              className="absolute inset-0 bg-center md:bg-top bg-no-repeat bg-cover md:bg-fixed"
+              style={{ backgroundImage: `url(${heroImg})` }}
+            />
+          </div>
+
+          {/* Overlay for readability */}
+          <div className="absolute inset-0 m-0 p-0 bg-gradient-to-r from-black/70 via-black/50 to-black/40" />
+
+          {/* Bottom-left heading (title + description) */}
+          <div className="absolute bottom-6 left-4 sm:left-8 md:left-14 text-white max-w-2xl transition-all duration-300">
+            <motion.h1 
+              className="text-3xl md:text-5xl font-extrabold leading-tight bg-gradient-to-r from-brand-100 via-white to-brand-100 bg-clip-text text-transparent drop-shadow-2xl transition-all duration-300"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+            >
+              {project.title}
+            </motion.h1>
+            {project.description && (
+              <motion.p 
+                className="mt-4 text-base md:text-lg text-brand-100 transition-colors duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+              >
+                {project.description}
+              </motion.p>
+            )}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Navigation + Action Buttons: unified row below hero */}
       <motion.div
+        className="flex items-center justify-between gap-2 mt-0 relative z-20 w-full"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -356,11 +420,22 @@ export default function ProjectDetail() {
           className="inline-flex items-center gap-2 text-brand-600 hover:text-brand-700 transition-colors group"
         >
           <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-          Back to Projects
+          Back
         </Link>
+        <div className="flex flex-nowrap items-center gap-2 ml-auto">
+          <ButtonLink to="/contact" variant="primary" className="flex items-center gap-2">
+            <FaPhone />
+            Get Quote
+          </ButtonLink>
+          <Button variant="outline" className="flex items-center gap-2" onClick={handleShare}>
+            <FaShare />
+            Share
+          </Button>
+        </div>
       </motion.div>
 
-      {/* Hero Section */}
+      <div className="space-y-8">
+      {/* Details Section */}
       <motion.section
         className="grid lg:grid-cols-2 gap-8"
         initial={{ opacity: 0, y: 30 }}
@@ -369,20 +444,7 @@ export default function ProjectDetail() {
       >
         {/* Main Image removed */}
 
-        {/* Project Info (split into grid columns) */}
-          <motion.div
-            className="max-w-4xl mx-auto text-center order-1 lg:order-1"
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          >
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 text-center">
-              {project.title}
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 sm:mb-8 leading-relaxed">
-              {project.description}
-            </p>
-          </motion.div>
+        {/* Project Info (split into grid columns) removed per request */}
 
           {/* Project Details */}
           <motion.div
@@ -423,22 +485,6 @@ export default function ProjectDetail() {
             </div>
           </motion.div>
 
-          {/* Action Buttons */}
-          <motion.div
-            className="flex flex-wrap gap-4 order-3 lg:order-3"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-          >
-            <ButtonLink to="/contact" variant="primary" className="flex items-center gap-2">
-              <FaPhone />
-              Contact Us
-            </ButtonLink>
-            <Button variant="outline" className="flex items-center gap-2" onClick={handleShare}>
-              <FaShare />
-              Share Project
-            </Button>
-          </motion.div>
       </motion.section>
 
       {/* Tabs Section */}
@@ -663,6 +709,7 @@ export default function ProjectDetail() {
           />
         )}
       </AnimatePresence>
+    </div>
     </div>
   )
 }

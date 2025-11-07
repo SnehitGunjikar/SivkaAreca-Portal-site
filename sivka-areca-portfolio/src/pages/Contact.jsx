@@ -230,7 +230,7 @@ export default function Contact() {
                 <FaLocationDot className="text-brand-600 mt-1 flex-shrink-0" />
                 <div>
                   <p className="font-medium text-gray-900">Address</p>
-                  <p className="text-gray-700">G.P.C. No. 414/34, Shivaji Nagar</p>
+                  <p className="text-gray-700">Sivka Areca Enterprises, Bargaon Road,</p>
                   <p className="text-gray-700">Khanapur - 591302, Belagavi, Karnataka</p>
                 </div>
               </div>
@@ -251,7 +251,7 @@ export default function Contact() {
                     whileHover={{ x: 5 }}
                   >
                     <FaPhone className="group-hover/link:scale-110 transition-transform" />
-                    <span>+91 9686420150</span>
+                    <span>+91 8104478208</span>
                   </motion.a>
                   <motion.a 
                     href="tel:+919591253590" 
@@ -307,7 +307,7 @@ export default function Contact() {
                   <FaShield className="text-brand-600" />
                   <p className="font-medium text-gray-900">Response Guarantee</p>
                 </div>
-                <p className="text-gray-700">We aim to respond to all inquiries within 24 hours during business days.</p>
+                {/* <p className="text-gray-700">We aim to respond to all inquiries within 24 hours during business days.</p> */}
               </div>
             </div>
           </SpotlightCard>

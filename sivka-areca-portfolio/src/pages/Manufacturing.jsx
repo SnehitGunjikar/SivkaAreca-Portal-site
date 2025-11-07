@@ -272,14 +272,14 @@ const manufGlob = import.meta.glob('../assets/imagedata/manufac-homepage-img/*.{
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2, duration: 0.8, type: 'spring', bounce: 0.4 }}
                       >
-                        World-Class Manufacturing Excellence
+                        MANUFACTURING EXCELLENCE
                       </motion.span>
                     </span>
                   </h2>
                   <motion.div
                     className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-brand-400 to-transparent rounded-full"
                     initial={{ width: 0 }}
-                    animate={{ width: '60%' }}
+                    animate={{ width: '50%' }}
                     transition={{ delay: 1, duration: 1.5, ease: 'easeOut' }}
                   />
                 </motion.div>

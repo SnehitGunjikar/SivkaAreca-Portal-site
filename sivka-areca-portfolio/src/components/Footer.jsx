@@ -54,7 +54,7 @@ export default function Footer() {
             <address className="not-italic text-sm md:text-[15px] space-y-1 text-white">
               <p className="text-white">G.P.C. No. 414/34, Shivaji Nagar, Khanapur – 591302, Belagavi, Karnataka</p>
               <p className="text-white">GSTIN: 29FMNPP9114A1ZS</p>
-              <p className="text-white">Contact: +91 96864 20150 / +91 95912 53590</p>
+              <p className="text-white">Contact: +91 8104478208 / +91 95912 53590</p>
               <p className="text-white">Email: <a href="mailto:sivkaareca@gmail.com" className="text-white hover:text-brand-400">sivkaareca@gmail.com</a></p>
             </address>
           </section>

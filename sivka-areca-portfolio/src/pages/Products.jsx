@@ -288,7 +288,7 @@ export default function Products() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2, duration: 0.8, type: 'spring', bounce: 0.4 }}
                       >
-                        Core Expertise
+                        CORE EXPERTISE
                       </motion.span>
                     </span>
                   </h2>
