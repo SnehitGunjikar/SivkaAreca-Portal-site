@@ -381,113 +381,117 @@ export default function ServiceDetail() {
       {/* Process/Workflow Section */}
       <section className="py-16 lg:py-24 bg-white">
         <div className="max-w-screen-xl mx-auto px-6">
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Our Process
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              A systematic approach ensuring quality and efficiency at every step
-            </p>
-          </motion.div>
+          <div className="rounded-3xl border border-gray-200 shadow-lg p-6 sm:p-8 lg:p-10 bg-white">
+            <motion.div
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Our Process
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                A systematic approach ensuring quality and efficiency at every step
+              </p>
+            </motion.div>
 
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-brand-600 to-brand-400 hidden lg:block"></div>
+            <div className="relative">
+              {/* Timeline Line */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-brand-600 to-brand-400 hidden lg:block"></div>
 
-            <div className="space-y-12 lg:space-y-16">
-              {enhancement.workflow.map((step, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: index * 0.2 }}
-                  className={`flex flex-col lg:flex-row items-center gap-8 ${
-                    index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                  }`}
-                >
-                  <div className="flex-1 space-y-4">
-                    <div className={index % 2 === 0 ? 'text-left lg:text-right' : 'text-right lg:text-left'}>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                        {step.title}
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        {step.description}
-                      </p>
+              <div className="space-y-12 lg:space-y-16">
+                {enhancement.workflow.map((step, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: index * 0.2 }}
+                    className={`flex flex-col lg:flex-row items-center gap-8 ${
+                      index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                    }`}
+                  >
+                    <div className="flex-1 space-y-4">
+                      <div className={index % 2 === 0 ? 'text-left lg:text-right' : 'text-right lg:text-left'}>
+                        <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                          {step.title}
+                        </h3>
+                        <p className="text-gray-600 leading-relaxed">
+                          {step.description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Step Number */}
-                  <div className="relative z-10">
-                    <div className="w-16 h-16 bg-gradient-to-br from-brand-600 to-brand-700 rounded-full flex items-center justify-center shadow-lg">
-                      <span className="text-2xl font-bold text-white">{step.step}</span>
+                    {/* Step Number */}
+                    <div className="relative z-10">
+                      <div className="w-16 h-16 bg-gradient-to-br from-brand-600 to-brand-700 rounded-full flex items-center justify-center shadow-lg">
+                        <span className="text-2xl font-bold text-white">{step.step}</span>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="flex-1"></div>
-                </motion.div>
-              ))}
+                    <div className="flex-1"></div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-r from-brand-600 to-brand-700 text-white">
-        <div className="max-w-screen-xl mx-auto px-6 text-center">
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
-            <h2 className="text-3xl md:text-5xl font-bold leading-tight">
-              Let's Build Something Extraordinary Together
-            </h2>
-            <p className="text-xl text-brand-100 max-w-2xl mx-auto">
-              Ready to transform your vision into reality? Our expert team is here to deliver exceptional {service.title.toLowerCase()} solutions tailored to your needs.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Link
-                  to="/contact"
-                  className="px-8 py-4 bg-white text-brand-600 font-semibold rounded-lg hover:bg-brand-50 transition-colors flex items-center gap-2 group"
-                >
-                  <Phone className="w-5 h-5" />
-                  Call Now: +91 9591253590
-                </Link>
-              </motion.div>
+      {/* CTA Section (curved box) */}
+      <section className="py-16 lg:py-24 bg-white">
+        <div className="max-w-screen-xl mx-auto px-6">
+          <div className="text-center bg-gradient-to-r from-brand-600 to-brand-700 text-white p-8 sm:p-10 lg:p-12 rounded-3xl shadow-xl">
+            <motion.div
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+                Let's Build Something Extraordinary Together
+              </h2>
+              <p className="text-xl text-brand-100 max-w-2xl mx-auto">
+                Ready to transform your vision into reality? Our expert team is here to deliver exceptional {service.title.toLowerCase()} solutions tailored to your needs.
+              </p>
               
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Link
-                  to="/contact"
-                  className="px-8 py-4 border-2 border-white/30 hover:border-white/50 text-white font-semibold rounded-lg transition-colors flex items-center gap-2"
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <Mail className="w-5 h-5" />
-                  Send Email
-                </Link>
-              </motion.div>
-            </div>
+                  <Link
+                    to="/contact"
+                    className="px-8 py-4 bg-white text-brand-600 font-semibold rounded-lg hover:bg-brand-50 transition-colors flex items-center gap-2 group"
+                  >
+                    <Phone className="w-5 h-5" />
+                    Call Now: +91 9591253590
+                  </Link>
+                </motion.div>
+                
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Link
+                    to="/contact"
+                    className="px-8 py-4 border-2 border-white/30 hover:border-white/50 text-white font-semibold rounded-lg transition-colors flex items-center gap-2"
+                  >
+                    <Mail className="w-5 h-5" />
+                    Send Email
+                  </Link>
+                </motion.div>
+              </div>
 
-            <div className="pt-8 flex items-center justify-center gap-2 text-blue-200">
-              <MapPin className="w-5 h-5" />
-              <span>Serving clients across India with premium steel fabrication solutions</span>
-            </div>
-          </motion.div>
+              <div className="pt-8 flex items-center justify-center gap-2 text-blue-200">
+                <MapPin className="w-5 h-5" />
+                <span>Serving clients across India with premium steel fabrication solutions</span>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
     </div>

@@ -3,11 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./src/assets/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
     <title>sivka-areca-portfolio</title>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      (function() {
+        const blockZoomKeys = (e) => {
+          if (e.ctrlKey || e.metaKey) {
+            const k = e.key;
+            if (k === '+' || k === '-' || k === '=' || k === '_' || k === '0') {
+              e.preventDefault();
+            }
+          }
+        };
+        const blockWheelZoom = (e) => {
+          if (e.ctrlKey || e.metaKey) {
+            e.preventDefault();
+          }
+        };
+        window.addEventListener('keydown', blockZoomKeys, { passive: false });
+        window.addEventListener('wheel', blockWheelZoom, { passive: false });
+
+        // iOS Safari pinch gesture events
+        window.addEventListener('gesturestart', (e) => e.preventDefault(), { passive: false });
+        window.addEventListener('gesturechange', (e) => e.preventDefault(), { passive: false });
+        window.addEventListener('gestureend', (e) => e.preventDefault(), { passive: false });
+      })();
+    </script>
   </body>
 </html>
