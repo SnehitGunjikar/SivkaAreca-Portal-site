@@ -121,13 +121,31 @@ export default function Contact() {
     }
     
     setIsSubmitting(true)
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    setSubmitted(true)
-    setIsSubmitting(false)
-    setForm({ name: '', email: '', message: '' })
+    try {
+      const formData = new FormData(e.target)
+      formData.append('access_key', '721a4d73-6156-441d-9a62-54146f262ba4')
+      formData.append('subject', 'New message from Sivka Areca website')
+      formData.append('from_name', form.name)
+      formData.append('reply_to', form.email)
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      })
+
+      const data = await response.json()
+      if (data.success) {
+        setSubmitted(true)
+        setForm({ name: '', email: '', message: '' })
+      } else {
+        // Show a non-intrusive error under the message field
+        setErrors(prev => ({ ...prev, message: 'Failed to send message. Please try again.' }))
+      }
+    } catch (err) {
+      setErrors(prev => ({ ...prev, message: 'Network error. Please try again.' }))
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
