@@ -267,7 +267,7 @@ export default function Contact() {
                     whileHover={{ x: 5 }}
                   >
                     <FaEnvelope className="group-hover/link:scale-110 transition-transform" />
-                    <span>sivkaareca@gmail.com</span>
+                    <span>info@sivkaareca.com</span>
                   </motion.a>
                 </div>
               </div>

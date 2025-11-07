@@ -52,10 +52,10 @@ export default function Footer() {
           <section aria-labelledby="footer-contact" className="space-y-3 md:col-start-3">
             <h3 id="footer-contact" className="text-base font-semibold text-white">Contact Us</h3>
             <address className="not-italic text-sm md:text-[15px] space-y-1 text-white">
-              <p className="text-white">G.P.C. No. 414/34, Shivaji Nagar, Khanapur – 591302, Belagavi, Karnataka</p>
+              <p className="text-white">Sivka Areca Enterprises, Bargaon Road, Khanapur - 591302, Belagavi, Karnataka</p>
               <p className="text-white">GSTIN: 29FMNPP9114A1ZS</p>
               <p className="text-white">Contact: +91 8104478208 / +91 95912 53590</p>
-              <p className="text-white">Email: <a href="mailto:sivkaareca@gmail.com" className="text-white hover:text-brand-400">sivkaareca@gmail.com</a></p>
+              <p className="text-white">Email: <a href="mailto:info@sivkaareca.com" className="text-white hover:text-brand-400">info@sivkaareca.com</a></p>
             </address>
           </section>
         </div>
