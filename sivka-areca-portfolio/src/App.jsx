@@ -1,8 +1,10 @@
 import React, { Suspense } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
+import JsonLd from './components/JsonLd'
 import { SkeletonPage } from './components/SkeletonLoader'
 
 const Home = React.lazy(() => import('./pages/Home'))
@@ -26,8 +28,14 @@ export default function App() {
         </div>
       </div>
 
+      <Helmet>
+        <title>Sivka Areca Enterprises</title>
+        <meta name="description" content="Steel fabrication and structural engineering company based in Belagavi, Karnataka." />
+        <link rel="canonical" href="https://www.sivkaareca.com/" />
+      </Helmet>
       <Navbar />
       <ScrollToTop />
+      <JsonLd />
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 overflow-x-hidden">
         <Suspense fallback={<SkeletonPage />}>
           <Routes>

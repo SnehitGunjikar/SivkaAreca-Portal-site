@@ -2,14 +2,14 @@ import { useParams, Link } from 'react-router-dom'
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
 import { services } from '../data/services'
-import { 
-  ArrowLeft, 
-  CheckCircle, 
-  Users, 
-  Award, 
-  Clock, 
-  Shield, 
-  Zap, 
+import {
+  ArrowLeft,
+  CheckCircle,
+  Users,
+  Award,
+  Clock,
+  Shield,
+  Zap,
   Target,
   ArrowRight,
   Phone,
@@ -171,8 +171,8 @@ export default function ServiceDetail() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center space-y-4">
           <h1 className="text-2xl font-bold text-gray-900">Service not found!</h1>
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -317,8 +317,8 @@ export default function ServiceDetail() {
               className="relative"
             >
               <div className="relative bg-gradient-to-br from-blue-50 to-slate-50 rounded-2xl p-8 shadow-lg">
-                <img 
-                  src={serviceImages[service.slug]} 
+                <img
+                  src={serviceImages[service.slug]}
                   alt={`${service.title} illustration`}
                   className="w-full h-64 md:h-80 object-contain"
                 />
@@ -409,9 +409,8 @@ export default function ServiceDetail() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: index * 0.2 }}
-                    className={`flex flex-col lg:flex-row items-center gap-8 ${
-                      index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                    }`}
+                    className={`flex flex-col lg:flex-row items-center gap-8 ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                      }`}
                   >
                     <div className="flex-1 space-y-4">
                       <div className={index % 2 === 0 ? 'text-left lg:text-right' : 'text-right lg:text-left'}>
@@ -457,7 +456,7 @@ export default function ServiceDetail() {
               <p className="text-xl text-brand-100 max-w-2xl mx-auto">
                 Ready to transform your vision into reality? Our expert team is here to deliver exceptional {service.title.toLowerCase()} solutions tailored to your needs.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
@@ -468,10 +467,10 @@ export default function ServiceDetail() {
                     className="px-8 py-4 bg-white text-brand-600 font-semibold rounded-lg hover:bg-brand-50 transition-colors flex items-center gap-2 group"
                   >
                     <Phone className="w-5 h-5" />
-                    Call Now: +91 9591253590
+                    Call Now: +91 8104478208 / +91 95912 53590
                   </Link>
                 </motion.div>
-                
+
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -501,7 +500,7 @@ export default function ServiceDetail() {
 // StatCard Component for animated counters
 function StatCard({ icon: Icon, value, suffix, label }) {
   const [count, ref] = useCounter(value)
-  
+
   return (
     <motion.div
       ref={ref}

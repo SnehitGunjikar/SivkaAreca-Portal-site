@@ -9,7 +9,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
-  
+
   // Performance optimization: Reduce animations on slower devices
   const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
   const isSlowDevice = typeof navigator !== 'undefined' && navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4
@@ -28,7 +28,7 @@ export default function Navbar() {
         setOpen(false)
       }
     }
-    
+
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
@@ -58,7 +58,7 @@ export default function Navbar() {
           )
           const firstElement = focusableElements[0]
           const lastElement = focusableElements[focusableElements.length - 1]
-          
+
           if (event.shiftKey && document.activeElement === firstElement) {
             event.preventDefault()
             lastElement.focus()
@@ -73,7 +73,7 @@ export default function Navbar() {
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [open])
-  
+
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (open) {
@@ -86,12 +86,12 @@ export default function Navbar() {
     } else {
       document.body.style.overflow = 'unset'
     }
-    
+
     return () => {
       document.body.style.overflow = 'unset'
     }
   }, [open])
-  
+
   const linkClass = ({ isActive }) =>
     `px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${isActive ? 'bg-brand-600 text-white shadow-lg' : 'text-gray-200 hover:bg-white/10 hover:text-white'}`
 
@@ -105,12 +105,12 @@ export default function Navbar() {
   ]
 
   // Determine page for header behavior
-  const isContactPage = location.pathname === '/contact'
-  
+  const isSpecialPage = location.pathname === '/contact' || location.pathname === '/privacy' || location.pathname === '/terms'
+
   // Make header transparent at top and translucent on scroll across pages,
-  // except Contact page which remains always translucent
+  // except special pages which remain always translucent
   const getHeaderStyle = () => {
-    if (isContactPage) {
+    if (isSpecialPage) {
       return 'bg-neutral-900/90 backdrop-blur-md border-b border-white/20'
     }
     return isScrolled
@@ -123,9 +123,9 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between py-2 sm:py-3 md:py-4 pl-2 sm:pl-3 md:pl-4 pr-4 sm:pr-6 lg:pr-8">
         <div className="flex items-center gap-3 sm:gap-4 -ml-2 sm:-ml-3">
           {/* Enhanced hamburger menu button with accessibility */}
-          <motion.button 
-            className="md:hidden h-12 w-12 flex flex-col items-center justify-center border border-white/20 rounded-xl hover:bg-white/5 hover:border-white/30 focus:bg-white/10 focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-neutral-900 transition-all duration-200 touch-manipulation" 
-            onClick={() => setOpen(!open)} 
+          <motion.button
+            className="md:hidden h-12 w-12 flex flex-col items-center justify-center border border-white/20 rounded-xl hover:bg-white/5 hover:border-white/30 focus:bg-white/10 focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-neutral-900 transition-all duration-200 touch-manipulation"
+            onClick={() => setOpen(!open)}
             aria-label={open ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={open}
             aria-controls="mobile-navigation"
@@ -133,20 +133,20 @@ export default function Navbar() {
             whileTap={{ scale: 0.95 }}
             style={{ minHeight: '44px', minWidth: '44px' }}
           >
-            <motion.span 
+            <motion.span
               className="block w-5 h-0.5 bg-gray-300 mb-1 transition-all duration-300"
               animate={open ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
             />
-            <motion.span 
+            <motion.span
               className="block w-5 h-0.5 bg-gray-300 mb-1 transition-all duration-300"
               animate={open ? { opacity: 0 } : { opacity: 1 }}
             />
-            <motion.span 
+            <motion.span
               className="block w-5 h-0.5 bg-gray-300 transition-all duration-300"
               animate={open ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
             />
           </motion.button>
-          
+
           {/* Brand logo */}
           <NavLink to="/" className="inline-block">
             <motion.img
@@ -158,7 +158,7 @@ export default function Navbar() {
             />
           </NavLink>
         </div>
-        
+
         {/* Desktop navigation */}
         <nav className="hidden md:flex items-center gap-1">
           <GooeyNav
@@ -170,7 +170,7 @@ export default function Navbar() {
           />
         </nav>
       </div>
-      
+
       {/* Professional Mobile Menu with Enhanced UX */}
       <AnimatePresence>
         {open && (
@@ -184,7 +184,7 @@ export default function Navbar() {
               transition={{ duration: 0.3, ease: "easeOut" }}
               onClick={() => setOpen(false)}
             />
-            
+
             {/* Professional Mobile Menu */}
             <motion.div
               id="mobile-navigation"
@@ -206,12 +206,12 @@ export default function Navbar() {
                 }
               }}
             >
-                {/* Swipe Indicator */}
-                <div className="flex justify-center py-2">
-                  <div className="w-12 h-1 bg-gray-300 rounded-full"></div>
-                </div>
-                
-                {/* Menu Header with Brand Accent */}
+              {/* Swipe Indicator */}
+              <div className="flex justify-center py-2">
+                <div className="w-12 h-1 bg-gray-300 rounded-full"></div>
+              </div>
+
+              {/* Menu Header with Brand Accent */}
               <div className="px-6 py-4 border-b border-gray-100 bg-gradient-to-r from-brand-50 to-brand-100/50">
                 <motion.div
                   initial={{ opacity: 0, y: -20 }}
@@ -220,13 +220,13 @@ export default function Navbar() {
                   className="flex items-center justify-between"
                 >
                   <div className="flex items-center space-x-3">
-                    <motion.div 
+                    <motion.div
                       className="w-8 h-8 bg-gradient-to-br from-brand-500 to-brand-600 rounded-lg flex items-center justify-center shadow-lg"
-                      animate={{ 
+                      animate={{
                         rotate: [0, 5, -5, 0],
                         scale: [1, 1.05, 1]
                       }}
-                      transition={{ 
+                      transition={{
                         duration: 2,
                         repeat: Infinity,
                         repeatDelay: 3
@@ -237,14 +237,14 @@ export default function Navbar() {
                       </svg>
                     </motion.div>
                     <div>
-                      <motion.h3 
+                      <motion.h3
                         className="text-sm font-semibold text-gray-800"
                         animate={{ opacity: [0.7, 1, 0.7] }}
                         transition={{ duration: 2, repeat: Infinity }}
                       >
                         Navigation
                       </motion.h3>
-                      <motion.p 
+                      <motion.p
                         className="text-xs text-gray-500"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -271,60 +271,58 @@ export default function Navbar() {
               {/* Enhanced Navigation Links */}
               <div className="px-4 py-6 space-y-2 max-h-[calc(100vh-140px)] overflow-y-auto">
                 {items.map((item, index) => (
-                  <NavLink 
-                     key={item.to}
-                     to={item.to} 
-                     className={({ isActive }) =>
-                       `group relative flex items-center px-6 py-5 rounded-2xl text-base font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white touch-manipulation ${
-                         isActive 
-                           ? 'bg-gradient-to-r from-brand-500 to-brand-600 text-white shadow-lg shadow-brand-500/25' 
-                           : 'text-gray-700 hover:bg-gradient-to-r hover:from-brand-50 hover:to-brand-100 hover:text-brand-700 active:scale-[0.98] focus:bg-brand-50'
-                       }`
-                     }
-                     onClick={() => setOpen(false)}
-                     aria-current={location.pathname === item.to ? 'page' : undefined}
-                     style={{ minHeight: '56px' }} // Enhanced touch target for mobile
-                   >
+                  <NavLink
+                    key={item.to}
+                    to={item.to}
+                    className={({ isActive }) =>
+                      `group relative flex items-center px-6 py-5 rounded-2xl text-base font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white touch-manipulation ${isActive
+                        ? 'bg-gradient-to-r from-brand-500 to-brand-600 text-white shadow-lg shadow-brand-500/25'
+                        : 'text-gray-700 hover:bg-gradient-to-r hover:from-brand-50 hover:to-brand-100 hover:text-brand-700 active:scale-[0.98] focus:bg-brand-50'
+                      }`
+                    }
+                    onClick={() => setOpen(false)}
+                    aria-current={location.pathname === item.to ? 'page' : undefined}
+                    style={{ minHeight: '56px' }} // Enhanced touch target for mobile
+                  >
                     <motion.div
-                       initial={{ x: -30, opacity: 0 }}
-                       animate={{ x: 0, opacity: 1 }}
-                       transition={{ 
-                         delay: 0.1 + (index * 0.08), 
-                         duration: 0.5,
-                         type: "spring",
-                         stiffness: 100,
-                         damping: 15
-                       }}
-                       className="flex items-center w-full"
-                       style={{ willChange: 'transform' }}
-                       whileHover={{ x: 8 }}
-                       whileTap={{ scale: 0.98 }}
-                     >
+                      initial={{ x: -30, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{
+                        delay: 0.1 + (index * 0.08),
+                        duration: 0.5,
+                        type: "spring",
+                        stiffness: 100,
+                        damping: 15
+                      }}
+                      className="flex items-center w-full"
+                      style={{ willChange: 'transform' }}
+                      whileHover={{ x: 8 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
                       {/* Navigation Icon Indicator */}
-                      <motion.div 
-                        className={`w-2 h-2 rounded-full mr-4 transition-all duration-300 ${
-                          location.pathname === item.to 
-                            ? 'bg-white shadow-lg shadow-white/50' 
+                      <motion.div
+                        className={`w-2 h-2 rounded-full mr-4 transition-all duration-300 ${location.pathname === item.to
+                            ? 'bg-white shadow-lg shadow-white/50'
                             : 'bg-current opacity-60 group-hover:opacity-100 group-hover:scale-125'
-                        }`}
+                          }`}
                         animate={location.pathname === item.to ? {
                           scale: [1, 1.2, 1],
                           rotate: [0, 180, 360]
                         } : {}}
-                        transition={{ 
+                        transition={{
                           duration: 0.6,
                           repeat: location.pathname === item.to ? Infinity : 0,
                           repeatDelay: 2
                         }}
                       />
-                      
+
                       {/* Navigation Text with Enhanced Typography */}
-                      <motion.span 
+                      <motion.span
                         className="flex-1 text-left font-medium tracking-wide"
                         animate={location.pathname === item.to ? {
                           scale: [1, 1.02, 1]
                         } : {}}
-                        transition={{ 
+                        transition={{
                           duration: 0.4,
                           repeat: location.pathname === item.to ? Infinity : 0,
                           repeatDelay: 3
@@ -332,7 +330,7 @@ export default function Navbar() {
                       >
                         {item.label}
                       </motion.span>
-                      
+
                       {/* Active State Arrow Indicator */}
                       {location.pathname === item.to && (
                         <motion.div
@@ -345,7 +343,7 @@ export default function Navbar() {
                           </svg>
                         </motion.div>
                       )}
-                      
+
                       {/* Hover Arrow Indicator */}
                       <motion.div
                         className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -358,11 +356,11 @@ export default function Navbar() {
                         </svg>
                       </motion.div>
                     </motion.div>
-                    
+
                     {/* Active State Indicator */}
                     <motion.div
                       className="absolute left-0 top-1/2 w-1 h-8 bg-white rounded-r-full transform -translate-y-1/2 opacity-0"
-                      animate={{ 
+                      animate={{
                         opacity: location.pathname === item.to ? 1 : 0,
                         scale: location.pathname === item.to ? 1 : 0.8
                       }}
